@@ -1,5 +1,6 @@
 import React from 'react';
 import authRequests from '../../helpers/data/authRequests';
+import googleButton from './images/login-google.png';
 import './Auth.scss';
 
 class Auth extends React.Component {
@@ -13,7 +14,9 @@ class Auth extends React.Component {
   render() {
     return (
       <div className="Auth">
-        <button className="btn btn-danger" onClick={this.authenticateUser}>Login</button>
+        <button className="btn btn-default login-button" onClick={this.authenticateUser}>
+          <img src= {googleButton} alt="google-login-button" width="400px"/>
+        </button>
       </div>
     );
   }
