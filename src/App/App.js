@@ -10,6 +10,9 @@ import authRequests from '../helpers/data/authRequests';
 import Auth from '../components/pages/Auth/Auth';
 import MyNavbar from '../components/MyNavbar/MyNavbar';
 import Bills from '../components/pages/Bills/Bills';
+import NewBill from '../components/pages/NewBill/NewBill';
+import EditBill from '../components/pages/EditBill/EditBill';
+
 import './App.scss';
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
@@ -75,11 +78,12 @@ class App extends React.Component {
           <div className="appContainer">
             <div className="row">
               <Switch>
-                <PrivateRoute exact path="/" component={Bills} authed={this.state.authed}/>
-                <PrivateRoute path="/bills" component={Bills} authed={this.state.authed}/>
-                <PublicRoute path="/auth" component={Auth} authed={this.state.authed}/>
+                <PrivateRoute exact path="/" component={Bills} authed={authed}/>
+                <PrivateRoute exact path="/bills" component={Bills} authed={authed}/>
+                <PrivateRoute exact path="/bills/new" component={NewBill} authed={authed}/>
+                <PrivateRoute exact path="/bills/:id/edit" component={EditBill} authed={authed}/>
+                <PublicRoute path="/auth" component={Auth} authed={authed}/>
               </Switch>
-
             </div>
           </div>
           </React.Fragment>
