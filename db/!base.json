@@ -1,0 +1,8 @@
+{ 
+  "bills": { 
+    "payee": "water" 
+    }, 
+  "articles": { 
+    "title" : "abcd" 
+    }
+  }

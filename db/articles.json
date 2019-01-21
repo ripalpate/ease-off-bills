@@ -1,0 +1,45 @@
+{
+  "article1": {
+    "url": "https://www.energy.gov/articles/how-much-do-you-spend",
+    "title": "How much do you spend?",
+    "synopsis": "Ever Wonder how much you spend on energy a year? We are breaking down the numbers for you.",
+    "category": "utility"
+    },
+  "article2": {
+    "url": "https://www.energy.gov/energysaver/thermostats",
+    "title": "Thermostats",
+    "synopsis": "Check out this article to know more about thermostate operation, choosing and programming programmable thermostate and other consideration",
+    "category": "utility"
+  },
+   "article3": {
+    "url": "https://www.energy.gov/eere/articles/4-technological-advances-keeping-your-home-warm-while-reducing-your-energy-bill",
+    "title": "4 Technological Advances for Keeping Your Home Warm While Reducing Your Energy Bill",
+    "synopsis": "While winter weather can bring magnificent snowy views, it isn't always a pretty picture for your heating bill. ",
+    "category": "utility"
+    },
+  "article4": {
+    "url": "https://www.energy.gov/eere/articles/5-tips-stay-warm-winter",
+    "title": "5 Tips To Stay Warm This Winter",
+    "synopsis": "Preparing for winter now can save you money and keep you warmer during cold days.Here are some simple steps you can take now to stay warm this winter.",
+    "category": "utility"
+    },
+  "article5": {
+    "url": "https://www.merrilledge.com/article/10-tips-to-help-you-boost-your-retirement-savings-whatever-your-age-ose",
+    "title": "10 tips to help you boost your retirement savings – Whatever your age",
+    "synopsis": "Whether you just started working or you're nearly done, you can still potentially grow your nest egg.",
+    "category": "creditCards"
+    },
+    "article6": {
+      "url": "https://www.nationwide.com/car-insurance-credit-score.jsp",
+      "title": "How credit affects your insurance",
+      "synopsis": "Insurance premiums are determined by many factors – including credit score. We explain how.",
+      "category": "insurance"
+    },
+    "article7": {
+      "url": "http://www.cornerstonemortgage.com/Is-A-15-or-30-Year-Fixed-Mortgage-Right-For-Me/",
+      "title": "Is A 15 or 30 Year Fixed Mortgage Right For Me?",
+      "synopsis": "You have applied for a mortgage and are now faced with a question: Should you get a 15 year mortgage or a 30 year one? How are they different and what benefits would they have for you?",
+      "category": "mortgage"
+    }
+    
+}  
