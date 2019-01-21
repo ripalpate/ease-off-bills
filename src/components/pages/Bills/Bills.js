@@ -2,7 +2,9 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import './Bills.scss';
 import Articles from '../../Articles/Articles';
+import DueBills from '../../DueBills/DueBills';
 import articlesRequests from '../../../helpers/data/articlesRequests';
+import billsRequests from '../../../helpers/data/billsRequests';
 
 class Bills extends React.Component {
   state = {
@@ -14,6 +16,11 @@ class Bills extends React.Component {
       .then((articles) => {
         this.setState({ articles });
       }).catch(err => console.error(err));
+
+    billsRequests.getBills()
+      .then((bills) => {
+        this.setState({ bills });
+      }).catch(err => console.error(err));
   }
 
   changeView = () => {
@@ -21,11 +28,12 @@ class Bills extends React.Component {
   }
 
   render() {
-    const { articles } = this.state;
+    const { articles, bills } = this.state;
     return (
       <div className="row">
         <div className="Bill mx-auto" onClick={this.changeView}>
           <Button className ="btn btn-info mt-5">Add Bills</Button>
+          <DueBills bills = {bills}/>
         </div>
         <Articles articles = {articles}/>
       </div>
