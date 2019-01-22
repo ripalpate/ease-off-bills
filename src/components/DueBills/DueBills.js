@@ -7,14 +7,16 @@ import './DueBills.scss';
 class DueBills extends React.Component {
   static propTypes = {
     bills: PropTypes.arrayOf(billShape),
+    deleteSingleBill: PropTypes.func,
   }
 
   render() {
-    const { bills } = this.props;
+    const { bills, deleteSingleBill } = this.props;
     const billsItemComponents = bills.map(bill => (
       <DueBillItem
       bill={bill}
       key={bill.id}
+      deleteSingleBill={deleteSingleBill}
       />
     ));
 
