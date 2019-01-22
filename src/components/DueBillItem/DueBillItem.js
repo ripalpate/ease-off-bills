@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import billShape from '../../helpers/propz/billShape';
 import formatPrice from '../../helpers/formatPrice';
 import './DueBillItem.scss';
@@ -6,19 +7,17 @@ import './DueBillItem.scss';
 class DueBillItem extends React.Component {
   static propTypes = {
     bill: billShape,
+    deleteSingleBill: PropTypes.func,
+  }
+
+  deleteEvent = (e) => {
+    e.preventDefault();
+    const { deleteSingleBill, bill } = this.props;
+    deleteSingleBill(bill.id);
   }
 
   render() {
     const { bill } = this.props;
-    // const makeButtons = () => (
-    //       <div>
-    //         <span className="col">
-    //           <button className="btn btn-default">
-    //             <i className="fas fa-trash-alt"></i>
-    //           </button>
-    //         </span>
-    //       </div>
-    // );
     const dueBillElement = () => {
       if (!bill.isPaid) {
         return (
@@ -31,7 +30,7 @@ class DueBillItem extends React.Component {
             <input className=""type="checkbox"/>
             <label className="checkbox-label">Paid</label></span>
             <span className="col-1">
-              <button className="btn btn-danger delete-button">
+              <button className="btn btn-danger delete-button" onClick={this.deleteEvent}>
                 <i className="fas fa-trash-alt"></i>
               </button>
             </span>

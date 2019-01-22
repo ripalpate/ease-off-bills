@@ -13,16 +13,27 @@ class Bills extends React.Component {
     bills: [],
   }
 
-  componentDidMount() {
+  getBills = () => {
     const uid = authRequests.getCurrentUid();
+    billsRequests.getBills(uid)
+      .then((bills) => {
+        this.setState({ bills });
+      }).catch(err => console.error(err));
+  }
+
+  componentDidMount() {
     articlesRequests.getArticles()
       .then((articles) => {
         this.setState({ articles });
       }).catch(err => console.error(err));
 
-    billsRequests.getBills(uid)
-      .then((bills) => {
-        this.setState({ bills });
+    this.getBills();
+  }
+
+  deleteBill = (billId) => {
+    billsRequests.deleteBill(billId)
+      .then(() => {
+        this.getBills();
       }).catch(err => console.error(err));
   }
 
@@ -38,7 +49,10 @@ class Bills extends React.Component {
           <Button className ="btn btn-info mt-5">Add Bills</Button>
         </div>
         <div className="row">
-        <DueBills bills = {bills}/>
+        <DueBills
+          bills = {bills}
+          deleteSingleBill = {this.deleteBill}
+        />
         <Articles articles = {articles}/>
         </div>
       </div>
