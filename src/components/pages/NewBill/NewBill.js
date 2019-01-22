@@ -1,10 +1,12 @@
 import React from 'react';
 import './NewBill.scss';
+import billsRequests from '../../../helpers/data/billsRequests';
+import authRequests from '../../../helpers/data/authRequests';
 
 const defaultBill = {
   payee: '',
   dueDate: '',
-  amount: '',
+  amount: 0,
   category: '',
   paymentUrl: '',
   isPaid: false,
@@ -33,12 +35,27 @@ class NewBill extends React.Component {
 
   urlChange = e => this.formFieldStringState('paymentUrl', e);
 
+  formSubmitEvent = (newBill) => {
+    billsRequests.createBill(newBill)
+      .then(() => {
+        this.props.history.push('/bills');
+      }).catch(err => console.error(err));
+  }
+
+  formSubmit = (e) => {
+    e.preventDefault();
+    const myBill = { ...this.state.newBill };
+    myBill.uid = authRequests.getCurrentUid();
+    this.formSubmitEvent(myBill);
+    this.setState({ newBill: defaultBill });
+  }
 
   render() {
+    const { newBill } = this.state;
     return (
       <div>
         <h5>Add New Bill</h5>
-        <form>
+        <form onSubmit={this.formSubmit}>
           <div className="form-group">
             <label htmlFor="payee">Payee:</label>
             <input
@@ -47,6 +64,7 @@ class NewBill extends React.Component {
               id="payee"
               aria-describedby="payeeHelp"
               placeholder="West Wilson Utility"
+              value= {newBill.payee}
               onChange= {this.payeeChange}
             />
           </div>
@@ -56,6 +74,7 @@ class NewBill extends React.Component {
               type="date"
               className="form-control"
               id="dueDate"
+              value= {newBill.dueDate}
               onChange = {this.dueDateChange}
             />
           </div>
@@ -67,16 +86,21 @@ class NewBill extends React.Component {
               id="amount"
               aria-describedby="amountHelp"
               placeholder="50"
+              value = {newBill.amount}
               onChange = {this.amountChange}
             />
           </div>
           <div className="form-group">
             <label htmlFor="email">Category:</label>
-            <select id="inputState" className="form-control" onChange={this.categoryChange}>
+            <select id="inputState" className="form-control" value={newBill.category} onChange={this.categoryChange}>
               <option>Select Category</option>
               <option>Utility</option>
               <option>Rent</option>
+              <option>Mortgage</option>
               <option>Insurance</option>
+              <option>Credit Cards</option>
+              <option>TeleCommunication</option>
+              <option>Other</option>
             </select>
           </div>
           <div className="form-group">
@@ -87,6 +111,7 @@ class NewBill extends React.Component {
               id="url"
               aria-describedby="urlHelp"
               placeholder="www.google.com"
+              value={newBill.paymentUrl}
               onChange = {this.urlChange}
             />
           </div>
