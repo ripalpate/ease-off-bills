@@ -61,6 +61,15 @@ class NewBill extends React.Component {
     this.setState({ newBill: defaultBill });
   }
 
+  onChangeDisplayOccurances = (e) => {
+    const elem = document.getElementById('showMe');
+    if (e.currentTarget.value === 'monthly' || e.currentTarget.value === 'yearly') {
+      elem.style.display = 'block';
+    } else {
+      elem.style.display = 'none';
+    }
+  }
+
   render() {
     const { newBill } = this.state;
     return (
@@ -112,6 +121,26 @@ class NewBill extends React.Component {
               <option>Credit Cards</option>
               <option>TeleCommunication</option>
               <option>Other</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="cycle">Cycle: </label>
+            <select id="cycle" className="form-control" onChange={this.onChangeDisplayOccurances}>
+              <option>Select Cycle</option>
+              <option value="none">None</option>
+              <option value="monthly">Monthly</option>
+              <option value="yearly">Yearly</option>
+            </select>
+          </div>
+          <div className="form-group" id="showMe">
+            <label htmlFor="noOfOccurances">No. of Ocuurances: </label>
+            <select id="occurances"className="form-control">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
             </select>
           </div>
           <div className="form-group">
