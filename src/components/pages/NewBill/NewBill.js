@@ -25,11 +25,18 @@ class NewBill extends React.Component {
     this.setState({ newBill: tempBill });
   }
 
+  formFieldNumberState = (name, e) => {
+    e.preventDefault();
+    const tempBill = { ...this.state.newBill };
+    tempBill[name] = e.target.value * 1;
+    this.setState({ newBill: tempBill });
+  }
+
   payeeChange = e => this.formFieldStringState('payee', e);
 
   dueDateChange = e => this.formFieldStringState('dueDate', e);
 
-  amountChange = e => this.formFieldStringState('amount', e);
+  amountChange = e => this.formFieldNumberState('amount', e);
 
   categoryChange = e => this.formFieldStringState('category', e);
 
@@ -38,6 +45,10 @@ class NewBill extends React.Component {
   formSubmitEvent = (newBill) => {
     billsRequests.createBill(newBill)
       .then(() => {
+        billsRequests.getBills()
+          .then((bills) => {
+            this.setState({ bills });
+          });
         this.props.history.push('/bills');
       }).catch(err => console.error(err));
   }
