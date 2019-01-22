@@ -1,11 +1,11 @@
 import React from 'react';
+import moment from 'moment';
 import './NewBill.scss';
 import billsRequests from '../../../helpers/data/billsRequests';
 import authRequests from '../../../helpers/data/authRequests';
 
 const defaultBill = {
   payee: '',
-  dueDate: '',
   amount: 0,
   category: '',
   paymentUrl: '',
@@ -13,9 +13,12 @@ const defaultBill = {
   uid: '',
 };
 
+const defaultDueDate = moment().format('YYYY-MM-DD');
+
 class NewBill extends React.Component {
   state = {
     newBill: defaultBill,
+    billDueDate: defaultDueDate,
   }
 
   formFieldStringState = (name, e) => {
@@ -34,13 +37,18 @@ class NewBill extends React.Component {
 
   payeeChange = e => this.formFieldStringState('payee', e);
 
-  dueDateChange = e => this.formFieldStringState('dueDate', e);
-
   amountChange = e => this.formFieldNumberState('amount', e);
 
   categoryChange = e => this.formFieldStringState('category', e);
 
   urlChange = e => this.formFieldStringState('paymentUrl', e);
+
+  dueDateChange = (e) => {
+    e.preventDefault();
+    let tempDate = { ...this.state.billDueDate };
+    tempDate = e.target.value;
+    this.setState({ billDueDate: tempDate });
+  }
 
   formSubmitEvent = (newBill) => {
     billsRequests.createBill(newBill)
@@ -56,9 +64,10 @@ class NewBill extends React.Component {
   formSubmit = (e) => {
     e.preventDefault();
     const myBill = { ...this.state.newBill };
+    myBill.dueDate = Date.parse(`${this.state.billDueDate}T00:00:00`);
     myBill.uid = authRequests.getCurrentUid();
     this.formSubmitEvent(myBill);
-    this.setState({ newBill: defaultBill });
+    this.setState({ newBill: defaultBill, dueDate: defaultDueDate });
   }
 
   onChangeDisplayOccurances = (e) => {
@@ -71,7 +80,7 @@ class NewBill extends React.Component {
   }
 
   render() {
-    const { newBill } = this.state;
+    const { newBill, billDueDate } = this.state;
     return (
       <div>
         <h5>Add New Bill</h5>
@@ -94,7 +103,7 @@ class NewBill extends React.Component {
               type="date"
               className="form-control"
               id="dueDate"
-              value= {newBill.dueDate}
+              value= {billDueDate}
               onChange = {this.dueDateChange}
             />
           </div>

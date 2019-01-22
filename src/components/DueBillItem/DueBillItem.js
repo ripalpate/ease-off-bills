@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import billShape from '../../helpers/propz/billShape';
 import formatPrice from '../../helpers/formatPrice';
 import './DueBillItem.scss';
@@ -22,7 +23,7 @@ class DueBillItem extends React.Component {
       if (!bill.isPaid) {
         return (
           <div className="row">
-            <p className="col-2">{bill.dueDate}</p>
+            <p className="col-2">{moment(bill.dueDate).format('L')}</p>
             <p className="col-2">{bill.category}</p>
             <p className="col-2">{formatPrice(bill.amount)}</p>
             <p className="col-1"><a href={bill.paymentUrl} rel="noopener noreferrer" target="_blank">Pay</a></p>
