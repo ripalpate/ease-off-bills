@@ -85,7 +85,7 @@ class NewBill extends React.Component {
               className="form-control"
               id="amount"
               aria-describedby="amountHelp"
-              placeholder="50"
+              placeholder="0"
               value = {newBill.amount}
               onChange = {this.amountChange}
             />
