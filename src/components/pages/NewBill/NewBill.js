@@ -125,8 +125,8 @@ class NewBill extends React.Component {
           </div>
           <div className="form-group">
             <label htmlFor="email">Category:</label>
-            <select id="inputState" className="form-control" value={newBill.category} onChange={this.categoryChange}>
-              <option>Select Category</option>
+            <select id="inputState" className="form-control" required value={newBill.category} onChange={this.categoryChange}>
+              <option value=''>Select Category</option>
               <option>Utility</option>
               <option>Rent</option>
               <option>Mortgage</option>
