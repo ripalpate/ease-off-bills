@@ -66,12 +66,6 @@ class NewBill extends React.Component {
     const myBill = { ...this.state.newBill };
     myBill.dueDate = Date.parse(`${this.state.billDueDate}T00:00:00`);
     myBill.uid = authRequests.getCurrentUid();
-    const newDate = moment(myBill.dueDate).add(1, 'months').calendar();
-    // for (let i = newDate; i < 5; i + 1) {
-    //   newDate += i;
-    //   console.log(newDate);
-    // }
-    console.log(newDate);
     this.formSubmitEvent(myBill);
     this.setState({ newBill: defaultBill, billDueDate: defaultDueDate });
   }
@@ -101,6 +95,7 @@ class NewBill extends React.Component {
               placeholder="West Wilson Utility"
               value= {newBill.payee}
               onChange= {this.payeeChange}
+              required
             />
           </div>
           <div className="form-group">
@@ -111,6 +106,7 @@ class NewBill extends React.Component {
               id="dueDate"
               value= {billDueDate}
               onChange = {this.dueDateChange}
+              required
             />
           </div>
           <div className="form-group">
@@ -121,8 +117,10 @@ class NewBill extends React.Component {
               id="amount"
               aria-describedby="amountHelp"
               placeholder="0"
+              pattern= "^[1-9][0-9]*$"
               value = {newBill.amount}
               onChange = {this.amountChange}
+              required
             />
           </div>
           <div className="form-group">
@@ -151,9 +149,9 @@ class NewBill extends React.Component {
             <label htmlFor="noOfOccurances">No. of Ocuurances: </label>
             <select id="occurances"className="form-control">
               <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
+              <option value='2'>2</option>
+              <option value='3'>3</option>
+              <option value='4'>4</option>
               <option>5</option>
               <option>6</option>
             </select>
@@ -168,6 +166,7 @@ class NewBill extends React.Component {
               placeholder="www.google.com"
               value={newBill.paymentUrl}
               onChange = {this.urlChange}
+              required
             />
           </div>
           <button className="btn btn-success">Save Bill</button>
