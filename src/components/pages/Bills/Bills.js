@@ -49,11 +49,11 @@ class Bills extends React.Component {
           <Button className ="btn btn-info mt-5">Add Bills</Button>
         </div>
         <div className="row">
-        <DueBills
-          bills = {bills}
-          deleteSingleBill = {this.deleteBill}
-        />
-        <Articles articles = {articles}/>
+          <DueBills
+            bills = {bills}
+            deleteSingleBill = {this.deleteBill}
+          />
+          <Articles articles = {articles}/>
         </div>
       </div>
     );

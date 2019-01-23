@@ -21,7 +21,10 @@ const getBills = uid => new Promise((resolve, reject) => {
 
 const deleteBill = billId => axios.delete(`${firebaseUrl}/bills/${billId}.json`);
 
+const createBill = bill => axios.post(`${firebaseUrl}/bills.json`, bill);
+
 export default {
   getBills,
   deleteBill,
+  createBill,
 };

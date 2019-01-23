@@ -1,7 +1,7 @@
 {
   "bill1": {
   "payee": "West Wilson Utility",
-  "dueDate": "12/31/2019",
+  "dueDate": 1548396010000,
   "amount": 12,
   "category": "utility",
   "paymentUrl": "http://www.westwilsonutility.com/",
@@ -10,7 +10,7 @@
   },
   "bill2": {
   "payee": "Piedmont Gas",
-  "dueDate": "12/31/2019",
+  "dueDate": 1548396010000,
   "amount": 12,
   "category": "utility",
   "paymentUrl": "https://www.piedmontng.com/",
