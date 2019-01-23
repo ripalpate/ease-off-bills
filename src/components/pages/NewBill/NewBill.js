@@ -56,8 +56,8 @@ class NewBill extends React.Component {
         billsRequests.getBills()
           .then((bills) => {
             this.setState({ bills });
+            this.props.history.push('/bills');
           });
-        this.props.history.push('/bills');
       }).catch(err => console.error(err));
   }
 
@@ -66,8 +66,14 @@ class NewBill extends React.Component {
     const myBill = { ...this.state.newBill };
     myBill.dueDate = Date.parse(`${this.state.billDueDate}T00:00:00`);
     myBill.uid = authRequests.getCurrentUid();
+    const newDate = moment(myBill.dueDate).add(1, 'months').calendar();
+    // for (let i = newDate; i < 5; i + 1) {
+    //   newDate += i;
+    //   console.log(newDate);
+    // }
+    console.log(newDate);
     this.formSubmitEvent(myBill);
-    this.setState({ newBill: defaultBill, dueDate: defaultDueDate });
+    this.setState({ newBill: defaultBill, billDueDate: defaultDueDate });
   }
 
   onChangeDisplayOccurances = (e) => {
