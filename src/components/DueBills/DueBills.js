@@ -9,16 +9,26 @@ class DueBills extends React.Component {
     bills: PropTypes.arrayOf(billShape),
     deleteSingleBill: PropTypes.func,
     passBillToEdit: PropTypes.func,
+    updateIsPaid: PropTypes.func,
+    isPaid: PropTypes.bool,
   }
 
   render() {
-    const { bills, deleteSingleBill, passBillToEdit } = this.props;
+    const {
+      bills,
+      deleteSingleBill,
+      passBillToEdit,
+      updateIsPaid,
+      isPaid,
+    } = this.props;
     const billsItemComponents = bills.map(bill => (
       <DueBillItem
       bill={bill}
       key={bill.id}
       deleteSingleBill={deleteSingleBill}
       passBillToEdit={passBillToEdit}
+      updateIsPaid={updateIsPaid}
+      isPaid = {isPaid}
       />
     ));
 

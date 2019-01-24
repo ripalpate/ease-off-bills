@@ -42,6 +42,13 @@ class Bills extends React.Component {
     this.props.history.push(`/bills/${billId}/edit`);
   }
 
+  updateIsPaid = (billId, isPaid) => {
+    billsRequests.updatedIsPaid(billId, isPaid)
+      .then(() => {
+        this.getBills();
+      }).catch(err => console.error(err));
+  }
+
   changeView = () => {
     this.props.history.push('/bills/new');
   }
@@ -58,6 +65,7 @@ class Bills extends React.Component {
             bills = {bills}
             deleteSingleBill = {this.deleteBill}
             passBillToEdit = {this.passBillToEdit}
+            updateIsPaid = {this.updateIsPaid}
           />
           <Articles articles = {articles}/>
         </div>

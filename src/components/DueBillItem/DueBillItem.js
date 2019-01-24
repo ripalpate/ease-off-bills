@@ -10,6 +10,7 @@ class DueBillItem extends React.Component {
     bill: billShape,
     deleteSingleBill: PropTypes.func,
     passBillToEdit: PropTypes.func,
+    updateIsPaid: PropTypes.func,
   }
 
   deleteEvent = (e) => {
@@ -24,18 +25,23 @@ class DueBillItem extends React.Component {
     passBillToEdit(bill.id);
   }
 
+  updateIsPaidEvent = (e) => {
+    e.preventDefault();
+    const { updateIsPaid, bill } = this.props;
+    const isPaid = e.target.checked;
+    updateIsPaid(bill.id, isPaid);
+  }
+
   render() {
     const { bill } = this.props;
-    const dueBillElement = () => {
-      if (!bill.isPaid) {
-        return (
+    const dueBillElement = () => (
           <div className="row">
             <p className="col-2">{moment(bill.dueDate).format('L')}</p>
             <p className="col-2">{bill.category}</p>
             <p className="col-2">{formatPrice(bill.amount)}</p>
             <p className="col-1"><a href={bill.paymentUrl} rel="noopener noreferrer" target="_blank">Pay</a></p>
             <span className="col-2">
-            <input className=""type="checkbox"/>
+            <input className=""type="checkbox" checked={bill.isPaid} onChange={this.updateIsPaidEvent}/>
             <label className="checkbox-label">Paid</label></span>
             <span className="col-1">
               <button className="btn btn-danger delete-button" onClick={this.deleteEvent}>
@@ -48,10 +54,7 @@ class DueBillItem extends React.Component {
               </button>
             </span>
           </div>
-        );
-      }
-      return (<span></span>);
-    };
+    );
     return (
       <div>
         {dueBillElement()}
