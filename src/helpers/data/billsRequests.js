@@ -23,8 +23,21 @@ const deleteBill = billId => axios.delete(`${firebaseUrl}/bills/${billId}.json`)
 
 const createBill = bill => axios.post(`${firebaseUrl}/bills.json`, bill);
 
+const getSingleBill = billId => new Promise((resolve, reject) => {
+  axios.get(`${firebaseUrl}/bills/${billId}.json`)
+    .then((result) => {
+      const singleBill = result.data;
+      singleBill.id = billId;
+      resolve(singleBill);
+    }).catch(err => reject(err));
+});
+
+const editBill = (billId, bill) => axios.put(`${firebaseUrl}/bills/${billId}.json`, bill);
+
 export default {
   getBills,
   deleteBill,
   createBill,
+  getSingleBill,
+  editBill,
 };
