@@ -17,6 +17,7 @@ class Bills extends React.Component {
     const uid = authRequests.getCurrentUid();
     billsRequests.getBills(uid)
       .then((bills) => {
+        bills.sort((x, y) => x.dueDate - y.dueDate);
         this.setState({ bills });
       }).catch(err => console.error(err));
   }

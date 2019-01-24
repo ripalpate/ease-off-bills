@@ -54,17 +54,11 @@ class NewBill extends React.Component {
     billsRequests.createBill(newBill)
       .then(() => {
         billsRequests.getBills()
-          .then((bills) => {
-            this.setState({ bills });
+          .then(() => {
             this.props.history.push('/bills');
           });
       }).catch(err => console.error(err));
   }
-
-  // onChangeNumber = (e) => {
-  //   const x = e.currentTarget.value;
-  //   this.setState({ x });
-  // }
 
   formSubmit = (e) => {
     e.preventDefault();
@@ -172,7 +166,7 @@ class NewBill extends React.Component {
           </div>
           <div className="form-group" id="showMe">
             <label htmlFor="noOfOccurances">No. of Occurrences: </label>
-            <select id="occurrences" className="form-control" onChange={this.onChangeNumber}>
+            <select id="occurrences" className="form-control">
               <option value="1">1</option>
               <option value='2'>2</option>
               <option value='3'>3</option>
@@ -188,7 +182,7 @@ class NewBill extends React.Component {
               className="form-control"
               id="url"
               aria-describedby="urlHelp"
-              placeholder="www.google.com"
+              placeholder="https://www.google.com"
               value={newBill.paymentUrl}
               onChange = {this.urlChange}
               required
