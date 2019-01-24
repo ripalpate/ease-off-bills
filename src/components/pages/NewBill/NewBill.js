@@ -54,8 +54,7 @@ class NewBill extends React.Component {
     billsRequests.createBill(newBill)
       .then(() => {
         billsRequests.getBills()
-          .then((bills) => {
-            this.setState({ bills });
+          .then(() => {
             this.props.history.push('/bills');
           });
       }).catch(err => console.error(err));
@@ -66,8 +65,28 @@ class NewBill extends React.Component {
     const myBill = { ...this.state.newBill };
     myBill.dueDate = Date.parse(`${this.state.billDueDate}T00:00:00`);
     myBill.uid = authRequests.getCurrentUid();
+    this.repeatCycle(myBill);
     this.formSubmitEvent(myBill);
     this.setState({ newBill: defaultBill, billDueDate: defaultDueDate });
+  }
+
+  repeatCycle = (myBill) => {
+    const occurances = document.getElementById('occurrences').value;
+    const cycle = document.getElementById('cycle').value;
+    let newDate;
+    for (let i = 1; i <= occurances - 1; i += 1) {
+      if (cycle === 'monthly') {
+        newDate = Date.parse(moment(myBill.dueDate).add(i, 'months').calendar());
+        const newBill = Object.assign({}, myBill);
+        newBill.dueDate = newDate;
+        this.formSubmitEvent(newBill);
+      } else if (cycle === 'yearly') {
+        newDate = Date.parse(moment(myBill.dueDate).add(i, 'years').calendar());
+        const newBill = Object.assign({}, myBill);
+        newBill.dueDate = newDate;
+        this.formSubmitEvent(newBill);
+      }
+    }
   }
 
   onChangeDisplayOccurances = (e) => {
@@ -146,9 +165,9 @@ class NewBill extends React.Component {
             </select>
           </div>
           <div className="form-group" id="showMe">
-            <label htmlFor="noOfOccurances">No. of Ocuurances: </label>
-            <select id="occurances"className="form-control">
-              <option>1</option>
+            <label htmlFor="noOfOccurances">No. of Occurrences: </label>
+            <select id="occurrences" className="form-control">
+              <option value="1">1</option>
               <option value='2'>2</option>
               <option value='3'>3</option>
               <option value='4'>4</option>
@@ -163,7 +182,7 @@ class NewBill extends React.Component {
               className="form-control"
               id="url"
               aria-describedby="urlHelp"
-              placeholder="www.google.com"
+              placeholder="https://www.google.com"
               value={newBill.paymentUrl}
               onChange = {this.urlChange}
               required
