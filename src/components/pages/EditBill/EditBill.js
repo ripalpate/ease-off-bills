@@ -13,14 +13,12 @@ const defaultBill = {
   uid: '',
 };
 
-const defaultDueDate = moment().format('YYYY-MM-DD');
 
 class EditBill extends React.Component {
   state = {
     editId: '-1',
     editedBill: defaultBill,
-    editedDueDate: defaultDueDate,
-
+    editedDueDate: 0,
   }
 
   formFieldStringState = (name, e) => {
@@ -56,6 +54,8 @@ class EditBill extends React.Component {
     const firebaseId = this.props.match.params.id;
     billsRequests.getSingleBill(firebaseId)
       .then((bill) => {
+        const editedDueDate = moment(bill.dueDate).format('YYYY-MM-DD');
+        this.setState({ editedDueDate });
         this.setState({ editedBill: bill });
         this.setState({ editId: bill.id });
       }).catch(err => console.error(err));
