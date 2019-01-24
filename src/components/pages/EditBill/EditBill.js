@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import billsRequests from '../../../helpers/data/billsRequests';
 import './EditBill.scss';
+import authRequests from '../../../helpers/data/authRequests';
 
 const defaultBill = {
   payee: '',
@@ -58,6 +59,23 @@ class EditBill extends React.Component {
         this.setState({ editedBill: bill });
         this.setState({ editId: bill.id });
       }).catch(err => console.error(err));
+  }
+
+  formSubmitEvent = (editedBill) => {
+    const { editId } = this.state;
+    billsRequests.editBill(editId, editedBill)
+      .then(() => {
+        this.props.history.push('/bills');
+      }).catch(err => console.error(err));
+  }
+
+  formSubmit = (e) => {
+    e.preventDefault();
+    const myBill = { ...this.state.editedBill };
+    myBill.dueDate = Date.parse(`${this.state.editedDueDate}T00:00:00`);
+    myBill.uid = authRequests.getCurrentUid();
+    this.formSubmitEvent(myBill);
+    this.setState({ editedBill: defaultBill });
   }
 
   render() {
