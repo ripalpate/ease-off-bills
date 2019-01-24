@@ -9,12 +9,19 @@ class DueBillItem extends React.Component {
   static propTypes = {
     bill: billShape,
     deleteSingleBill: PropTypes.func,
+    passBillToEdit: PropTypes.func,
   }
 
   deleteEvent = (e) => {
     e.preventDefault();
     const { deleteSingleBill, bill } = this.props;
     deleteSingleBill(bill.id);
+  }
+
+  editEvent = (e) => {
+    e.preventDefault();
+    const { passBillToEdit, bill } = this.props;
+    passBillToEdit(bill.id);
   }
 
   render() {
@@ -36,7 +43,7 @@ class DueBillItem extends React.Component {
               </button>
             </span>
             <span className="col-1">
-              <button className="btn btn-default delete-button">
+              <button className="btn btn-default edit-button" onClick={this.editEvent}>
                 <i className="fas fa-pencil-alt"></i>
               </button>
             </span>

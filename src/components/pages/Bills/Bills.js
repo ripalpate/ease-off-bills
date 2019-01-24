@@ -38,6 +38,10 @@ class Bills extends React.Component {
       }).catch(err => console.error(err));
   }
 
+  passBillToEdit = (billId) => {
+    this.props.history.push(`/bills/${billId}/edit`);
+  }
+
   changeView = () => {
     this.props.history.push('/bills/new');
   }
@@ -53,6 +57,7 @@ class Bills extends React.Component {
           <DueBills
             bills = {bills}
             deleteSingleBill = {this.deleteBill}
+            passBillToEdit = {this.passBillToEdit}
           />
           <Articles articles = {articles}/>
         </div>
