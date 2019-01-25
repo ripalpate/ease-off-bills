@@ -34,6 +34,7 @@ class DueBillItem extends React.Component {
 
   render() {
     const { bill } = this.props;
+    console.log(bill);
     const dueBillElement = () => (
           <div className="row">
             <p className="col-2">{moment(bill.dueDate).format('L')}</p>

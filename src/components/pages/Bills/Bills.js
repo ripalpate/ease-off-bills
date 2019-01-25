@@ -3,6 +3,7 @@ import { Button } from 'reactstrap';
 import './Bills.scss';
 import Articles from '../../Articles/Articles';
 import DueBills from '../../DueBills/DueBills';
+// import PaidBills from '../../PaidBills/PaidBills';
 import articlesRequests from '../../../helpers/data/articlesRequests';
 import billsRequests from '../../../helpers/data/billsRequests';
 import authRequests from '../../../helpers/data/authRequests';
@@ -69,6 +70,14 @@ class Bills extends React.Component {
           />
           <Articles articles = {articles}/>
         </div>
+        {/* <div>
+          <PaidBills
+          bills = {bills}
+          deleteSingleBill = {this.deleteBill}
+          passBillToEdit = {this.passBillToEdit}
+          updateIsPaid = {this.updateIsPaid}
+          />
+        </div> */}
       </div>
     );
   }
