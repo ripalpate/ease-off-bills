@@ -18,9 +18,11 @@ class Bills extends React.Component {
   getBills = () => {
     const uid = authRequests.getCurrentUid();
     billsRequests.getBills(uid)
-      .then((bills) => {
-        bills.sort((x, y) => x.dueDate - y.dueDate);
-        this.setState({ bills });
+      .then((billsArray) => {
+        billsArray.sort((x, y) => x.dueDate - y.dueDate);
+        const paidBills = billsArray.filter(x => x.isPaid === true);
+        const bills = billsArray.filter(x => x.isPaid === false);
+        this.setState({ paidBills, bills });
       }).catch(err => console.error(err));
   }
 
@@ -47,14 +49,8 @@ class Bills extends React.Component {
   updateIsPaid = (billId, isPaid) => {
     billsRequests.updatedIsPaid(billId, isPaid)
       .then(() => {
-        const uid = authRequests.getCurrentUid();
-        billsRequests.getBills(uid)
-          .then((billsArray) => {
-            const paidBills = billsArray.filter(x => x.isPaid === true);
-            const bills = billsArray.filter(x => x.isPaid === false);
-            this.setState({ paidBills, bills });
-          });
-      });
+        this.getBills();
+      }).catch(err => console.error(err));
   }
 
   changeView = () => {
@@ -65,7 +61,6 @@ class Bills extends React.Component {
     const {
       articles,
       bills,
-      // dueBills,
       paidBills,
     } = this.state;
     return (
@@ -76,7 +71,6 @@ class Bills extends React.Component {
         <div className="row">
           <DueBills
             bills = {bills}
-            // dueBills = {dueBills}
             deleteSingleBill = {this.deleteBill}
             passBillToEdit = {this.passBillToEdit}
             updateIsPaid = {this.updateIsPaid}
