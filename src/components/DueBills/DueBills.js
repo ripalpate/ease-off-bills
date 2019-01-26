@@ -31,7 +31,6 @@ class DueBills extends React.Component {
       isPaid = {isPaid}
       />
     ));
-
     return (
       <div className="col">
         <h4>Due Bills</h4>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import billShape from '../../helpers/propz/billShape';
 import formatPrice from '../../helpers/formatPrice';
+// import PaidBills from '../PaidBills/PaidBills';
 import './DueBillItem.scss';
 
 class DueBillItem extends React.Component {
@@ -33,9 +34,10 @@ class DueBillItem extends React.Component {
   }
 
   render() {
-    const { bill } = this.props;
-    console.log(bill);
-    const dueBillElement = () => (
+    const { bill, isPaid } = this.props;
+    const dueBillElement = () => {
+      if (!isPaid) {
+        return (
           <div className="row">
             <p className="col-2">{moment(bill.dueDate).format('L')}</p>
             <p className="col-2">{bill.category}</p>
@@ -55,10 +57,16 @@ class DueBillItem extends React.Component {
               </button>
             </span>
           </div>
-    );
+        );
+      }
+      return (<span></span>);
+    };
+
     return (
       <div>
-        {dueBillElement()}
+        <div>
+          {dueBillElement()}
+        </div>
       </div>
     );
   }

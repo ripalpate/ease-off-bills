@@ -33,40 +33,17 @@
 //   }
 
 //   render() {
-//     const { bill } = this.props;
-//     // const paidBillElement = () => {
-//     //   if (isPaid) {
-//     //     return (
-//     //       <div className="row">
-//     //         <p className="col-2">{moment(bill.dueDate).format('L')}</p>
-//     //         <p className="col-2">{bill.category}</p>
-//     //         <p className="col-2">{formatPrice(bill.amount)}</p>
-//     //         <p className="col-1"><a href={bill.paymentUrl} rel="noopener noreferrer" target="_blank">Pay</a></p>
-//     //         <span className="col-2">
-//     //         <input className=""type="checkbox" checked={bill.isPaid} onChange={this.updateIsPaidEvent}/>
-//     //         <label className="checkbox-label">Paid</label></span>
-//     //         <span className="col-1">
-//     //           <button className="btn btn-danger delete-button" onClick={this.deleteEvent}>
-//     //             <i className="fas fa-trash-alt"></i>
-//     //           </button>
-//     //         </span>
-//     //         <span className="col-1">
-//     //           <button className="btn btn-default edit-button" onClick={this.editEvent}>
-//     //             <i className="fas fa-pencil-alt"></i>
-//     //           </button>
-//     //         </span>
-//     //       </div>
-//     //     );
-//     //   } return (<span></span>);
-//     // };
-//     return (
-//       <div className="row">
+//     const { bill, isPaid } = this.props;
+//     const paidBillElement = () => {
+//       if (isPaid) {
+//         return (
+//           <div className="row">
 //             <p className="col-2">{moment(bill.dueDate).format('L')}</p>
 //             <p className="col-2">{bill.category}</p>
 //             <p className="col-2">{formatPrice(bill.amount)}</p>
 //             <p className="col-1"><a href={bill.paymentUrl} rel="noopener noreferrer" target="_blank">Pay</a></p>
 //             <span className="col-2">
-//             <input className=""type="checkbox" checked={bill.isPaid} onChange={this.updateIsPaidEvent}/>
+//             <input className=""type="checkbox" value={bill.isPaid} checked onChange={this.updateIsPaidEvent}/>
 //             <label className="checkbox-label">Paid</label></span>
 //             <span className="col-1">
 //               <button className="btn btn-danger delete-button" onClick={this.deleteEvent}>
@@ -79,6 +56,13 @@
 //               </button>
 //             </span>
 //           </div>
+//         );
+//       } return (<span></span>);
+//     };
+//     return (
+//       <div>
+//         {paidBillElement}
+//       </div>
 //     );
 //   }
 // }
