@@ -10,32 +10,33 @@ class PaidBillItem extends React.Component {
     paidBill: billShape,
     deleteSingleBill: PropTypes.func,
     passBillToEdit: PropTypes.func,
-    updateIsPaid: PropTypes.func,
+    removeFromPaidComonent: PropTypes.func,
   }
 
   deleteEvent = (e) => {
     e.preventDefault();
-    const { deleteSingleBill, bill } = this.props;
-    deleteSingleBill(bill.id);
+    const { deleteSingleBill, paidBill } = this.props;
+    deleteSingleBill(paidBill.id);
   }
 
   editEvent = (e) => {
     e.preventDefault();
-    const { passBillToEdit, bill } = this.props;
-    passBillToEdit(bill.id);
+    const { passBillToEdit, paidBill } = this.props;
+    passBillToEdit(paidBill.id);
   }
 
-  updateIsPaidEvent = (e) => {
-    e.preventDefault();
-    const { updateIsPaid, bill } = this.props;
-    const isPaid = e.target.checked;
-    updateIsPaid(bill.id, isPaid);
-  }
+updateIsPaidEvent = (e) => {
+  e.preventDefault();
+  const { updateIsPaid, paidBill } = this.props;
+  const isPaid = e.target.checked;
+  updateIsPaid(paidBill.id, isPaid);
+}
 
-  render() {
-    const { paidBill } = this.props;
 
-    return (
+render() {
+  const { paidBill } = this.props;
+
+  return (
       <div className="row">
             <p className="col-2">{moment(paidBill.dueDate).format('L')}</p>
             <p className="col-2">{paidBill.category}</p>
@@ -55,8 +56,8 @@ class PaidBillItem extends React.Component {
               </button>
             </span>
           </div>
-    );
-  }
+  );
+}
 }
 
 export default PaidBillItem;

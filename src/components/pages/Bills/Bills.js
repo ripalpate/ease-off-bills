@@ -13,7 +13,6 @@ class Bills extends React.Component {
     articles: [],
     bills: [],
     paidBills: [],
-    dueBills: [],
   }
 
   getBills = () => {
@@ -45,7 +44,6 @@ class Bills extends React.Component {
     this.props.history.push(`/bills/${billId}/edit`);
   }
 
-
   updateIsPaid = (billId, isPaid) => {
     billsRequests.updatedIsPaid(billId, isPaid)
       .then(() => {
@@ -54,8 +52,7 @@ class Bills extends React.Component {
           .then((billsArray) => {
             const paidBills = billsArray.filter(x => x.isPaid === true);
             const bills = billsArray.filter(x => x.isPaid === false);
-            this.setState({ paidBills });
-            this.setState({ bills });
+            this.setState({ paidBills, bills });
           });
       });
   }
