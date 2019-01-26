@@ -3,7 +3,7 @@ import { Button } from 'reactstrap';
 import './Bills.scss';
 import Articles from '../../Articles/Articles';
 import DueBills from '../../DueBills/DueBills';
-// import PaidBills from '../../PaidBills/PaidBills';
+import PaidBills from '../../PaidBills/PaidBills';
 import articlesRequests from '../../../helpers/data/articlesRequests';
 import billsRequests from '../../../helpers/data/billsRequests';
 import authRequests from '../../../helpers/data/authRequests';
@@ -12,6 +12,8 @@ class Bills extends React.Component {
   state = {
     articles: [],
     bills: [],
+    paidBills: [],
+    dueBills: [],
   }
 
   getBills = () => {
@@ -43,11 +45,19 @@ class Bills extends React.Component {
     this.props.history.push(`/bills/${billId}/edit`);
   }
 
+
   updateIsPaid = (billId, isPaid) => {
     billsRequests.updatedIsPaid(billId, isPaid)
       .then(() => {
-        this.getBills();
-      }).catch(err => console.error(err));
+        const uid = authRequests.getCurrentUid();
+        billsRequests.getBills(uid)
+          .then((billsArray) => {
+            const paidBills = billsArray.filter(x => x.isPaid === true);
+            const bills = billsArray.filter(x => x.isPaid === false);
+            this.setState({ paidBills });
+            this.setState({ bills });
+          });
+      });
   }
 
   changeView = () => {
@@ -55,7 +65,12 @@ class Bills extends React.Component {
   }
 
   render() {
-    const { articles, bills } = this.state;
+    const {
+      articles,
+      bills,
+      // dueBills,
+      paidBills,
+    } = this.state;
     return (
       <div className="">
         <div className="Bill mx-auto" onClick={this.changeView}>
@@ -64,20 +79,21 @@ class Bills extends React.Component {
         <div className="row">
           <DueBills
             bills = {bills}
+            // dueBills = {dueBills}
             deleteSingleBill = {this.deleteBill}
             passBillToEdit = {this.passBillToEdit}
             updateIsPaid = {this.updateIsPaid}
           />
           <Articles articles = {articles}/>
         </div>
-        {/* <div>
+        <div>
           <PaidBills
-          bills = {bills}
+          paidBills = {paidBills}
           deleteSingleBill = {this.deleteBill}
           passBillToEdit = {this.passBillToEdit}
           updateIsPaid = {this.updateIsPaid}
           />
-        </div> */}
+        </div>
       </div>
     );
   }

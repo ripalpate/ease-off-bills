@@ -16,14 +16,16 @@ class DueBills extends React.Component {
   render() {
     const {
       bills,
+      // dueBills,
       deleteSingleBill,
       passBillToEdit,
       updateIsPaid,
       isPaid,
     } = this.props;
-    const billsItemComponents = bills.map(bill => (
+    const dueBillsItemComponents = bills.map(bill => (
       <DueBillItem
       bill={bill}
+      // dueBill={dueBill}
       key={bill.id}
       deleteSingleBill={deleteSingleBill}
       passBillToEdit={passBillToEdit}
@@ -31,10 +33,11 @@ class DueBills extends React.Component {
       isPaid = {isPaid}
       />
     ));
+
     return (
       <div className="col">
         <h4>Due Bills</h4>
-        {billsItemComponents}
+        {dueBillsItemComponents}
       </div>
     );
   }
