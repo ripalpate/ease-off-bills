@@ -34,10 +34,13 @@ const getSingleBill = billId => new Promise((resolve, reject) => {
 
 const editBill = (billId, bill) => axios.put(`${firebaseUrl}/bills/${billId}.json`, bill);
 
+const updatedIsPaid = (billId, isPaid) => axios.patch(`${firebaseUrl}/bills/${billId}.json`, { isPaid });
+
 export default {
   getBills,
   deleteBill,
   createBill,
   getSingleBill,
   editBill,
+  updatedIsPaid,
 };

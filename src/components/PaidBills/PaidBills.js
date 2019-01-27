@@ -1,44 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DueBillItem from '../DueBillItem/DueBillItem';
+import PaidBillItem from '../PaidBillItem/PaidBillItem';
 import billShape from '../../helpers/propz/billShape';
-import './DueBills.scss';
+import './PaidBills.scss';
 
-class DueBills extends React.Component {
+
+class PaidBills extends React.Component {
   static propTypes = {
-    bills: PropTypes.arrayOf(billShape),
+    paidBills: PropTypes.arrayOf(billShape),
     deleteSingleBill: PropTypes.func,
-    passBillToEdit: PropTypes.func,
     updateIsPaid: PropTypes.func,
     isPaid: PropTypes.bool,
   }
 
   render() {
     const {
-      bills,
+      paidBills,
       deleteSingleBill,
-      passBillToEdit,
       updateIsPaid,
       isPaid,
     } = this.props;
-    const dueBillsItemComponents = bills.map(bill => (
-      <DueBillItem
-      bill={bill}
-      key={bill.id}
+    const paidBillsItemComponents = paidBills.map(paidBill => (
+      <PaidBillItem
+      paidBill={paidBill}
+      key={paidBill.id}
       deleteSingleBill={deleteSingleBill}
-      passBillToEdit={passBillToEdit}
       updateIsPaid={updateIsPaid}
       isPaid = {isPaid}
       />
     ));
-
     return (
-      <div className="col">
-        <h4>Due Bills</h4>
-        {dueBillsItemComponents}
+       <div className="col">
+        <h4>Paid Bill</h4>
+        {paidBillsItemComponents}
       </div>
     );
   }
 }
 
-export default DueBills;
+export default PaidBills;

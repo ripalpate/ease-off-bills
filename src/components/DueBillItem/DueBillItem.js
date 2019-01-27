@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import billShape from '../../helpers/propz/billShape';
 import formatPrice from '../../helpers/formatPrice';
+// import PaidBills from '../PaidBills/PaidBills';
 import './DueBillItem.scss';
 
 class DueBillItem extends React.Component {
@@ -10,6 +11,7 @@ class DueBillItem extends React.Component {
     bill: billShape,
     deleteSingleBill: PropTypes.func,
     passBillToEdit: PropTypes.func,
+    updateIsPaid: PropTypes.func,
   }
 
   deleteEvent = (e) => {
@@ -24,25 +26,30 @@ class DueBillItem extends React.Component {
     passBillToEdit(bill.id);
   }
 
+  updateIsPaidEvent = (e) => {
+    e.preventDefault();
+    const { updateIsPaid, bill } = this.props;
+    const isPaid = e.target.checked;
+    updateIsPaid(bill.id, isPaid);
+  }
+
   render() {
-    const { bill } = this.props;
+    const { bill, isPaid } = this.props;
     const dueBillElement = () => {
-      if (!bill.isPaid) {
+      if (!isPaid) {
         return (
-          <div className="row">
-            <p className="col-2">{moment(bill.dueDate).format('L')}</p>
-            <p className="col-2">{bill.category}</p>
-            <p className="col-2">{formatPrice(bill.amount)}</p>
-            <p className="col-1"><a href={bill.paymentUrl} rel="noopener noreferrer" target="_blank">Pay</a></p>
-            <span className="col-2">
-            <input className=""type="checkbox"/>
+          <div className="row bill text-center">
+            <p className="col-sm pt-1">{moment(bill.dueDate).format('L')}</p>
+            <p className="col-sm pt-1">{bill.category}</p>
+            <p className="col-sm pt-1">{formatPrice(bill.amount)}</p>
+            <p className="col-sm pt-1"><a href={bill.paymentUrl} rel="noopener noreferrer" target="_blank">Pay</a></p>
+            <span className="col-sm pt-1">
+            <input className="paid-checkbox" type="checkbox" checked={bill.isPaid} onChange={this.updateIsPaidEvent}/>
             <label className="checkbox-label">Paid</label></span>
-            <span className="col-1">
+            <span className="col">
               <button className="btn btn-danger delete-button" onClick={this.deleteEvent}>
                 <i className="fas fa-trash-alt"></i>
               </button>
-            </span>
-            <span className="col-1">
               <button className="btn btn-default edit-button" onClick={this.editEvent}>
                 <i className="fas fa-pencil-alt"></i>
               </button>
@@ -52,9 +59,12 @@ class DueBillItem extends React.Component {
       }
       return (<span></span>);
     };
+
     return (
       <div>
-        {dueBillElement()}
+        <div>
+          {dueBillElement()}
+        </div>
       </div>
     );
   }
