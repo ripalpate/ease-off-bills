@@ -148,7 +148,7 @@ class EditBill extends React.Component {
               required
             />
           </div>
-          <button className="btn btn-success">Save Bill</button>
+          <button className="btn btn-success">Save changes</button>
         </form>
       </div>
     );
