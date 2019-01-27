@@ -9,20 +9,12 @@ class PaidBillItem extends React.Component {
   static propTypes = {
     paidBill: billShape,
     deleteSingleBill: PropTypes.func,
-    passBillToEdit: PropTypes.func,
-    removeFromPaidComonent: PropTypes.func,
   }
 
   deleteEvent = (e) => {
     e.preventDefault();
     const { deleteSingleBill, paidBill } = this.props;
     deleteSingleBill(paidBill.id);
-  }
-
-  editEvent = (e) => {
-    e.preventDefault();
-    const { passBillToEdit, paidBill } = this.props;
-    passBillToEdit(paidBill.id);
   }
 
 updateIsPaidEvent = (e) => {
@@ -48,11 +40,6 @@ render() {
             <span className="col-1">
               <button className="btn btn-danger delete-button" onClick={this.deleteEvent}>
                 <i className="fas fa-trash-alt"></i>
-              </button>
-            </span>
-            <span className="col-1">
-              <button className="btn btn-default edit-button" onClick={this.editEvent}>
-                <i className="fas fa-pencil-alt"></i>
               </button>
             </span>
           </div>

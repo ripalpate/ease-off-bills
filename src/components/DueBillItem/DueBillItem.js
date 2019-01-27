@@ -9,7 +9,6 @@ import './DueBillItem.scss';
 class DueBillItem extends React.Component {
   static propTypes = {
     bill: billShape,
-    dueBill: billShape,
     deleteSingleBill: PropTypes.func,
     passBillToEdit: PropTypes.func,
     updateIsPaid: PropTypes.func,
@@ -39,20 +38,18 @@ class DueBillItem extends React.Component {
     const dueBillElement = () => {
       if (!isPaid) {
         return (
-          <div className="row bill">
-            <p className="col-2">{moment(bill.dueDate).format('L')}</p>
-            <p className="col-2">{bill.category}</p>
-            <p className="col-2">{formatPrice(bill.amount)}</p>
-            <p className="col-1"><a href={bill.paymentUrl} rel="noopener noreferrer" target="_blank">Pay</a></p>
-            <span className="col-2">
+          <div className="row bill text-center">
+            <p className="col-sm pt-1">{moment(bill.dueDate).format('L')}</p>
+            <p className="col-sm pt-1">{bill.category}</p>
+            <p className="col-sm pt-1">{formatPrice(bill.amount)}</p>
+            <p className="col-sm pt-1"><a href={bill.paymentUrl} rel="noopener noreferrer" target="_blank">Pay</a></p>
+            <span className="col-sm pt-1">
             <input className="paid-checkbox" type="checkbox" checked={bill.isPaid} onChange={this.updateIsPaidEvent}/>
             <label className="checkbox-label">Paid</label></span>
-            <span className="col-1">
+            <span className="col">
               <button className="btn btn-danger delete-button" onClick={this.deleteEvent}>
                 <i className="fas fa-trash-alt"></i>
               </button>
-            </span>
-            <span className="col-1">
               <button className="btn btn-default edit-button" onClick={this.editEvent}>
                 <i className="fas fa-pencil-alt"></i>
               </button>

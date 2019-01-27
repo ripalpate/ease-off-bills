@@ -152,6 +152,7 @@ class NewBill extends React.Component {
               <option>Insurance</option>
               <option>Credit Cards</option>
               <option>TeleCommunication</option>
+              <option>Tax</option>
               <option>Other</option>
             </select>
           </div>
@@ -171,8 +172,8 @@ class NewBill extends React.Component {
               <option value='2'>2</option>
               <option value='3'>3</option>
               <option value='4'>4</option>
-              <option>5</option>
-              <option>6</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
             </select>
           </div>
           <div className="form-group">

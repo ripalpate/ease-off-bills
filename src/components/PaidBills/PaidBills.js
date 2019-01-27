@@ -9,7 +9,6 @@ class PaidBills extends React.Component {
   static propTypes = {
     paidBills: PropTypes.arrayOf(billShape),
     deleteSingleBill: PropTypes.func,
-    passBillToEdit: PropTypes.func,
     updateIsPaid: PropTypes.func,
     isPaid: PropTypes.bool,
   }
@@ -18,7 +17,6 @@ class PaidBills extends React.Component {
     const {
       paidBills,
       deleteSingleBill,
-      passBillToEdit,
       updateIsPaid,
       isPaid,
     } = this.props;
@@ -27,14 +25,13 @@ class PaidBills extends React.Component {
       paidBill={paidBill}
       key={paidBill.id}
       deleteSingleBill={deleteSingleBill}
-      passBillToEdit={passBillToEdit}
       updateIsPaid={updateIsPaid}
       isPaid = {isPaid}
       />
     ));
     return (
        <div className="col">
-        <h3>Paid Bill</h3>
+        <h4>Paid Bill</h4>
         {paidBillsItemComponents}
       </div>
     );

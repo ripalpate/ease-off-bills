@@ -64,26 +64,25 @@ class Bills extends React.Component {
       paidBills,
     } = this.state;
     return (
-      <div className="">
-        <div className="Bill mx-auto" onClick={this.changeView}>
-          <Button className ="btn btn-info mt-5">Add Bills</Button>
+      <div className="bill-page">
+        <div className="button-wrapper text-center">
+          <Button className ="btn btn-info mt-5 mb-5" onClick={this.changeView}>Add Bills</Button>
         </div>
         <div className="row">
+        <div className= "bills-components col-7">
           <DueBills
             bills = {bills}
             deleteSingleBill = {this.deleteBill}
             passBillToEdit = {this.passBillToEdit}
             updateIsPaid = {this.updateIsPaid}
           />
-          <Articles articles = {articles}/>
-        </div>
-        <div>
-          <PaidBills
+           <PaidBills
           paidBills = {paidBills}
           deleteSingleBill = {this.deleteBill}
-          passBillToEdit = {this.passBillToEdit}
           updateIsPaid = {this.updateIsPaid}
           />
+        </div>
+        <Articles className="col-5" articles = {articles}/>
         </div>
       </div>
     );
