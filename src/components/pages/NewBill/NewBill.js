@@ -141,6 +141,7 @@ class NewBill extends React.Component {
               onChange = {this.amountChange}
               required
             />
+            <small className="text-muted form-text">Note:Only enter numbers. Exclude(decimals,dollar sign, cents sign and comma)</small>
           </div>
           <div className="form-group">
             <label htmlFor="email">Category:</label>
