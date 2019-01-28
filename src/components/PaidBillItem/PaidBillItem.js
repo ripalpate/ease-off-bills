@@ -11,11 +11,11 @@ class PaidBillItem extends React.Component {
     deleteSingleBill: PropTypes.func,
   }
 
-  deleteEvent = (e) => {
-    e.preventDefault();
-    const { deleteSingleBill, paidBill } = this.props;
-    deleteSingleBill(paidBill.id);
-  }
+deleteEvent = (e) => {
+  e.preventDefault();
+  const { deleteSingleBill, paidBill } = this.props;
+  deleteSingleBill(paidBill.id);
+}
 
 updateIsPaidEvent = (e) => {
   e.preventDefault();

@@ -21,6 +21,8 @@ class DueBills extends React.Component {
       updateIsPaid,
       isPaid,
     } = this.props;
+
+
     const dueBillsItemComponents = bills.map(bill => (
       <DueBillItem
       bill={bill}

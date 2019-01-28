@@ -13,6 +13,25 @@ class Bills extends React.Component {
     articles: [],
     bills: [],
     paidBills: [],
+    selectedBills: [],
+  }
+
+  categorySelection = (e) => {
+    e.preventDefault();
+    const selectedCategory = e.target.value;
+    const { bills } = this.state;
+    const selectedBills = [];
+    if (!selectedCategory) {
+      this.setState({ selectedBills: bills });
+    } else {
+      bills.forEach((bill) => {
+        if (bill.category.toLowerCase().includes(selectedCategory.toLowerCase())) {
+          selectedBills.push(bill);
+        }
+      });
+      // console.log(selectedBills);
+      this.setState({ selectedBills });
+    }
   }
 
   getBills = () => {
@@ -23,6 +42,7 @@ class Bills extends React.Component {
         const paidBills = billsArray.filter(x => x.isPaid === true);
         const bills = billsArray.filter(x => x.isPaid === false);
         this.setState({ paidBills, bills });
+        this.setState({ selectedBills: bills });
       }).catch(err => console.error(err));
   }
 
@@ -62,16 +82,31 @@ class Bills extends React.Component {
       articles,
       bills,
       paidBills,
+      selectedBills,
     } = this.state;
+
     return (
       <div className="bill-page">
-        <div className="button-wrapper text-center">
-          <Button className ="btn btn-info mt-5 mb-5" onClick={this.changeView}>Add Bills</Button>
+        <div className="button-wrapper text-center row">
+          <div className="category mt-5 mb-5 col-2">
+            <select id="inputState" className="form-control" onChange={this.categorySelection}>
+              <option value=''>All</option>
+              <option value='utility'>Utility</option>
+              <option value='rent'>Rent</option>
+              <option>Mortgage</option>
+              <option>Insurance</option>
+              <option>Credit Cards</option>
+              <option>TeleCommunication</option>
+              <option>Tax</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <Button className ="btn btn-info mt-5 mb-5 col-2" onClick={this.changeView}>Add Bills</Button>
         </div>
         <div className="row">
         <div className= "bills-components col-7">
           <DueBills
-            bills = {bills}
+            bills = {selectedBills}
             deleteSingleBill = {this.deleteBill}
             passBillToEdit = {this.passBillToEdit}
             updateIsPaid = {this.updateIsPaid}
