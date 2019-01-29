@@ -18,7 +18,7 @@ class Articles extends React.Component {
       />
     ));
     return (
-      <div className="col">
+      <div className="col articles">
         <h4 className="text-center">Articles</h4>
         {articlesItemComponents}
       </div>

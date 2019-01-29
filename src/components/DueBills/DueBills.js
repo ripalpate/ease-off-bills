@@ -35,7 +35,7 @@ class DueBills extends React.Component {
     ));
 
     return (
-      <div className="col">
+      <div className="col dueBills">
         <h4>Due Bills</h4>
         {dueBillsItemComponents}
       </div>

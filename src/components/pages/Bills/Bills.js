@@ -1,5 +1,11 @@
 import React from 'react';
-import { Button } from 'reactstrap';
+import {
+  Button,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap';
 import './Bills.scss';
 import Articles from '../../Articles/Articles';
 import DueBills from '../../DueBills/DueBills';
@@ -14,13 +20,17 @@ class Bills extends React.Component {
     bills: [],
     paidBills: [],
     selectedBills: [],
+    selectedArticles: [],
+    dropdownOpen: false,
+    dropDownValue: 'Select Category',
   }
 
   categorySelection = (e) => {
     e.preventDefault();
     const selectedCategory = e.target.value;
-    const { bills } = this.state;
+    const { bills, articles } = this.state;
     const selectedBills = [];
+    const selectedArticles = [];
     if (!selectedCategory) {
       this.setState({ selectedBills: bills });
     } else {
@@ -29,8 +39,17 @@ class Bills extends React.Component {
           selectedBills.push(bill);
         }
       });
-      // console.log(selectedBills);
       this.setState({ selectedBills });
+    }
+    if (!selectedCategory) {
+      this.setState({ selectedArticles: articles });
+    } else {
+      articles.forEach((article) => {
+        if (article.category.toLowerCase().includes(selectedCategory.toLowerCase())) {
+          selectedArticles.push(article);
+        }
+      });
+      this.setState({ selectedArticles });
     }
   }
 
@@ -50,10 +69,12 @@ class Bills extends React.Component {
     articlesRequests.getArticles()
       .then((articles) => {
         this.setState({ articles });
+        this.setState({ selectedArticles: articles });
       }).catch(err => console.error(err));
 
     this.getBills();
   }
+
 
   deleteBill = (billId) => {
     billsRequests.deleteBill(billId)
@@ -77,31 +98,47 @@ class Bills extends React.Component {
     this.props.history.push('/bills/new');
   }
 
+  toggle() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen,
+    });
+  }
+
+  changeDropDownValue = (e) => {
+    this.setState({ dropDownValue: e.currentTarget.textContent });
+  }
+
   render() {
     const {
-      articles,
-      bills,
       paidBills,
       selectedBills,
+      selectedArticles,
     } = this.state;
 
     return (
       <div className="bill-page">
         <div className="button-wrapper text-center row">
-          <div className="category mt-5 mb-5 col-2">
-            <select id="inputState" className="form-control" onChange={this.categorySelection}>
-              <option value=''>All</option>
-              <option value='utility'>Utility</option>
-              <option value='rent'>Rent</option>
-              <option>Mortgage</option>
-              <option>Insurance</option>
-              <option>Credit Cards</option>
-              <option>TeleCommunication</option>
-              <option>Tax</option>
-              <option>Other</option>
-            </select>
+          <div className="col-7">
+            <Dropdown className="mt-5 mb-5" isOpen={this.state.dropdownOpen} toggle={e => this.toggle(e)}>
+            <DropdownToggle caret>
+            {this.state.dropDownValue}
+            </DropdownToggle>
+            <DropdownMenu onClick={this.categorySelection}>
+              <DropdownItem value="" onClick={this.changeDropDownValue}>All</DropdownItem>
+              <DropdownItem onClick={this.changeDropDownValue} value="Utility">Utility</DropdownItem>
+              <DropdownItem onClick={this.changeDropDownValue} value="Rent">Rent</DropdownItem>
+              <DropdownItem onClick={this.changeDropDownValue} value="Mortgage">Mortgage</DropdownItem>
+              <DropdownItem onClick={this.changeDropDownValue} value="Insurance">Insurance</DropdownItem>
+              <DropdownItem onClick={this.changeDropDownValue} value="Credit Cards">Credit Cards</DropdownItem>
+              <DropdownItem onClick={this.changeDropDownValue} value="TeleCommunication">TeleCommunication</DropdownItem>
+              <DropdownItem onClick={this.changeDropDownValue} value="Tax">Tax</DropdownItem>
+              <DropdownItem onClick={this.changeDropDownValue} value="Other">Other</DropdownItem>
+            </DropdownMenu>
+            </Dropdown>
           </div>
-          <Button className ="btn btn-info mt-5 mb-5 col-2" onClick={this.changeView}>Add Bills</Button>
+          <div className="col-5">
+            <Button className ="btn btn-info mt-5 mb-5" onClick={this.changeView}>Add Bills</Button>
+          </div>
         </div>
         <div className="row">
         <div className= "bills-components col-7">
@@ -117,7 +154,7 @@ class Bills extends React.Component {
           updateIsPaid = {this.updateIsPaid}
           />
         </div>
-        <Articles className="col-5" articles = {articles}/>
+        <Articles className="col-5" articles = {selectedArticles}/>
         </div>
       </div>
     );
