@@ -132,6 +132,7 @@ class EditBill extends React.Component {
               <option>Insurance</option>
               <option>Credit Cards</option>
               <option>TeleCommunication</option>
+              <option>Tax</option>
               <option>Other</option>
             </select>
           </div>

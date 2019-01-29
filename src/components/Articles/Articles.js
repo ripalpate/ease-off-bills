@@ -11,6 +11,13 @@ class Articles extends React.Component {
 
   render() {
     const { articles } = this.props;
+    const checkLength = () => {
+      if (articles.length === 0) {
+        return (<h6 className="text-center">There are no articles related to this category.</h6>);
+      }
+      return (<span></span>);
+    };
+
     const articlesItemComponents = articles.map(article => (
       <ArticleItem
       article={article}
@@ -18,8 +25,9 @@ class Articles extends React.Component {
       />
     ));
     return (
-      <div className="col">
+      <div className="col-5 articles">
         <h4 className="text-center">Articles</h4>
+        {checkLength()}
         {articlesItemComponents}
       </div>
     );

@@ -21,6 +21,14 @@ class DueBills extends React.Component {
       updateIsPaid,
       isPaid,
     } = this.props;
+
+    const checkLength = () => {
+      if (bills.length === 0) {
+        return (<h6 className="">Currently, There are no bills. Please add your Bill.</h6>);
+      }
+      return (<span></span>);
+    };
+
     const dueBillsItemComponents = bills.map(bill => (
       <DueBillItem
       bill={bill}
@@ -33,8 +41,9 @@ class DueBills extends React.Component {
     ));
 
     return (
-      <div className="col">
+      <div className="col dueBills">
         <h4>Due Bills</h4>
+        <div>{checkLength()}</div>
         {dueBillsItemComponents}
       </div>
     );
