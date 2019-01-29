@@ -25,34 +25,6 @@ class Bills extends React.Component {
     dropDownValue: 'Select Category',
   }
 
-  categorySelection = (e) => {
-    e.preventDefault();
-    const selectedCategory = e.target.value;
-    const { bills, articles } = this.state;
-    const selectedBills = [];
-    const selectedArticles = [];
-    if (!selectedCategory) {
-      this.setState({ selectedBills: bills });
-    } else {
-      bills.forEach((bill) => {
-        if (bill.category.toLowerCase().includes(selectedCategory.toLowerCase())) {
-          selectedBills.push(bill);
-        }
-      });
-      this.setState({ selectedBills });
-    }
-    if (!selectedCategory) {
-      this.setState({ selectedArticles: articles });
-    } else {
-      articles.forEach((article) => {
-        if (article.category.toLowerCase().includes(selectedCategory.toLowerCase())) {
-          selectedArticles.push(article);
-        }
-      });
-      this.setState({ selectedArticles });
-    }
-  }
-
   getBills = () => {
     const uid = authRequests.getCurrentUid();
     billsRequests.getBills(uid)
@@ -108,6 +80,43 @@ class Bills extends React.Component {
     this.setState({ dropDownValue: e.currentTarget.textContent });
   }
 
+  filteringArticles = (selectedCategory) => {
+    const { articles } = this.state;
+    const selectedArticles = [];
+    if (!selectedCategory) {
+      this.setState({ selectedArticles: articles });
+    } else {
+      articles.forEach((article) => {
+        if (article.category.toLowerCase().includes(selectedCategory.toLowerCase())) {
+          selectedArticles.push(article);
+        }
+      });
+      this.setState({ selectedArticles });
+    }
+  }
+
+  filteringBills = (selectedCategory) => {
+    const { bills } = this.state;
+    const selectedBills = [];
+    if (!selectedCategory) {
+      this.setState({ selectedBills: bills });
+    } else {
+      bills.forEach((bill) => {
+        if (bill.category.toLowerCase().includes(selectedCategory.toLowerCase())) {
+          selectedBills.push(bill);
+        }
+      });
+      this.setState({ selectedBills });
+    }
+  }
+
+  categorySelectionEvent = (e) => {
+    e.preventDefault();
+    const selectedCategory = e.target.value;
+    this.filteringBills(selectedCategory);
+    this.filteringArticles(selectedCategory);
+  }
+
   render() {
     const {
       paidBills,
@@ -123,7 +132,7 @@ class Bills extends React.Component {
             <DropdownToggle caret>
             {this.state.dropDownValue}
             </DropdownToggle>
-            <DropdownMenu onClick={this.categorySelection}>
+            <DropdownMenu onClick={this.categorySelectionEvent}>
               <DropdownItem value="" onClick={this.changeDropDownValue}>All</DropdownItem>
               <DropdownItem onClick={this.changeDropDownValue} value="Utility">Utility</DropdownItem>
               <DropdownItem onClick={this.changeDropDownValue} value="Rent">Rent</DropdownItem>
@@ -141,20 +150,20 @@ class Bills extends React.Component {
           </div>
         </div>
         <div className="row">
-        <div className= "bills-components col-7">
-          <DueBills
-            bills = {selectedBills}
-            deleteSingleBill = {this.deleteBill}
-            passBillToEdit = {this.passBillToEdit}
-            updateIsPaid = {this.updateIsPaid}
-          />
-           <PaidBills
-          paidBills = {paidBills}
-          deleteSingleBill = {this.deleteBill}
-          updateIsPaid = {this.updateIsPaid}
-          />
-        </div>
-        <Articles className="col-5" articles = {selectedArticles}/>
+          <div className= "bills-components col-7">
+            <DueBills
+              bills = {selectedBills}
+              deleteSingleBill = {this.deleteBill}
+              passBillToEdit = {this.passBillToEdit}
+              updateIsPaid = {this.updateIsPaid}
+            />
+            <PaidBills
+              paidBills = {paidBills}
+              deleteSingleBill = {this.deleteBill}
+              updateIsPaid = {this.updateIsPaid}
+            />
+          </div>
+          <Articles className="col-5" articles = {selectedArticles}/>
         </div>
       </div>
     );
