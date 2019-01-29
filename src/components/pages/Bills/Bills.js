@@ -126,8 +126,11 @@ class Bills extends React.Component {
 
     return (
       <div className="bill-page">
-        <div className="button-wrapper text-center row">
-          <div className="col-7">
+        <div className="button-wrapper d-flex justify-content-center">
+          <div className="mr-4">
+            <Button className ="btn btn-info mt-5 mb-5" onClick={this.changeView}>Add Bills</Button>
+          </div>
+          <div className="ml-3">
             <Dropdown className="mt-5 mb-5" isOpen={this.state.dropdownOpen} toggle={e => this.toggle(e)}>
             <DropdownToggle caret>
             {this.state.dropDownValue}
@@ -144,9 +147,6 @@ class Bills extends React.Component {
               <DropdownItem onClick={this.changeDropDownValue} value="Other">Other</DropdownItem>
             </DropdownMenu>
             </Dropdown>
-          </div>
-          <div className="col-5">
-            <Button className ="btn btn-info mt-5 mb-5" onClick={this.changeView}>Add Bills</Button>
           </div>
         </div>
         <div className="row">
