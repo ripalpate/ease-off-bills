@@ -34,10 +34,8 @@ class DueBillItem extends React.Component {
   }
 
   render() {
-    const { bill, isPaid } = this.props;
-    const dueBillElement = () => {
-      if (!isPaid) {
-        return (
+    const { bill } = this.props;
+    const dueBillElement = () => (
           <div className="row bill text-center">
             <p className="col-sm pt-1">{moment(bill.dueDate).format('L')}</p>
             <p className="col-sm pt-1">{bill.category}</p>
@@ -55,10 +53,7 @@ class DueBillItem extends React.Component {
               </button>
             </span>
           </div>
-        );
-      }
-      return (<span></span>);
-    };
+    );
 
     return (
       <div>
