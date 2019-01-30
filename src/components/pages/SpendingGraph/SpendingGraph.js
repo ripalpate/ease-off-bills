@@ -35,6 +35,10 @@ class Spending extends React.Component {
         console.log(billsArray);
         const partialObject = billsArray.map(({ category, amount }) => ({ category, amount }));
         console.log(partialObject);
+        partialObject.forEach((item) => {
+          const x = partialObject.filter(y => item.category === 'Utility');
+          console.log(x);
+        });
       });
   }
 
