@@ -1,13 +1,13 @@
 import React from 'react';
+import moment from 'moment';
 import {
   PieChart,
   Pie,
 } from 'recharts';
 import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
+  FormGroup,
+  Label,
+  Input,
 } from 'reactstrap';
 import authRequests from '../../../helpers/data/authRequests';
 import billsRequests from '../../../helpers/data/billsRequests';
@@ -21,24 +21,40 @@ const data = [{ category: 'Utility', value: 400 },
   { category: 'Other', value: 189 },
 ];
 
+// const defaultMonth = moment().format('MMMM YYYY');
+
 class Spending extends React.Component {
   state = {
     dropdownOpen: false,
-    dropDownValue: 'Select Category',
+    // dropDownValue: defaultMonth,
+  }
+
+  selectValue = (e) => {
+    const elem = e.currentTarget.value;
+    console.log(elem);
   }
 
   getChartData = () => {
     const uid = authRequests.getCurrentUid();
     billsRequests.getBills(uid)
       .then((billsArray) => {
-        // do filter method  to match category and then inside do reduce to smash amount and return that array and set its state. 
-        console.log(billsArray);
+        // do filter method  to match category and then inside do reduce to smash amount and return that array and set its state.
+        const dateArray1 = billsArray.map(x => moment(x.dueDate).format('MMMM YYYY'));
+
+        const dateArray = billsArray.map(({ category, amount, dueDate }) => ({ category, amount, dueDate: moment(dueDate).format('MMMM YYYY') }));
+        console.log(dateArray);
+
         const partialObject = billsArray.map(({ category, amount }) => ({ category, amount }));
-        console.log(partialObject);
-        partialObject.forEach((item) => {
-          const x = partialObject.filter(y => item.category === 'Utility');
-          console.log(x);
-        });
+        const elem = document.getElementById('select-months').value;
+        console.log(elem);
+        // const filterMonthObject = partialObject.filter(x => x.dueDate === Date.parse(elem));
+        // console.log(filterMonthObject);
+        // partialObject.forEach((item) => {
+        const y = partialObject.filter(x => x.category === 'Utility');
+        console.log(y);
+        const initialValue = 0;
+        const totalSpending = y.reduce((total, currentVal) => total + currentVal.amount, initialValue);
+        console.log(totalSpending);
       });
   }
 
@@ -46,39 +62,31 @@ class Spending extends React.Component {
     this.getChartData();
   }
 
-  toggle() {
-    this.setState({
-      dropdownOpen: !this.state.dropdownOpen,
-    });
+  getLastMonths = (n) => {
+    const dropdownOption = [];
+    dropdownOption.push(moment().format('MMMM YYYY'));
+    for (let i = 1; i < 6; i += 1) {
+      dropdownOption.push(moment().add(i * -1, 'Month').format('MMMM YYYY'));
+    }
+    return dropdownOption;
   }
 
-  changeDropDownValue = (e) => {
-    this.setState({ dropDownValue: e.currentTarget.textContent });
-  }
+
   render() {
+    const listOfMonths = this.getLastMonths(6);
+    const optionTemplate = () => listOfMonths.map(x => (
+      <option key={x} value={x}>{x}</option>
+    ));
     return (
       <div>
         <div className="ml-3">
-            <Dropdown className="mt-5 mb-5" isOpen={this.state.dropdownOpen} toggle={e => this.toggle(e)}>
-            <DropdownToggle caret>
-            {this.state.dropDownValue}
-            </DropdownToggle>
-            <DropdownMenu onClick={this.categorySelectionEvent}>
-              <DropdownItem onClick={this.changeDropDownValue} value="January">January</DropdownItem>
-              <DropdownItem onClick={this.changeDropDownValue} value="February">February</DropdownItem>
-              <DropdownItem onClick={this.changeDropDownValue} value="March">March</DropdownItem>
-              <DropdownItem onClick={this.changeDropDownValue} value="April">April</DropdownItem>
-              <DropdownItem onClick={this.changeDropDownValue} value="May">May</DropdownItem>
-              <DropdownItem onClick={this.changeDropDownValue} value="June">June</DropdownItem>
-              <DropdownItem onClick={this.changeDropDownValue} value="July">July</DropdownItem>
-              <DropdownItem onClick={this.changeDropDownValue} value="August">August</DropdownItem>
-              <DropdownItem onClick={this.changeDropDownValue} value="September">September</DropdownItem>
-              <DropdownItem onClick={this.changeDropDownValue} value="October">OCtober</DropdownItem>
-              <DropdownItem onClick={this.changeDropDownValue} value="November">November</DropdownItem>
-              <DropdownItem onClick={this.changeDropDownValue} value="December">December</DropdownItem>
-            </DropdownMenu>
-            </Dropdown>
-          </div>
+          <FormGroup>
+            <Label for="exampleSelect">Select Month</Label>
+            <Input type="select" name="select" id="select-months" onChange={this.selectValue}>
+            {optionTemplate()}
+            </Input>
+          </FormGroup>
+        </div>
         <h4>Chart</h4>
         <PieChart width={800} height={400}>
         <Pie startAngle={360} endAngle={0} data={data} cx={200} cy={200} outerRadius={80} fill="#8884d8" label/>
