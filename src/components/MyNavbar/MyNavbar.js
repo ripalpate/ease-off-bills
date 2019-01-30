@@ -12,44 +12,6 @@ import {
 } from 'reactstrap';
 import './MyNavbar.scss';
 
-// class MyNavbar extends React.Component {
-//   static propTypes = {
-//     isAuthed: PropTypes.bool,
-//     logoutClickEvent: PropTypes.func,
-//   }
-
-//   state = {
-//     isOpen: false,
-//   }
-
-//   toggle() {
-//     this.setState({
-//       isOpen: !this.state.isOpen,
-//     });
-//   }
-
-//   render() {
-//     const { isAuthed, logoutClickEvent } = this.props;
-//     return (
-//       <div className="my-navbar">
-//       <Navbar color="dark" dark expand="md">
-//           <NavbarBrand href="/">EaseOff Bills</NavbarBrand>
-//           <NavbarToggler onClick={e => this.toggle(e)} />
-//           <Collapse isOpen={this.state.isOpen} navbar>
-//             <Nav className="ml-auto" navbar>
-//               <NavItem>
-//               { isAuthed ? <NavLink onClick={logoutClickEvent}>Logout</NavLink> : ''}
-//               </NavItem>
-//             </Nav>
-//           </Collapse>
-//         </Navbar>
-//       </div>
-//     );
-//   }
-// }
-
-// export default MyNavbar;
-
 class MyNavbar extends React.Component {
   static propTypes = {
     isAuthed: PropTypes.bool,
@@ -78,6 +40,9 @@ class MyNavbar extends React.Component {
             </NavItem>
             <NavItem>
               <NavLink tag={RRNavLink} to="/bills/new">New Bill</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={RRNavLink} to="/bills/spending">Spending</NavLink>
             </NavItem>
             <NavItem>
               <NavLink onClick={logoutClickEvent}>Logout</NavLink>
