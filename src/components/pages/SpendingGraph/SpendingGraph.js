@@ -7,6 +7,7 @@ import {
   Tooltip,
 } from 'recharts';
 import {
+  Form,
   FormGroup,
   Label,
   Input,
@@ -17,11 +18,10 @@ import './SpendingGraph.scss';
 import formatPrice from '../../../helpers/formatPrice';
 
 const categories = ['Utility', 'Rent', 'Mortgage', 'Insurance', 'Credit Cards', 'TeleCommunication', 'Tax', 'Other'];
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#d30412', '#5a17b7', '#c9b280'];
+const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#d30412', '#5a17b7', '#c9b280'];
 
-class Spending extends React.Component {
+class Graph extends React.Component {
   state = {
-    dropdownOpen: false,
     billsArray: [],
     chartData: [],
   }
@@ -32,6 +32,10 @@ class Spending extends React.Component {
       .then((billsArray) => {
         this.setState({ billsArray });
       }).catch(err => console.error(err));
+  }
+
+  componentDidMount() {
+    this.getBills();
   }
 
   selectMonth = (e) => {
@@ -45,17 +49,12 @@ class Spending extends React.Component {
       const sameCategory = selectedData.filter(x => x.category === c);
       const initialValue = 0;
       const totalSpending = sameCategory.reduce((total, currentVal) => total + currentVal.amount, initialValue);
-      // console.log(totalSpending);
       if (totalSpending > 0) {
         const dataPoint = { name: c, value: totalSpending };
         chartData.push(dataPoint);
       }
     });
     this.setState({ chartData });
-  }
-
-  componentDidMount() {
-    this.getBills();
   }
 
   getLastMonths = (_n) => {
@@ -74,6 +73,7 @@ class Spending extends React.Component {
     const optionTemplate = () => listOfMonths.map(x => (
       <option key={x} value={x}>{x}</option>
     ));
+
     const RADIAN = Math.PI / 180;
     const renderCustomizedLabel = ({
       cx, cy, midAngle, innerRadius,
@@ -91,33 +91,40 @@ class Spending extends React.Component {
     };
 
     return (
-      <div>
-        <div className="ml-3">
+      <div className="spending-graph-container">
+        <h4 className="text-center">Spending Graph</h4>
+        <div className="text-center">
+        <Form>
           <FormGroup>
             <Label for="exampleSelect">Select Month</Label>
             <Input type="select" name="select" id="select-months" onChange={this.selectMonth}>
             {optionTemplate()}
             </Input>
           </FormGroup>
+        </Form>
         </div>
-        <h4>Chart</h4>
-        <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
-        <Pie
-          data={chartData}
-          dataKey='value'
-          cx={300}
-          cy={200}
-          labelLine={false}
-          label={renderCustomizedLabel}
-          outerRadius={150}
-          fill="#8884d8"
-        >{chartData.map((_entry, index) => <Cell key="1" fill={COLORS[index % COLORS.length]}/>)}
-        </Pie>
-        <Tooltip/>
-      </PieChart>
+        <div>
+          <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
+            <Pie
+              data={chartData}
+              dataKey='value'
+              cx={300}
+              cy={200}
+              labelLine={false}
+              label={renderCustomizedLabel}
+              outerRadius={150}
+              fill="#8884d8"
+            >{chartData.map((_entry, index) => <Cell key="1" fill={colors[index % colors.length]}/>)}
+            </Pie>
+            <Tooltip
+              formatter={value => `${formatPrice(value)}`}
+              labelFormatter = {value => `${formatPrice(value)}`}
+              />
+          </PieChart>
+        </div>
       </div>
     );
   }
 }
 
-export default Spending;
+export default Graph;

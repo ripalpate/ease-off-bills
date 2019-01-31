@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import billShape from '../../helpers/propz/billShape';
 import formatPrice from '../../helpers/formatPrice';
-// import PaidBills from '../PaidBills/PaidBills';
 import './DueBillItem.scss';
 
 class DueBillItem extends React.Component {
@@ -36,7 +35,7 @@ class DueBillItem extends React.Component {
   render() {
     const { bill } = this.props;
     const dueBillElement = () => (
-          <div className="row bill text-center">
+          <div className="row bill">
             <p className="col-sm pt-1">{moment(bill.dueDate).format('L')}</p>
             <p className="col-sm pt-1">{bill.category}</p>
             <p className="col-sm pt-1">{formatPrice(bill.amount)}</p>

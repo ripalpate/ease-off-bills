@@ -30,14 +30,14 @@ render() {
 
   return (
       <div className="row">
-            <p className="col-2">{moment(paidBill.dueDate).format('L')}</p>
-            <p className="col-2">{paidBill.category}</p>
-            <p className="col-2">{formatPrice(paidBill.amount)}</p>
-            <p className="col-1"><a href={paidBill.paymentUrl} rel="noopener noreferrer" target="_blank">Pay</a></p>
-            <span className="col-2">
-            <input className=""type="checkbox" checked={paidBill.isPaid} onChange={this.updateIsPaidEvent}/>
-            <label className="checkbox-label">Paid</label></span>
-            <span className="col-1">
+            <p className="col-sm pt-1">{moment(paidBill.dueDate).format('L')}</p>
+            <p className="col-sm pt-1">{paidBill.category}</p>
+            <p className="col-sm pt-1">{formatPrice(paidBill.amount)}</p>
+            <p className="col-sm pt-1"><a href={paidBill.paymentUrl} rel="noopener noreferrer" target="_blank">Pay</a></p>
+            <span className="col-sm pt-1">
+              <input className=""type="checkbox" checked={paidBill.isPaid} onChange={this.updateIsPaidEvent}/>
+              <label className="checkbox-label">Paid</label></span>
+            <span className="col">
               <button className="btn btn-danger delete-button" onClick={this.deleteEvent}>
                 <i className="fas fa-trash-alt"></i>
               </button>
