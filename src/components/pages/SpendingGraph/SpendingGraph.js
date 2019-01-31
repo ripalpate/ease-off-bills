@@ -4,6 +4,7 @@ import {
   PieChart,
   Pie,
   Cell,
+  Tooltip,
 } from 'recharts';
 import {
   FormGroup,
@@ -16,7 +17,7 @@ import './SpendingGraph.scss';
 import formatPrice from '../../../helpers/formatPrice';
 
 const categories = ['Utility', 'Rent', 'Mortgage', 'Insurance', 'Credit Cards', 'TeleCommunication', 'Tax', 'Other'];
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#d30412', '#5a17b7', '#c9b280'];
 
 class Spending extends React.Component {
   state = {
@@ -44,8 +45,9 @@ class Spending extends React.Component {
       const sameCategory = selectedData.filter(x => x.category === c);
       const initialValue = 0;
       const totalSpending = sameCategory.reduce((total, currentVal) => total + currentVal.amount, initialValue);
+      // console.log(totalSpending);
       if (totalSpending > 0) {
-        const dataPoint = { category: c, value: totalSpending };
+        const dataPoint = { name: c, value: totalSpending };
         chartData.push(dataPoint);
       }
     });
@@ -56,7 +58,7 @@ class Spending extends React.Component {
     this.getBills();
   }
 
-  getLastMonths = (n) => {
+  getLastMonths = (_n) => {
     const dropdownOption = [];
     dropdownOption.push(moment().format('MMMM YYYY'));
     for (let i = 1; i < 6; i += 1) {
@@ -72,6 +74,22 @@ class Spending extends React.Component {
     const optionTemplate = () => listOfMonths.map(x => (
       <option key={x} value={x}>{x}</option>
     ));
+    const RADIAN = Math.PI / 180;
+    const renderCustomizedLabel = ({
+      cx, cy, midAngle, innerRadius,
+      outerRadius, percent, index,
+    }) => {
+      const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+      const x = cx + radius * Math.cos(-midAngle * RADIAN);
+      const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+      return (
+    <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline ="central">
+{`${(percent * 100).toFixed(0)}%`}
+    </text>
+      );
+    };
+
     return (
       <div>
         <div className="ml-3">
@@ -83,13 +101,20 @@ class Spending extends React.Component {
           </FormGroup>
         </div>
         <h4>Chart</h4>
-        <PieChart width={800} height={400}>
-        <Pie startAngle={360} endAngle={0} data={chartData} cx={200} cy={200} outerRadius={80} fill="#8884d8" label>
-        {
-          chartData.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)
-          }
+        <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
+        <Pie
+          data={chartData}
+          dataKey='value'
+          cx={300}
+          cy={200}
+          labelLine={false}
+          label={renderCustomizedLabel}
+          outerRadius={150}
+          fill="#8884d8"
+        >{chartData.map((_entry, index) => <Cell key="1" fill={COLORS[index % COLORS.length]}/>)}
         </Pie>
-       </PieChart>
+        <Tooltip/>
+      </PieChart>
       </div>
     );
   }
