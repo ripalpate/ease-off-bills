@@ -3,6 +3,7 @@ import moment from 'moment';
 import {
   PieChart,
   Pie,
+  Cell,
 } from 'recharts';
 import {
   FormGroup,
@@ -12,54 +13,47 @@ import {
 import authRequests from '../../../helpers/data/authRequests';
 import billsRequests from '../../../helpers/data/billsRequests';
 import './SpendingGraph.scss';
+import formatPrice from '../../../helpers/formatPrice';
 
-const data = [{ category: 'Utility', value: 400 },
-  { category: 'Rent', value: 300 },
-  { category: 'Mortgage', value: 300 },
-  { category: 'Insurance', value: 200 },
-  { category: 'Tax', value: 278 },
-  { category: 'Other', value: 189 },
-];
-
-// const defaultMonth = moment().format('MMMM YYYY');
+const categories = ['Utility', 'Rent', 'Mortgage', 'Insurance', 'Credit Cards', 'TeleCommunication', 'Tax', 'Other'];
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 class Spending extends React.Component {
   state = {
     dropdownOpen: false,
-    // dropDownValue: defaultMonth,
+    billsArray: [],
+    chartData: [],
   }
 
-  selectValue = (e) => {
-    const elem = e.currentTarget.value;
-    console.log(elem);
-  }
-
-  getChartData = () => {
+  getBills = () => {
     const uid = authRequests.getCurrentUid();
     billsRequests.getBills(uid)
       .then((billsArray) => {
-        // do filter method  to match category and then inside do reduce to smash amount and return that array and set its state.
-        const dateArray1 = billsArray.map(x => moment(x.dueDate).format('MMMM YYYY'));
+        this.setState({ billsArray });
+      }).catch(err => console.error(err));
+  }
 
-        const dateArray = billsArray.map(({ category, amount, dueDate }) => ({ category, amount, dueDate: moment(dueDate).format('MMMM YYYY') }));
-        console.log(dateArray);
-
-        const partialObject = billsArray.map(({ category, amount }) => ({ category, amount }));
-        const elem = document.getElementById('select-months').value;
-        console.log(elem);
-        // const filterMonthObject = partialObject.filter(x => x.dueDate === Date.parse(elem));
-        // console.log(filterMonthObject);
-        // partialObject.forEach((item) => {
-        const y = partialObject.filter(x => x.category === 'Utility');
-        console.log(y);
-        const initialValue = 0;
-        const totalSpending = y.reduce((total, currentVal) => total + currentVal.amount, initialValue);
-        console.log(totalSpending);
-      });
+  selectMonth = (e) => {
+    const chartData = [];
+    e.preventDefault();
+    const element = e.currentTarget.value;
+    const { billsArray } = this.state;
+    const partialArray = billsArray.map(({ category, amount, dueDate }) => ({ category, amount, dueDate: moment(dueDate).format('MMMM YYYY') }));
+    const selectedData = partialArray.filter(x => x.dueDate === element);
+    categories.forEach((c) => {
+      const sameCategory = selectedData.filter(x => x.category === c);
+      const initialValue = 0;
+      const totalSpending = sameCategory.reduce((total, currentVal) => total + currentVal.amount, initialValue);
+      if (totalSpending > 0) {
+        const dataPoint = { category: c, value: totalSpending };
+        chartData.push(dataPoint);
+      }
+    });
+    this.setState({ chartData });
   }
 
   componentDidMount() {
-    this.getChartData();
+    this.getBills();
   }
 
   getLastMonths = (n) => {
@@ -73,6 +67,7 @@ class Spending extends React.Component {
 
 
   render() {
+    const { chartData } = this.state;
     const listOfMonths = this.getLastMonths(6);
     const optionTemplate = () => listOfMonths.map(x => (
       <option key={x} value={x}>{x}</option>
@@ -82,14 +77,18 @@ class Spending extends React.Component {
         <div className="ml-3">
           <FormGroup>
             <Label for="exampleSelect">Select Month</Label>
-            <Input type="select" name="select" id="select-months" onChange={this.selectValue}>
+            <Input type="select" name="select" id="select-months" onChange={this.selectMonth}>
             {optionTemplate()}
             </Input>
           </FormGroup>
         </div>
         <h4>Chart</h4>
         <PieChart width={800} height={400}>
-        <Pie startAngle={360} endAngle={0} data={data} cx={200} cy={200} outerRadius={80} fill="#8884d8" label/>
+        <Pie startAngle={360} endAngle={0} data={chartData} cx={200} cy={200} outerRadius={80} fill="#8884d8" label>
+        {
+          chartData.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)
+          }
+        </Pie>
        </PieChart>
       </div>
     );
