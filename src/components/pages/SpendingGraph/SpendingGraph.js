@@ -7,7 +7,6 @@ import {
   Tooltip,
 } from 'recharts';
 import {
-  Form,
   FormGroup,
   Label,
   Input,
@@ -24,38 +23,107 @@ class Graph extends React.Component {
   state = {
     billsArray: [],
     chartData: [],
+    selectValue: '',
+    selectedMonthData: [],
   }
 
-  getBills = () => {
+  // getBills = () => {
+  //   const uid = authRequests.getCurrentUid();
+  //   billsRequests.getBills(uid)
+  //     .then((billsArray) => {
+  //       this.setState({ billsArray });
+  //     }).catch(err => console.error(err));
+  // }
+
+  loadChartData = () => {
     const uid = authRequests.getCurrentUid();
     billsRequests.getBills(uid)
       .then((billsArray) => {
-        this.setState({ billsArray });
+        const chartData = [];
+        const currentMonth = moment().format('MMMM YYYY');
+        const partialArray = billsArray.map(({ category, amount, dueDate }) => ({ category, amount, dueDate: moment(dueDate).format('MMMM YYYY') }));
+        const filterDataByMonth = partialArray.filter(x => x.dueDate === currentMonth);
+        categories.forEach((c) => {
+          const sameCategory = filterDataByMonth.filter(x => x.category === c);
+          const initialValue = 0;
+          const totalSpending = sameCategory.reduce((total, currentVal) => total + currentVal.amount, initialValue);
+          if (totalSpending > 0) {
+            const dataPoint = { name: c, value: totalSpending };
+            chartData.push(dataPoint);
+          }
+        });
+        this.setState({ chartData, selectedMonthData: chartData });
       }).catch(err => console.error(err));
   }
 
   componentDidMount() {
-    this.getBills();
+    // this.getBills();
+    this.loadChartData();
   }
 
-  selectMonth = (e) => {
-    const chartData = [];
-    e.preventDefault();
-    const element = e.currentTarget.value;
-    const { billsArray } = this.state;
-    const partialArray = billsArray.map(({ category, amount, dueDate }) => ({ category, amount, dueDate: moment(dueDate).format('MMMM YYYY') }));
-    const selectedData = partialArray.filter(x => x.dueDate === element);
-    categories.forEach((c) => {
-      const sameCategory = selectedData.filter(x => x.category === c);
-      const initialValue = 0;
-      const totalSpending = sameCategory.reduce((total, currentVal) => total + currentVal.amount, initialValue);
-      if (totalSpending > 0) {
-        const dataPoint = { name: c, value: totalSpending };
-        chartData.push(dataPoint);
-      }
-    });
-    this.setState({ chartData });
+  selectEvent = (e) => {
+    const { chartData } = this.state;
+    const selectedMonth = e.target.value;
+    const selectedMonthData = [];
+    this.setState({ selectValue: e.currentTarget.value });
+    if (!selectedMonth) {
+      this.setState({ selectedMonthData: chartData });
+    } else {
+      const uid = authRequests.getCurrentUid();
+      billsRequests.getBills(uid)
+        .then((billsArray) => {
+          const partialArray = billsArray.map(({ category, amount, dueDate }) => ({ category, amount, dueDate: moment(dueDate).format('MMMM YYYY') }));
+          const filterDataByMonth = partialArray.filter(x => x.dueDate === selectedMonth);
+          categories.forEach((c) => {
+            const sameCategory = filterDataByMonth.filter(x => x.category === c);
+            const initialValue = 0;
+            const totalSpending = sameCategory.reduce((total, currentVal) => total + currentVal.amount, initialValue);
+            if (totalSpending > 0) {
+              const dataPoint = { name: c, value: totalSpending };
+              selectedMonthData.push(dataPoint);
+            }
+          });
+          this.setState({ selectedMonthData });
+        }).catch(err => console.error(err));
+    }
   }
+  // selectMonth = (e) => {
+  //   e.preventDefault();
+  //   const chartData = [];
+  //   const element = e.currentTarget.value;
+  //   const { billsArray } = this.state;
+  //   this.setState({ selectValue: e.currentTarget.value });
+  //   const partialArray = billsArray.map(({ category, amount, dueDate }) => ({ category, amount, dueDate: moment(dueDate).format('MMMM YYYY') }));
+  //   const filterDataByMonth = partialArray.filter(x => x.dueDate === element);
+  //   categories.forEach((c) => {
+  //     const sameCategory = filterDataByMonth.filter(x => x.category === c);
+  //     const initialValue = 0;
+  //     const totalSpending = sameCategory.reduce((total, currentVal) => total + currentVal.amount, initialValue);
+  //     if (totalSpending > 0) {
+  //       const dataPoint = { name: c, value: totalSpending };
+  //       chartData.push(dataPoint);
+  //     }
+  //   });
+  //   this.setState({ chartData });
+  // }
+
+  // getChartData = (element) => {
+  //   console.log(element);
+  //   const chartData = [];
+  //   const { billsArray } = this.state;
+  //   const partialArray = billsArray.map(({ category, amount, dueDate }) => ({ category, amount, dueDate: moment(dueDate).format('MMMM YYYY') }));
+  //   const filterDataByMonth = partialArray.filter(x => x.dueDate === element);
+  //   categories.forEach((c) => {
+  //     const sameCategory = filterDataByMonth.filter(x => x.category === c);
+  //     const initialValue = 0;
+  //     const totalSpending = sameCategory.reduce((total, currentVal) => total + currentVal.amount, initialValue);
+  //     if (totalSpending > 0) {
+  //       const dataPoint = { name: c, value: totalSpending };
+  //       chartData.push(dataPoint);
+  //     }
+  //   });
+  //   this.setState({ chartData });
+  // }
 
   getLastMonths = (_n) => {
     const dropdownOption = [];
@@ -66,9 +134,8 @@ class Graph extends React.Component {
     return dropdownOption;
   }
 
-
   render() {
-    const { chartData } = this.state;
+    const { selectedMonthData, selectValue } = this.state;
     const listOfMonths = this.getLastMonths(6);
     const optionTemplate = () => listOfMonths.map(x => (
       <option key={x} value={x}>{x}</option>
@@ -94,19 +161,17 @@ class Graph extends React.Component {
       <div className="spending-graph-container">
         <h4 className="text-center">Spending Graph</h4>
         <div className="text-center">
-        <Form>
           <FormGroup>
             <Label for="exampleSelect">Select Month</Label>
-            <Input type="select" name="select" id="select-months" onChange={this.selectMonth}>
+            <Input type="select" name="select" id="select-months" value={selectValue} onChange= {this.selectEvent}>
             {optionTemplate()}
             </Input>
           </FormGroup>
-        </Form>
         </div>
-        <div>
+        <div className="pie-chart">
           <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
             <Pie
-              data={chartData}
+              data={selectedMonthData}
               dataKey='value'
               cx={300}
               cy={200}
@@ -114,7 +179,7 @@ class Graph extends React.Component {
               label={renderCustomizedLabel}
               outerRadius={150}
               fill="#8884d8"
-            >{chartData.map((_entry, index) => <Cell key="1" fill={colors[index % colors.length]}/>)}
+            >{selectedMonthData.map((_entry, index) => <Cell key="1" fill={colors[index % colors.length]}/>)}
             </Pie>
             <Tooltip
               formatter={value => `${formatPrice(value)}`}
