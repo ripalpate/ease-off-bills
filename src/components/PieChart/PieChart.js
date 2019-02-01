@@ -5,7 +5,8 @@ import {
   Cell,
   Tooltip,
 } from 'recharts';
-import billShape from '../../helpers/propz/billShape';
+import PropTypes from 'prop-types';
+import chartDataShape from '../../helpers/propz/chartDataShape';
 import formatPrice from '../../helpers/formatPrice';
 import './PieChart.scss';
 
@@ -13,7 +14,7 @@ const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#d30412', '#5a17b7'
 
 class Chart extends React.Component {
   static propTypes = {
-    selectedMonthData: billShape,
+    selectedMonthData: PropTypes.arrayOf(chartDataShape),
   }
 
   render() {

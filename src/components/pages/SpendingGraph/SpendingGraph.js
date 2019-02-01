@@ -14,7 +14,6 @@ const categories = ['Utility', 'Rent', 'Mortgage', 'Insurance', 'Credit Cards', 
 
 class Graph extends React.Component {
   state = {
-    billsArray: [],
     chartData: [],
     selectValue: '',
     selectedMonthData: [],
