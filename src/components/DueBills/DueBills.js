@@ -16,7 +16,7 @@ class DueBills extends React.Component {
   render() {
     const {
       bills,
-      deleteSingleBill,
+      deleteCycleBill,
       passBillToEdit,
       updateIsPaid,
       isPaid,
@@ -33,7 +33,7 @@ class DueBills extends React.Component {
       <DueBillItem
       bill={bill}
       key={bill.id}
-      deleteSingleBill={deleteSingleBill}
+      deleteCycleBill={deleteCycleBill}
       passBillToEdit={passBillToEdit}
       updateIsPaid={updateIsPaid}
       isPaid = {isPaid}

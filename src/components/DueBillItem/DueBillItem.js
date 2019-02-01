@@ -8,15 +8,15 @@ import './DueBillItem.scss';
 class DueBillItem extends React.Component {
   static propTypes = {
     bill: billShape,
-    deleteSingleBill: PropTypes.func,
+    deleteCycleBill: PropTypes.func,
     passBillToEdit: PropTypes.func,
     updateIsPaid: PropTypes.func,
   }
 
   deleteEvent = (e) => {
     e.preventDefault();
-    const { deleteSingleBill, bill } = this.props;
-    deleteSingleBill(bill.id);
+    const { deleteCycleBill, bill } = this.props;
+    deleteCycleBill(bill.cycleId);
   }
 
   editEvent = (e) => {

@@ -5,6 +5,7 @@ import billsRequests from '../../../helpers/data/billsRequests';
 import authRequests from '../../../helpers/data/authRequests';
 
 const defaultBill = {
+  cycleId: '',
   payee: '',
   amount: 0,
   category: '',
@@ -65,8 +66,13 @@ class NewBill extends React.Component {
     const myBill = { ...this.state.newBill };
     myBill.dueDate = Date.parse(`${this.state.billDueDate}T00:00:00`);
     myBill.uid = authRequests.getCurrentUid();
+    // const occurances = document.getElementById('occurrences').value;
+    myBill.cycleId = myBill.payee.replace(/ /g, '') + moment().format('MMDDYYYY');
+    // if (occurances > 0) {
     this.repeatCycle(myBill);
+    // } else {
     this.formSubmitEvent(myBill);
+    // }
     this.setState({ newBill: defaultBill, billDueDate: defaultDueDate });
   }
 
