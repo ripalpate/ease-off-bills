@@ -122,6 +122,8 @@ class Bills extends React.Component {
       paidBills,
       selectedBills,
       selectedArticles,
+      dropDownValue,
+      dropdownOpen,
     } = this.state;
 
     return (
@@ -131,9 +133,9 @@ class Bills extends React.Component {
             <Button className ="btn btn-info mt-5 mb-5" onClick={this.changeView}>Add Bills</Button>
           </div>
           <div className="ml-3">
-            <Dropdown className="mt-5 mb-5" isOpen={this.state.dropdownOpen} toggle={e => this.toggle(e)}>
+            <Dropdown className="mt-5 mb-5" isOpen={dropdownOpen} toggle={e => this.toggle(e)}>
             <DropdownToggle caret>
-            {this.state.dropDownValue}
+            {dropDownValue}
             </DropdownToggle>
             <DropdownMenu onClick={this.categorySelectionEvent}>
               <DropdownItem value="" onClick={this.changeDropDownValue}>All</DropdownItem>

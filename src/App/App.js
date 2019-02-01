@@ -14,6 +14,7 @@ import NewBill from '../components/pages/NewBill/NewBill';
 import EditBill from '../components/pages/EditBill/EditBill';
 
 import './App.scss';
+import Spending from '../components/pages/SpendingGraph/SpendingGraph';
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = props => (authed === false
@@ -82,6 +83,7 @@ class App extends React.Component {
                 <PrivateRoute exact path="/bills" component={Bills} authed={authed}/>
                 <PrivateRoute exact path="/bills/new" component={NewBill} authed={authed}/>
                 <PrivateRoute exact path="/bills/:id/edit" component={EditBill} authed={authed}/>
+                <PrivateRoute exact path="/bills/spending" component={Spending} authed={authed}/>
                 <PublicRoute path="/auth" component={Auth} authed={authed}/>
               </Switch>
             </div>
