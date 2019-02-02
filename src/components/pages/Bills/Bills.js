@@ -56,15 +56,17 @@ class Bills extends React.Component {
   }
 
   deleteCycleBill = (cycleId) => {
-    // console.log(cycleId);
-    billsRequests.deleteCycleBill(cycleId)
-      .then(() => {
-        const uid = authRequests.getCurrentUid();
-        billsRequests.getBills(uid)
-          .then((bills) => {
-            console.log(bills);
-          });
-      }).catch(err => console.error(err));
+    const uid = authRequests.getCurrentUid();
+    billsRequests.getBills(uid)
+      .then((bills) => {
+        const filterDataByCycleId = bills.filter(x => x.cycleId === cycleId);
+        filterDataByCycleId.forEach((bill) => {
+          billsRequests.deleteCycleBill(bill.id)
+            .then(() => {
+              this.getBills();
+            }).catch(err => console.error(err));
+        });
+      });
   }
 
   passBillToEdit = (billId) => {

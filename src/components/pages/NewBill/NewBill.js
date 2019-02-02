@@ -142,7 +142,7 @@ class NewBill extends React.Component {
               id="amount"
               aria-describedby="amountHelp"
               placeholder="0"
-              pattern= "^[1-9][0-9]*$"
+              // pattern= "^[1-9][0-9]*$"
               value = {newBill.amount}
               onChange = {this.amountChange}
               required
