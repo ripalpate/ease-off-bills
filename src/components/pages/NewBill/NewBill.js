@@ -7,7 +7,7 @@ import authRequests from '../../../helpers/data/authRequests';
 const defaultBill = {
   cycleId: '',
   payee: '',
-  amount: 0,
+  amount: '',
   category: '',
   paymentUrl: '',
   isPaid: false,
@@ -38,7 +38,7 @@ class NewBill extends React.Component {
 
   payeeChange = e => this.formFieldStringState('payee', e);
 
-  amountChange = e => this.formFieldNumberState('amount', e);
+  amountChange = e => this.formFieldStringState('amount', e);
 
   categoryChange = e => this.formFieldStringState('category', e);
 
@@ -62,6 +62,7 @@ class NewBill extends React.Component {
     e.preventDefault();
     const myBill = { ...this.state.newBill };
     myBill.dueDate = Date.parse(`${this.state.billDueDate}T00:00:00`);
+    myBill.amount = parseFloat(myBill.amount);
     myBill.uid = authRequests.getCurrentUid();
     const cycle = document.getElementById('cycle').value;
     if (cycle === 'monthly' || cycle === 'yearly') {
@@ -139,8 +140,7 @@ class NewBill extends React.Component {
               className="form-control"
               id="amount"
               aria-describedby="amountHelp"
-              placeholder="Only enter numbers. Exclude(decimals,dollar sign, cents sign and comma)"
-              pattern= "^[1-9][0-9]*$"
+              placeholder="25.45"
               value = {newBill.amount}
               onChange = {this.amountChange}
               required

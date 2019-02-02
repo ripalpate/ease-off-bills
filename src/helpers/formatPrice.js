@@ -1,4 +1,4 @@
-const formatPrice = cents => (cents / 100).toLocaleString(
+const formatPrice = dollars => dollars.toLocaleString(
   'en-US',
   {
     style: 'currency',

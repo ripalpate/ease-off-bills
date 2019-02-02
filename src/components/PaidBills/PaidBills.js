@@ -22,13 +22,13 @@ class PaidBills extends React.Component {
     } = this.props;
 
     // const checkLength = () => {
-    //   const elem = document.getElementsByClassName('paid-bill-heading')[0];
+    //   const elem = document.getElementsByClassName('paid-bill')[0];
     //   console.log(elem);
-    //   // if (paidBills.length === 0) {
-    //   //   elem.style.display = 'none';
-    //   //   return;
-    //   // }
-    //   // elem.style.display = 'block';
+    //   if (paidBills.length) {
+    //     elem.style.display = 'block';
+    //   } else {
+    //     elem.style.display = 'none';
+    //   }
     // };
 
     const paidBillsItemComponents = paidBills.map(paidBill => (
