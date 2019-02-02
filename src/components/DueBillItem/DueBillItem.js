@@ -40,6 +40,22 @@ class DueBillItem extends React.Component {
 
   render() {
     const { bill } = this.props;
+    const dueDays = () => {
+      const expiration = moment(bill.dueDate).format('L');
+      const now = moment(new Date()).format('L');
+      const exp = moment(expiration);
+      const days = exp.diff(now, 'days');
+      return days;
+    };
+
+    // const dueDays = () => {
+    //   const expiration = moment(bill.dueDate);
+    //   const now = moment();
+    //   const diff = expiration.diff(now);
+    //   const diffDuration = moment.duration(diff).days();
+    //   return diffDuration;
+    // };
+
     const deleteSeriesButton = () => {
       if (bill.cycleId === '-1') {
         return (<span className="col"></span>);
@@ -52,7 +68,7 @@ class DueBillItem extends React.Component {
     };
     const dueBillElement = () => (
           <div className="row bill">
-            <p className="col-sm pt-1">{moment(bill.dueDate).format('L')}</p>
+            <p className="col-sm pt-1">{moment(bill.dueDate).format('L')}<small> Due in {dueDays()} days</small></p>
             <p className="col-sm pt-1">{bill.category}</p>
             <p className="col-sm pt-1">{formatPrice(bill.amount)}</p>
             <p className="col-sm pt-1"><a href={bill.paymentUrl} rel="noopener noreferrer" target="_blank">Pay</a></p>

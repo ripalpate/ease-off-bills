@@ -29,13 +29,6 @@ class NewBill extends React.Component {
     this.setState({ newBill: tempBill });
   }
 
-  formFieldNumberState = (name, e) => {
-    e.preventDefault();
-    const tempBill = { ...this.state.newBill };
-    tempBill[name] = e.target.value * 1;
-    this.setState({ newBill: tempBill });
-  }
-
   payeeChange = e => this.formFieldStringState('payee', e);
 
   amountChange = e => this.formFieldStringState('amount', e);
