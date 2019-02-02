@@ -188,6 +188,7 @@ class NewBill extends React.Component {
               id="url"
               aria-describedby="urlHelp"
               placeholder="https://www.google.com/"
+              pattern= "^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
               value={newBill.paymentUrl}
               onChange = {this.urlChange}
               required
