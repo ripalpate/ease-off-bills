@@ -33,7 +33,6 @@ render() {
             <p className="col-sm pt-1">{moment(paidBill.dueDate).format('L')}</p>
             <p className="col-sm pt-1">{paidBill.category}</p>
             <p className="col-sm pt-1">{formatPrice(paidBill.amount)}</p>
-            <p className="col-sm pt-1"><a href={paidBill.paymentUrl} rel="noopener noreferrer" target="_blank">Pay</a></p>
             <span className="col-sm pt-1">
               <input className=""type="checkbox" checked={paidBill.isPaid} onChange={this.updateIsPaidEvent}/>
               <label className="checkbox-label">Paid</label></span>

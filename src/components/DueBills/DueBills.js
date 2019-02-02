@@ -7,7 +7,7 @@ import './DueBills.scss';
 class DueBills extends React.Component {
   static propTypes = {
     bills: PropTypes.arrayOf(billShape),
-    deleteSingleBill: PropTypes.func,
+    deleteCycleBill: PropTypes.func,
     passBillToEdit: PropTypes.func,
     updateIsPaid: PropTypes.func,
     isPaid: PropTypes.bool,
@@ -16,6 +16,7 @@ class DueBills extends React.Component {
   render() {
     const {
       bills,
+      deleteCycleBill,
       deleteSingleBill,
       passBillToEdit,
       updateIsPaid,
@@ -33,10 +34,11 @@ class DueBills extends React.Component {
       <DueBillItem
       bill={bill}
       key={bill.id}
-      deleteSingleBill={deleteSingleBill}
+      deleteCycleBill={deleteCycleBill}
       passBillToEdit={passBillToEdit}
       updateIsPaid={updateIsPaid}
       isPaid = {isPaid}
+      deleteSingleBill = {deleteSingleBill}
       />
     ));
 

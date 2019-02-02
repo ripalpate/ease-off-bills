@@ -55,6 +55,20 @@ class Bills extends React.Component {
       }).catch(err => console.error(err));
   }
 
+  deleteCycleBill = (cycleId) => {
+    const uid = authRequests.getCurrentUid();
+    billsRequests.getBills(uid)
+      .then((bills) => {
+        const filterDataByCycleId = bills.filter(x => x.cycleId === cycleId);
+        filterDataByCycleId.forEach((bill) => {
+          billsRequests.deleteCycleBill(bill.id)
+            .then(() => {
+              this.getBills();
+            }).catch(err => console.error(err));
+        });
+      });
+  }
+
   passBillToEdit = (billId) => {
     this.props.history.push(`/bills/${billId}/edit`);
   }
@@ -155,9 +169,10 @@ class Bills extends React.Component {
           <div className= "bills-components col-7">
             <DueBills
               bills = {selectedBills}
-              deleteSingleBill = {this.deleteBill}
+              deleteCycleBill = {this.deleteCycleBill}
               passBillToEdit = {this.passBillToEdit}
               updateIsPaid = {this.updateIsPaid}
+              deleteSingleBill = {this.deleteBill}
             />
             <PaidBills
               paidBills = {paidBills}

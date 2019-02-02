@@ -6,6 +6,7 @@
   "category": "Utility",
   "paymentUrl": "http://www.westwilsonutility.com/",
   "isPaid": false,
+  "cycleId": "WestWilsonUtility01202019",
   "uid":"bbSSQMVbF0c1QJakaPPmKkFzXyG3"
   },
   "bill2": {
@@ -15,6 +16,7 @@
   "category": "Rent",
   "paymentUrl": "https://www.piedmontng.com/",
   "isPaid": false,
+  "cycleId": "PiedmontGas01222019",
   "uid":"bbSSQMVbF0c1QJakaPPmKkFzXyG3"
   }
   }

@@ -8,12 +8,18 @@ import './DueBillItem.scss';
 class DueBillItem extends React.Component {
   static propTypes = {
     bill: billShape,
-    deleteSingleBill: PropTypes.func,
+    deleteCycleBill: PropTypes.func,
     passBillToEdit: PropTypes.func,
     updateIsPaid: PropTypes.func,
   }
 
   deleteEvent = (e) => {
+    e.preventDefault();
+    const { deleteCycleBill, bill } = this.props;
+    deleteCycleBill(bill.cycleId);
+  }
+
+  deleteSingleEvent = (e) => {
     e.preventDefault();
     const { deleteSingleBill, bill } = this.props;
     deleteSingleBill(bill.id);
@@ -34,6 +40,16 @@ class DueBillItem extends React.Component {
 
   render() {
     const { bill } = this.props;
+    const deleteSeriesButton = () => {
+      if (bill.cycleId === '-1') {
+        return (<span className="col"></span>);
+      }
+      return (
+        <button className="btn btn-danger mr-1 delete-button" title="Delete Series of Bill" onClick={this.deleteEvent}>
+        <i className="fas fa-minus-circle"></i>
+      </button>
+      );
+    };
     const dueBillElement = () => (
           <div className="row bill">
             <p className="col-sm pt-1">{moment(bill.dueDate).format('L')}</p>
@@ -44,7 +60,8 @@ class DueBillItem extends React.Component {
             <input className="paid-checkbox" type="checkbox" checked={bill.isPaid} onChange={this.updateIsPaidEvent}/>
             <label className="checkbox-label">Paid</label></span>
             <span className="col">
-              <button className="btn btn-danger delete-button" onClick={this.deleteEvent}>
+              {deleteSeriesButton()}
+              <button className="btn btn-danger delete-button" title="Delete Bill" onClick={this.deleteSingleEvent}>
                 <i className="fas fa-trash-alt"></i>
               </button>
               <button className="btn btn-default edit-button" onClick={this.editEvent}>
