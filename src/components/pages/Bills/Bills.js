@@ -56,9 +56,14 @@ class Bills extends React.Component {
   }
 
   deleteCycleBill = (cycleId) => {
+    // console.log(cycleId);
     billsRequests.deleteCycleBill(cycleId)
       .then(() => {
-        this.getBills();
+        const uid = authRequests.getCurrentUid();
+        billsRequests.getBills(uid)
+          .then((bills) => {
+            console.log(bills);
+          });
       }).catch(err => console.error(err));
   }
 

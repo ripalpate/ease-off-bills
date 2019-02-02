@@ -7,7 +7,7 @@ import './DueBills.scss';
 class DueBills extends React.Component {
   static propTypes = {
     bills: PropTypes.arrayOf(billShape),
-    deleteSingleBill: PropTypes.func,
+    deleteCycleBill: PropTypes.func,
     passBillToEdit: PropTypes.func,
     updateIsPaid: PropTypes.func,
     isPaid: PropTypes.bool,
