@@ -54,10 +54,7 @@ class NewBill extends React.Component {
   formSubmitEvent = (newBill) => {
     billsRequests.createBill(newBill)
       .then(() => {
-        billsRequests.getBills()
-          .then(() => {
-            this.props.history.push('/bills');
-          });
+        this.props.history.push('/bills');
       }).catch(err => console.error(err));
   }
 
@@ -66,13 +63,14 @@ class NewBill extends React.Component {
     const myBill = { ...this.state.newBill };
     myBill.dueDate = Date.parse(`${this.state.billDueDate}T00:00:00`);
     myBill.uid = authRequests.getCurrentUid();
-    // const occurances = document.getElementById('occurrences').value;
-    myBill.cycleId = myBill.payee.replace(/ /g, '') + moment().format('MMDDYYYY');
-    // if (occurances > 0) {
+    const cycle = document.getElementById('cycle').value;
+    if (cycle === 'monthly' || cycle === 'yearly') {
+      myBill.cycleId = myBill.payee.replace(/ /g, '') + moment().format('MMDDYYYY');
+    } else {
+      myBill.cycleId = '-1';
+    }
     this.repeatCycle(myBill);
-    // } else {
     this.formSubmitEvent(myBill);
-    // }
     this.setState({ newBill: defaultBill, billDueDate: defaultDueDate });
   }
 
@@ -141,13 +139,12 @@ class NewBill extends React.Component {
               className="form-control"
               id="amount"
               aria-describedby="amountHelp"
-              placeholder="0"
-              // pattern= "^[1-9][0-9]*$"
+              placeholder="Only enter numbers. Exclude(decimals,dollar sign, cents sign and comma)"
+              pattern= "^[1-9][0-9]*$"
               value = {newBill.amount}
               onChange = {this.amountChange}
               required
             />
-            <small className="text-muted form-text">Note:Only enter numbers. Exclude(decimals,dollar sign, cents sign and comma)</small>
           </div>
           <div className="form-group">
             <label htmlFor="email">Category:</label>
@@ -190,7 +187,7 @@ class NewBill extends React.Component {
               className="form-control"
               id="url"
               aria-describedby="urlHelp"
-              placeholder="https://www.google.com"
+              placeholder="https://www.google.com/"
               value={newBill.paymentUrl}
               onChange = {this.urlChange}
               required

@@ -172,6 +172,7 @@ class Bills extends React.Component {
               deleteCycleBill = {this.deleteCycleBill}
               passBillToEdit = {this.passBillToEdit}
               updateIsPaid = {this.updateIsPaid}
+              deleteSingleBill = {this.deleteBill}
             />
             <PaidBills
               paidBills = {paidBills}
