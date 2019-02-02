@@ -16,21 +16,11 @@ class Auth extends React.Component {
     }).catch(err => console.error(err));
   }
 
-  authenticateFacebookUser = (e) => {
-    e.preventDefault();
-    authRequests.facebookAuthenticate().then(() => {
-      this.props.history.push('/bills');
-    }).catch(err => console.error(err));
-  }
-
   render() {
     return (
       <div className="Auth">
         <button className="btn btn-default login-btn" onClick={this.authenticateUser}>
           <img src= {googleButton} alt="google login Button" width="400px"/>
-        </button>
-        <button className="btn btn-default login-btn" onClick={this.authenticateFacebookUser}>
-          login
         </button>
       </div>
     );
