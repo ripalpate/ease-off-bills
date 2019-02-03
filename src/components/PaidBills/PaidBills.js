@@ -21,15 +21,12 @@ class PaidBills extends React.Component {
       isPaid,
     } = this.props;
 
-    // const checkLength = () => {
-    //   const elem = document.getElementsByClassName('paid-bill')[0];
-    //   console.log(elem);
-    //   if (paidBills.length) {
-    //     elem.style.display = 'block';
-    //   } else {
-    //     elem.style.display = 'none';
-    //   }
-    // };
+    const checkLength = () => {
+      if (paidBills.length) {
+        return (<h4 className="paid-bill-heading">Paid Bills</h4>);
+      }
+      return (<span></span>);
+    };
 
     const paidBillsItemComponents = paidBills.map(paidBill => (
       <PaidBillItem
@@ -42,8 +39,7 @@ class PaidBills extends React.Component {
     ));
     return (
        <div className="col paid-bill">
-        {/* {checkLength()} */}
-        <h4 className="paid-bill-heading">Paid Bill</h4>
+        {checkLength()}
         {paidBillsItemComponents}
       </div>
     );
