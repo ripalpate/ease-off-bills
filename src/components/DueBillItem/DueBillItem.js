@@ -41,18 +41,24 @@ class DueBillItem extends React.Component {
 
   render() {
     const { bill } = this.props;
+    const divStyleDanger = {
+      backgroundColor: 'red',
+    };
+    const divStyleWarning = {
+      backgroundColor: 'yellow',
+    }
     const dueDays = () => {
       const billDueDate = bill.dueDate;
       const currentDate = moment();
       const days = moment(billDueDate).diff(currentDate, 'days', true);
       const actualNum = Math.ceil(days);
       if (actualNum === 0) {
-        return (<small>Due Today</small>);
+        return (<small style={divStyleDanger}>Due Today</small>);
       } if (actualNum <= -1) {
-        return (<small>Was due {actualNum} days ago</small>);
+        return (<small style={divStyleDanger}>Was due {actualNum} days ago</small>);
       } if (actualNum === 1) {
         return (
-        <small>Due in {actualNum} day</small>
+        <small style={divStyleWarning}>Due in {actualNum} day</small>
         );
       } if (actualNum > 0) {
         return (
