@@ -34,8 +34,16 @@ class Chart extends React.Component {
     </text>
       );
     };
+
+    const checkLength = () => {
+      if (selectedMonthData.length === 0) {
+        return (<h6 className="text-center mt-5">There are no bills for this month</h6>);
+      } return (<small></small>);
+    };
+
     return (
       <div className="pie-chart">
+      {checkLength()}
       <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
         <Pie
           data={selectedMonthData}
