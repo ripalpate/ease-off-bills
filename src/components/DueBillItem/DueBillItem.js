@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { Label, Input } from 'reactstrap';
 import billShape from '../../helpers/propz/billShape';
 import formatPrice from '../../helpers/formatPrice';
 import './DueBillItem.scss';
@@ -40,19 +41,47 @@ class DueBillItem extends React.Component {
 
   render() {
     const { bill } = this.props;
+    const divStyleDanger = {
+      backgroundColor: 'red',
+    };
+    const divStyleWarning = {
+      backgroundColor: 'yellow',
+    }
+    const dueDays = () => {
+      const billDueDate = bill.dueDate;
+      const currentDate = moment();
+      const days = moment(billDueDate).diff(currentDate, 'days', true);
+      const actualNum = Math.ceil(days);
+      if (actualNum === 0) {
+        return (<small style={divStyleDanger}>Due Today</small>);
+      } if (actualNum <= -1) {
+        return (<small style={divStyleDanger}>Was due {actualNum} days ago</small>);
+      } if (actualNum === 1) {
+        return (
+        <small style={divStyleWarning}>Due in {actualNum} day</small>
+        );
+      } if (actualNum > 0) {
+        return (
+        <small>Due in {actualNum} days</small>
+        );
+      }
+      return (<small></small>);
+    };
+
     const deleteSeriesButton = () => {
       if (bill.cycleId === '-1') {
         return (<span className="col"></span>);
       }
       return (
-        <button className="btn btn-danger mr-1 delete-button" title="Delete Series of Bill" onClick={this.deleteEvent}>
-        <i className="fas fa-minus-circle"></i>
-      </button>
+        <Label check onClick={this.deleteEvent}>
+            <Input type="checkbox" />{' '}
+            Delete Series
+        </Label>
       );
     };
     const dueBillElement = () => (
-          <div className="row bill">
-            <p className="col-sm pt-1">{moment(bill.dueDate).format('L')}</p>
+          <div className="row single-bill">
+            <div className="col-sm pt-1 date-element">{moment(bill.dueDate).format('L')}<p>{dueDays()}</p></div>
             <p className="col-sm pt-1">{bill.category}</p>
             <p className="col-sm pt-1">{formatPrice(bill.amount)}</p>
             <p className="col-sm pt-1"><a href={bill.paymentUrl} rel="noopener noreferrer" target="_blank">Pay</a></p>
@@ -60,13 +89,13 @@ class DueBillItem extends React.Component {
             <input className="paid-checkbox" type="checkbox" checked={bill.isPaid} onChange={this.updateIsPaidEvent}/>
             <label className="checkbox-label">Paid</label></span>
             <span className="col">
-              {deleteSeriesButton()}
               <button className="btn btn-danger delete-button" title="Delete Bill" onClick={this.deleteSingleEvent}>
                 <i className="fas fa-trash-alt"></i>
               </button>
               <button className="btn btn-default edit-button" onClick={this.editEvent}>
                 <i className="fas fa-pencil-alt"></i>
               </button>
+              <small>  {deleteSeriesButton()}</small>
             </span>
           </div>
     );
