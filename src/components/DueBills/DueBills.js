@@ -25,7 +25,10 @@ class DueBills extends React.Component {
 
     const checkLength = () => {
       if (bills.length === 0) {
-        return (<h6 className="no-bill-message">Currently, There are no bills. Please add your Bill.</h6>);
+        return (
+        <div className="no-bill-message">
+          <h5 className="card-title text-center">Currently, There are no bills. Please add your Bills.</h5>
+        </div>);
       }
       return (<span></span>);
     };
