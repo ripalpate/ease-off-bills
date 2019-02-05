@@ -166,7 +166,7 @@ class Bills extends React.Component {
           </div>
         </div>
         <div className="row">
-          <div className= "bills-components col-7">
+          <div className= "bills-components col-6">
             <DueBills
               bills = {selectedBills}
               deleteCycleBill = {this.deleteCycleBill}
@@ -180,7 +180,7 @@ class Bills extends React.Component {
               updateIsPaid = {this.updateIsPaid}
             />
           </div>
-          <Articles className="col-5" articles = {selectedArticles}/>
+          <Articles className="col-6" articles = {selectedArticles}/>
         </div>
       </div>
     );
