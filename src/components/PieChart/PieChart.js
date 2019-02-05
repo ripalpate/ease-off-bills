@@ -37,7 +37,7 @@ class Chart extends React.Component {
 
     const checkLength = () => {
       if (selectedMonthData.length === 0) {
-        return (<h6 className="text-center mt-5">There are no bills for this month</h6>);
+        return (<h6 className="text-center mt-5 no-chart-message">There are no bills for this month</h6>);
       } return (<small></small>);
     };
 

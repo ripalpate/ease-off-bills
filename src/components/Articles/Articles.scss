@@ -1,3 +1,28 @@
-// .articles {
-//   min-width: 30%;
-// }
+.no-article-message {
+  border: 2px dotted black;
+  border-radius: 10px;
+  padding: 35px;
+  width: 40%; 
+  margin: 0 auto;
+}
+
+.articlesWrapper, .outerDiv {
+  height: 435px;
+ }                         
+
+ .outerDiv {
+  object-fit: contain;
+  position: relative;
+  overflow: hidden;
+ }
+
+ .innerDiv {
+  position: absolute;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+ }
+
+ .innerDiv::-webkit-scrollbar {
+  display: none;
+ }

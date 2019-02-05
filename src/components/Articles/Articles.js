@@ -13,7 +13,7 @@ class Articles extends React.Component {
     const { articles } = this.props;
     const checkLength = () => {
       if (articles.length === 0) {
-        return (<h6 className="text-center">There are no articles related to this category.</h6>);
+        return (<h5 className="text-center no-article-message">There are no articles related to this category.</h5>);
       }
       return (<span></span>);
     };
@@ -25,10 +25,14 @@ class Articles extends React.Component {
       />
     ));
     return (
-      <div className="col-5 articles">
+      <div className=" col articles">
         <h4 className="text-center">Resources</h4>
         {checkLength()}
-        {articlesItemComponents}
+        <div className="outerDiv">
+          <div className= "innerDiv">
+            <div className="articlesWrapper row">{articlesItemComponents}</div>
+          </div>
+        </div>
       </div>
     );
   }
