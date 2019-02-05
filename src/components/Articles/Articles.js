@@ -26,7 +26,7 @@ class Articles extends React.Component {
     ));
     return (
       <div className="col-5 articles">
-        <h4 className="text-center">Articles</h4>
+        <h4 className="text-center">Resources</h4>
         {checkLength()}
         {articlesItemComponents}
       </div>
