@@ -46,7 +46,7 @@ class DueBillItem extends React.Component {
     };
     const divStyleWarning = {
       backgroundColor: 'yellow',
-    }
+    };
     const dueDays = () => {
       const billDueDate = bill.dueDate;
       const currentDate = moment();
