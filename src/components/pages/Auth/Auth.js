@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import authRequests from '../../../helpers/data/authRequests';
-import googleButton from './image/login-google.png';
-import facebookButton from './image/facebook-sign-in-button.png';
+import googleButton from './image/google-login.png';
+import facebookButton from './image/fb-sign-in-button.png';
 import './Auth.scss';
 
 class Auth extends React.Component {
@@ -27,12 +27,16 @@ class Auth extends React.Component {
   render() {
     return (
       <div className="Auth">
-        <button className="btn btn-default login-btn" onClick={this.authenticateUser}>
-          <img src= {googleButton} alt="google login Button" width="400px"/>
-        </button>
-        <button className="btn btn-default login-btn" onClick={this.authenticateFacebookUser}>
+        <div>
+          <button className="btn login-btn" onClick={this.authenticateUser}>
+            <img src= {googleButton} alt="google login Button" width="400px"/>
+          </button>
+        </div>
+        <div>
+        <button className="btn mt-5 login-btn" onClick={this.authenticateFacebookUser}>
           <img src= {facebookButton} alt="facebook login Button" width="400px"/>
         </button>
+        </div>
       </div>
     );
   }
