@@ -34,7 +34,7 @@ class MyNavbar extends React.Component {
     const buildNavbar = () => {
       if (isAuthed) {
         return (
-          <Nav className= "ml-auto" navbar>
+          <Nav className= "ml-auto navbar" navbar>
             <NavItem>
               <NavLink tag={RRNavLink} to="/bills/">Bills</NavLink>
             </NavItem>
