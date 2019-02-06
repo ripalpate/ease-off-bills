@@ -28,16 +28,9 @@ class EditBill extends React.Component {
     this.setState({ editedBill: tempBill });
   }
 
-  formFieldNumberState = (name, e) => {
-    e.preventDefault();
-    const tempBill = { ...this.state.editedBill };
-    tempBill[name] = e.target.value * 1;
-    this.setState({ editedBill: tempBill });
-  }
-
   payeeChange = e => this.formFieldStringState('payee', e);
 
-  amountChange = e => this.formFieldNumberState('amount', e);
+  amountChange = e => this.formFieldStringState('amount', e);
 
   categoryChange = e => this.formFieldStringState('category', e);
 
@@ -72,7 +65,9 @@ class EditBill extends React.Component {
   formSubmit = (e) => {
     e.preventDefault();
     const myBill = { ...this.state.editedBill };
+    delete myBill.id;
     myBill.dueDate = Date.parse(`${this.state.editedDueDate}T00:00:00`);
+    myBill.amount = parseFloat(myBill.amount);
     myBill.uid = authRequests.getCurrentUid();
     this.formSubmitEvent(myBill);
     this.setState({ editedBill: defaultBill });
@@ -116,7 +111,7 @@ class EditBill extends React.Component {
               id="amount"
               aria-describedby="amountHelp"
               placeholder="0"
-              pattern= "^[1-9][0-9]*$"
+              // pattern= "^[1-9][0-9]*$"
               value = {editedBill.amount}
               onChange = {this.amountChange}
               required
