@@ -142,9 +142,16 @@ class Bills extends React.Component {
 
     return (
       <div className="bill-page">
-        <div className="button-wrapper d-flex justify-content-center">
+        <h4 className="text-center heading heading-EaseOffBills position-relative">
+        Welcome to
+          <em>EaseOff</em>
+          Bills</h4>
+        <div className="button-wrapper d-flex justify-content-around">
           <div className="mr-4">
-            <Button className ="btn btn-info mt-5 mb-5" onClick={this.changeView}>Add Bills</Button>
+            <Button className ="btn btn-success mt-5 mb-5" onClick={this.changeView}>
+              <i className="fas fa-plus-circle mr-3"></i>
+              Add Bills
+            </Button>
           </div>
           <div className="ml-3">
             <Dropdown className="mt-5 mb-5" isOpen={dropdownOpen} toggle={e => this.toggle(e)}>
