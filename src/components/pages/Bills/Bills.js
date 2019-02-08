@@ -181,22 +181,22 @@ class Bills extends React.Component {
               updateIsPaid = {this.updateIsPaid}
               deleteSingleBill = {this.deleteBill}
             />
-            {/* <PaidBills
-              paidBills = {paidBills}
-              deleteSingleBill = {this.deleteBill}
-              updateIsPaid = {this.updateIsPaid}
-            /> */}
-          </div>
-          <div className= "col-6">
-          <PaidBills
+            <PaidBills
               paidBills = {paidBills}
               deleteSingleBill = {this.deleteBill}
               updateIsPaid = {this.updateIsPaid}
             />
           </div>
-          {/* <Articles className="col-6" articles = {selectedArticles}/> */}
+          {/* <div className= "col-6">
+          <PaidBills
+              paidBills = {paidBills}
+              deleteSingleBill = {this.deleteBill}
+              updateIsPaid = {this.updateIsPaid}
+            />
+          </div> */}
+          <Articles className="col-6" articles = {selectedArticles}/>
         </div>
-        <Articles className="col-6" articles = {selectedArticles}/>
+        {/* <Articles className="col-6" articles = {selectedArticles}/> */}
       </div>
     );
   }

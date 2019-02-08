@@ -17,11 +17,18 @@ import './DueBillItem.scss';
 class DueBillItem extends React.Component {
   state = {
     modal: false,
+    nestedModal: false,
   }
 
   toggle() {
     this.setState({
       modal: !this.state.modal,
+    });
+  }
+
+  toggleNested() {
+    this.setState({
+      nestedModal: !this.state.nestedModal,
     });
   }
 
@@ -58,7 +65,7 @@ class DueBillItem extends React.Component {
   }
 
   render() {
-    const { modal } = this.state;
+    const { modal, nestedModal } = this.state;
     const { bill } = this.props;
     const divStyleDanger = {
       backgroundColor: 'red',
@@ -92,10 +99,20 @@ class DueBillItem extends React.Component {
         return (<span className="col"></span>);
       }
       return (
-        <Label check onClick={this.deleteEvent}>
-            <Input type="checkbox" />{' '}
-            Delete the Series of this bill
-        </Label>
+        <div>
+          <Label check onClick={e => this.toggleNested(e)}>
+              <Input type="checkbox" />{' '}
+              Delete the Series of this bill
+          </Label>
+          <Modal isOpen={nestedModal} toggle={e => this.toggleNested(e)}>
+          <ModalHeader>Are you sure You want to Delete the whole series of {bill.payee} bill?</ModalHeader>
+          <ModalBody>Deleting this bill will delete all the data.</ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={e => this.toggleNested(e)}>Cancel</Button>{' '}
+            <Button color="secondary" onClick={this.deleteEvent}>Delete</Button>
+          </ModalFooter>
+        </Modal>
+      </div>
       );
     };
 
@@ -108,9 +125,17 @@ class DueBillItem extends React.Component {
               <p className="col-sm pt-1">Category: {bill.category}</p>
               <p className="col-sm pt-1">Amount: {formatPrice(bill.amount)}</p>
               <div className="buttons text-center">
-                <button className="btn btn-danger delete-button" title="Delete Bill" onClick={this.deleteSingleEvent}>
+                <button className="btn btn-danger delete-button" title="Delete Bill" onClick={e => this.toggleNested(e)}>
                   <i className="fas fa-trash-alt"></i>
                 </button>
+                <Modal isOpen={nestedModal} toggle={e => this.toggleNested(e)}>
+                  <ModalHeader>Are you sure You want to Delete {bill.category} bill?</ModalHeader>
+                  <ModalBody>Deleting this bill will delete all the data.</ModalBody>
+                  <ModalFooter>
+                    <Button color="primary" onClick={e => this.toggleNested(e)}>Cancel</Button>{' '}
+                    <Button color="secondary" onClick={this.deleteSingleEvent}>Delete</Button>
+                  </ModalFooter>
+                </Modal>
                 <button className="btn btn-secondary edit-button  ml-2" onClick={this.editEvent}>
                   <i className="fas fa-pencil-alt"></i>
                 </button>
