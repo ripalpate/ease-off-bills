@@ -1,3 +1,33 @@
 #showMe {
   display:none;
 }
+
+.form-wrapper {
+  // background-image: url('https://ak4.picdn.net/shutterstock/videos/4293464/thumb/1.jpg');
+  background-image: url('https://storage.needpix.com/rsynced_images/scrapbook-page-with-bird-vintage.jpg');
+  background-size: cover;
+  margin: 50px auto;
+  padding: 45px 55px;
+  width: 35%;
+  border: 2px solid black;
+  border-radius: 10px 100px / 120px;
+}
+.new-bill-heading {
+  border-bottom: 2px dotted rgb(11, 150, 92);
+  font-family: 'Aclonica', sans-serif;
+  font-size:1.75em;
+  text-shadow: 4px 4px 2px rgba(85, 190, 161, 1);
+}
+
+.btn-success {
+  border-radius: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: 'Handlee', cursive;
+  font-size:1.15em;
+}
+
+.form-label{
+  font-family: 'Handlee', cursive;
+  font-size:1.25em;
+}
