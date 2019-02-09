@@ -117,34 +117,34 @@ class DueBillItem extends React.Component {
     };
 
     const modalElement = () => (
-      <Modal isOpen={modal} toggle={e => this.toggle(e)} className={this.props.className}>
-          <ModalHeader toggle={e => this.toggle(e)}>Detail Bill Information</ModalHeader>
-          <ModalBody>
-              <p className="col-sm pt-1 date-element">Due Date: {moment(bill.dueDate).format('L')}</p>
-              <p className="col-sm pt-1">Payee: {bill.payee}</p>
-              <p className="col-sm pt-1">Category: {bill.category}</p>
-              <p className="col-sm pt-1">Amount: {formatPrice(bill.amount)}</p>
-              <div className="buttons text-center">
-                <button className="btn btn-danger delete-button" title="Delete Bill" onClick={e => this.toggleNested(e)}>
-                  <i className="fas fa-trash-alt"></i>
-                </button>
-                <Modal isOpen={nestedModal} toggle={e => this.toggleNested(e)}>
-                  <ModalHeader>Are you sure You want to Delete {bill.category} bill?</ModalHeader>
-                  <ModalBody>Deleting this bill will delete all the data.</ModalBody>
-                  <ModalFooter>
-                    <Button color="primary" onClick={e => this.toggleNested(e)}>Cancel</Button>{' '}
-                    <Button color="secondary" onClick={this.deleteSingleEvent}>Delete</Button>
-                  </ModalFooter>
-                </Modal>
-                <button className="btn btn-secondary edit-button  ml-2" onClick={this.editEvent}>
-                  <i className="fas fa-pencil-alt"></i>
-                </button>
-                <p className="pl-3 m-3">{deleteSeriesButton()}</p>
-              </div>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="info" onClick={e => this.toggle(e)}>Cancel</Button>
-          </ModalFooter>
+        <Modal isOpen={modal} toggle={e => this.toggle(e)} className={this.props.className}>
+            <ModalHeader toggle={e => this.toggle(e)}>Detail Bill Information</ModalHeader>
+            <ModalBody>
+                <p className="col-sm pt-1 date-element">Due Date: {moment(bill.dueDate).format('L')}</p>
+                <p className="col-sm pt-1">Payee: {bill.payee}</p>
+                <p className="col-sm pt-1">Category: {bill.category}</p>
+                <p className="col-sm pt-1">Amount: {formatPrice(bill.amount)}</p>
+                <div className="buttons text-center">
+                  <button className="btn btn-danger delete-button" title="Delete Bill" onClick={e => this.toggleNested(e)}>
+                    <i className="fas fa-trash-alt"></i>
+                  </button>
+                  <Modal isOpen={nestedModal} toggle={e => this.toggleNested(e)}>
+                    <ModalHeader>Are you sure You want to Delete {bill.category} bill?</ModalHeader>
+                    <ModalBody>Deleting this bill will delete all the data.</ModalBody>
+                    <ModalFooter>
+                      <Button color="primary" onClick={e => this.toggleNested(e)}>Cancel</Button>{' '}
+                      <Button color="secondary" onClick={this.deleteSingleEvent}>Delete</Button>
+                    </ModalFooter>
+                  </Modal>
+                  <button className="btn btn-secondary edit-button  ml-2" onClick={this.editEvent}>
+                    <i className="fas fa-pencil-alt"></i>
+                  </button>
+                  <div className="pl-3 m-3">{deleteSeriesButton()}</div>
+                </div>
+            </ModalBody>
+            <ModalFooter>
+              <Button color="info" onClick={e => this.toggle(e)}>Cancel</Button>
+            </ModalFooter>
         </Modal>
     );
 

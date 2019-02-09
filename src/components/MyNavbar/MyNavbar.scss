@@ -1,12 +1,11 @@
-// @import '../../styles/_variables';
-// @import url('https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet');
+@import '../../styles/index';
 
 .logo-header {
-  font-family: 'Rye', cursive;
+  font-family: $logoFont;
   font-size: 1.5rem;
 }
 .navbar {
-  font-family: 'Acme', sans-serif;
+  font-family: $navTabs;
   font-size: 1.25rem;
   padding-top: 0px;
   padding-bottom: 0px;

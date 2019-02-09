@@ -194,7 +194,7 @@ class NewBill extends React.Component {
             </div>
           </div>
           <div className="text-center">
-            <button className="btn btn-success mt-2"> <i class="fas fa-save pr-2"></i> Save Bill</button>
+            <button className="btn btn-success mt-3"> <i className="fas fa-save pr-2"></i> Save Bill</button>
           </div>
         </form>
       </div>

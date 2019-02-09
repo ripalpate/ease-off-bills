@@ -76,49 +76,65 @@ class EditBill extends React.Component {
   render() {
     const { editedBill, editedDueDate } = this.state;
     return (
-      <div>
-        <h5>Edit your Bill</h5>
+      <div className="form-wrapper">
+        <h5 className="text-center pb-3 edit-bill-heading">Edit your Bill</h5>
         <form onSubmit={this.formSubmit}>
-          <div className="form-group">
-            <label htmlFor="payee">Payee:</label>
-            <input
-              type="text"
-              className="form-control"
-              id="payee"
-              aria-describedby="payeeHelp"
-              placeholder="West Wilson Utility"
-              value= {editedBill.payee}
-              onChange= {this.payeeChange}
-              required
-            />
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <label className="form-label" htmlFor="payee">Payee:</label>
+              <input
+                type="text"
+                className="form-control"
+                id="payee"
+                aria-describedby="payeeHelp"
+                placeholder="West Wilson Utility"
+                value= {editedBill.payee}
+                onChange= {this.payeeChange}
+                required
+              />
+            </div>
+            <div className="form-group col-md-6">
+              <label className="form-label" htmlFor="dueDate">Due Date:</label>
+              <input
+                type="date"
+                className="form-control"
+                id="dueDate"
+                value= {editedDueDate}
+                onChange = {this.dueDateChange}
+                required
+              />
+            </div>
+          </div>
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <label className="form-label" htmlFor="amount">Amount :</label>
+              <input
+                type="text"
+                className="form-control"
+                id="amount"
+                aria-describedby="amountHelp"
+                placeholder="0"
+                value = {editedBill.amount}
+                onChange = {this.amountChange}
+                required
+              />
+            </div>
+            <div className="form-group col-md-6">
+              <label className="form-label" htmlFor="url">Payment Url:</label>
+              <input
+                type="text"
+                className="form-control"
+                id="url"
+                aria-describedby="urlHelp"
+                placeholder="https://www.google.com"
+                value={editedBill.paymentUrl}
+                onChange = {this.urlChange}
+                required
+              />
+            </div>
           </div>
           <div className="form-group">
-            <label htmlFor="dueDate">Due Date:</label>
-            <input
-              type="date"
-              className="form-control"
-              id="dueDate"
-              value= {editedDueDate}
-              onChange = {this.dueDateChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="amount">Amount :</label>
-            <input
-              type="text"
-              className="form-control"
-              id="amount"
-              aria-describedby="amountHelp"
-              placeholder="0"
-              // pattern= "^[1-9][0-9]*$"
-              value = {editedBill.amount}
-              onChange = {this.amountChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Category:</label>
+            <label className="form-label" htmlFor="email">Category:</label>
             <select id="inputState" className="form-control" required value={editedBill.category} onChange={this.categoryChange}>
               <option value=''>Select Category</option>
               <option>Utility</option>
@@ -131,20 +147,9 @@ class EditBill extends React.Component {
               <option>Other</option>
             </select>
           </div>
-          <div className="form-group">
-            <label htmlFor="url">Payment Url:</label>
-            <input
-              type="text"
-              className="form-control"
-              id="url"
-              aria-describedby="urlHelp"
-              placeholder="https://www.google.com"
-              value={editedBill.paymentUrl}
-              onChange = {this.urlChange}
-              required
-            />
+          <div className="text-center">
+            <button className="btn btn-success mt-3"><i className="fas fa-save pr-3"></i>Save changes</button>
           </div>
-          <button className="btn btn-success">Save changes</button>
         </form>
       </div>
     );

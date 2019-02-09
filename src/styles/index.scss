@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Aclonica|Acme|Fredericka+the+Great|Handlee|Kurale|Rye');
+
+
 body {
   margin: 0;
   padding: 0;
@@ -8,7 +11,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
+$logoFont: 'Rye', cursive;
+$label: 'Handlee', cursive;
+$heading: 'Aclonica', sans-serif;
+$navTabs: 'Acme', sans-serif;
