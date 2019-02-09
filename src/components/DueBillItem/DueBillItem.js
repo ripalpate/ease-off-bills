@@ -107,22 +107,21 @@ class DueBillItem extends React.Component {
               Delete the Series of this bill
           </Label>
           <Modal isOpen={nestedModal} toggle={e => this.toggleNested(e)}>
-          <ModalHeader>
-            Are you sure You want to Delete the whole series of {bill.category} bill?</ModalHeader>
           <ModalBody>
             <div className="row">
               <div className="col-md-5 warning-image">
-                <img src={warning} alt="warning-icon" width="75px"/>
+                <img src={warning} alt="warning-icon" width="150px"/>
               </div>
-              <div className="col-md-7">
-                <p>It will delete all data Permenantly.</p>
+              <div className="col-md-7 pb-3">
+                <p className="delete-text text-center">Are you sure </p>
+                <p className="text-center">You want to Delete the whole series of {bill.category} bill?</p>
+                <div className="text-center">
+                  <Button className="nope-button mr-2" color="info" onClick={e => this.toggleNested(e)}><i class="fas fa-ban mr-2"></i>Nope</Button>{' '}
+                  <Button className="sure-button" color="danger" onClick={this.deleteEvent}><i class="fas fa-thumbs-up mr-2"></i>Sure</Button>
+                </div>
               </div>
             </div>
           </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={e => this.toggleNested(e)}>Cancel</Button>{' '}
-            <Button color="secondary" onClick={this.deleteEvent}>Delete</Button>
-          </ModalFooter>
         </Modal>
       </div>
       );
@@ -130,7 +129,7 @@ class DueBillItem extends React.Component {
 
     const modalElement = () => (
         <Modal isOpen={modal} toggle={e => this.toggle(e)} className={this.props.className}>
-          <ModalHeader toggle={e => this.toggle(e)}>Detail Bill Information</ModalHeader>
+          <ModalHeader toggle={e => this.toggle(e)}>Bill Details</ModalHeader>
           <ModalBody>
             <div className="row">
               <div className="col-md-7">
@@ -140,29 +139,29 @@ class DueBillItem extends React.Component {
                 <p className="col-sm pt-1">Amount: {formatPrice(bill.amount)}</p>
               </div>
               <div className="col-md-5">
-                <img src={billReceipt} alt="detailBill" width="150px"/>
+                <img src={billReceipt} alt="detailBill" className="pt-2" width="150px"/>
               </div>
             </div>
             <div className="buttons text-center">
-              <button className="btn btn-danger delete-button" title="Delete Bill" onClick={e => this.toggleNested(e)}>
+              <button className="btn btn-danger delete-button mr-3" title="Delete Bill" onClick={e => this.toggleNested(e)}>
                 <i className="fas fa-trash-alt"></i>
               </button>
               <Modal isOpen={nestedModal} toggle={e => this.toggleNested(e)}>
-                <ModalHeader>Are you sure You want to Delete {bill.category} bill?</ModalHeader>
                 <ModalBody>
                   <div className="row">
                     <div className="col-md-5 warning-image">
-                      <img src={warning} alt="warning-icon" width="75px"/>
+                      <img src={warning} alt="warning-icon" width="150px"/>
                     </div>
-                    <div className="col-md-7">
-                      <p>Deleting this bill will be permanently removed.</p>
+                    <div className="col-md-7 pb-3">
+                      <p className="delete-text text-center">Are you sure</p>
+                      <p className="text-center">You want to Delete {bill.category} bill?</p>
+                      <div className="text-center">
+                        <Button className="nope-button mr-2" color="info" onClick={e => this.toggleNested(e)}><i class="fas fa-ban mr-2"></i>Nope</Button>{' '}
+                        <Button className="sure-button" color="danger" onClick={this.deleteSingleEvent}><i class="fas fa-thumbs-up mr-2"></i>Sure</Button>
+                      </div>
                     </div>
                   </div>
                 </ModalBody>
-                <ModalFooter>
-                  <Button color="primary" onClick={e => this.toggleNested(e)}>Cancel</Button>{' '}
-                  <Button color="secondary" onClick={this.deleteSingleEvent}>Delete</Button>
-                </ModalFooter>
               </Modal>
               <button className="btn btn-secondary edit-button  ml-2" onClick={this.editEvent}>
                 <i className="fas fa-pencil-alt"></i>
@@ -171,7 +170,7 @@ class DueBillItem extends React.Component {
             </div>
           </ModalBody>
           <ModalFooter>
-            <Button color="info" onClick={e => this.toggle(e)}>Cancel</Button>
+            <Button className="back-button" color="info" onClick={e => this.toggle(e)}>Take Me Back</Button>
           </ModalFooter>
         </Modal>
     );
