@@ -142,10 +142,10 @@ class Bills extends React.Component {
 
     return (
       <div className="bill-page">
-        <h4 className="text-center heading heading-EaseOffBills position-relative">
+        {/* <h4 className="text-center heading heading-EaseOffBills position-relative">
         Welcome to
           <em>EaseOff</em>
-          Bills</h4>
+          Bills</h4> */}
         <div className="button-wrapper d-flex justify-content-around">
           <div className="mr-4">
             <Button className ="btn btn-success mt-5 mb-5" onClick={this.changeView}>

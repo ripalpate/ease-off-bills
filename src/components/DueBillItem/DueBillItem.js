@@ -13,6 +13,8 @@ import {
 import billShape from '../../helpers/propz/billShape';
 import formatPrice from '../../helpers/formatPrice';
 import './DueBillItem.scss';
+import billReceipt from '../../images/bill-receipt.png';
+import warning from '../../images/better-warning.png';
 
 class DueBillItem extends React.Component {
   state = {
@@ -105,8 +107,18 @@ class DueBillItem extends React.Component {
               Delete the Series of this bill
           </Label>
           <Modal isOpen={nestedModal} toggle={e => this.toggleNested(e)}>
-          <ModalHeader>Are you sure You want to Delete the whole series of {bill.payee} bill?</ModalHeader>
-          <ModalBody>Deleting this bill will delete all the data.</ModalBody>
+          <ModalHeader>
+            Are you sure You want to Delete the whole series of {bill.category} bill?</ModalHeader>
+          <ModalBody>
+            <div className="row">
+              <div className="col-md-5 warning-image">
+                <img src={warning} alt="warning-icon" width="75px"/>
+              </div>
+              <div className="col-md-7">
+                <p>It will delete all data Permenantly.</p>
+              </div>
+            </div>
+          </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={e => this.toggleNested(e)}>Cancel</Button>{' '}
             <Button color="secondary" onClick={this.deleteEvent}>Delete</Button>
@@ -118,33 +130,49 @@ class DueBillItem extends React.Component {
 
     const modalElement = () => (
         <Modal isOpen={modal} toggle={e => this.toggle(e)} className={this.props.className}>
-            <ModalHeader toggle={e => this.toggle(e)}>Detail Bill Information</ModalHeader>
-            <ModalBody>
+          <ModalHeader toggle={e => this.toggle(e)}>Detail Bill Information</ModalHeader>
+          <ModalBody>
+            <div className="row">
+              <div className="col-md-7">
                 <p className="col-sm pt-1 date-element">Due Date: {moment(bill.dueDate).format('L')}</p>
                 <p className="col-sm pt-1">Payee: {bill.payee}</p>
                 <p className="col-sm pt-1">Category: {bill.category}</p>
                 <p className="col-sm pt-1">Amount: {formatPrice(bill.amount)}</p>
-                <div className="buttons text-center">
-                  <button className="btn btn-danger delete-button" title="Delete Bill" onClick={e => this.toggleNested(e)}>
-                    <i className="fas fa-trash-alt"></i>
-                  </button>
-                  <Modal isOpen={nestedModal} toggle={e => this.toggleNested(e)}>
-                    <ModalHeader>Are you sure You want to Delete {bill.category} bill?</ModalHeader>
-                    <ModalBody>Deleting this bill will delete all the data.</ModalBody>
-                    <ModalFooter>
-                      <Button color="primary" onClick={e => this.toggleNested(e)}>Cancel</Button>{' '}
-                      <Button color="secondary" onClick={this.deleteSingleEvent}>Delete</Button>
-                    </ModalFooter>
-                  </Modal>
-                  <button className="btn btn-secondary edit-button  ml-2" onClick={this.editEvent}>
-                    <i className="fas fa-pencil-alt"></i>
-                  </button>
-                  <div className="pl-3 m-3">{deleteSeriesButton()}</div>
-                </div>
-            </ModalBody>
-            <ModalFooter>
-              <Button color="info" onClick={e => this.toggle(e)}>Cancel</Button>
-            </ModalFooter>
+              </div>
+              <div className="col-md-5">
+                <img src={billReceipt} alt="detailBill" width="150px"/>
+              </div>
+            </div>
+            <div className="buttons text-center">
+              <button className="btn btn-danger delete-button" title="Delete Bill" onClick={e => this.toggleNested(e)}>
+                <i className="fas fa-trash-alt"></i>
+              </button>
+              <Modal isOpen={nestedModal} toggle={e => this.toggleNested(e)}>
+                <ModalHeader>Are you sure You want to Delete {bill.category} bill?</ModalHeader>
+                <ModalBody>
+                  <div className="row">
+                    <div className="col-md-5 warning-image">
+                      <img src={warning} alt="warning-icon" width="75px"/>
+                    </div>
+                    <div className="col-md-7">
+                      <p>Deleting this bill will be permanently removed.</p>
+                    </div>
+                  </div>
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="primary" onClick={e => this.toggleNested(e)}>Cancel</Button>{' '}
+                  <Button color="secondary" onClick={this.deleteSingleEvent}>Delete</Button>
+                </ModalFooter>
+              </Modal>
+              <button className="btn btn-secondary edit-button  ml-2" onClick={this.editEvent}>
+                <i className="fas fa-pencil-alt"></i>
+              </button>
+              <div className="pl-3 m-3">{deleteSeriesButton()}</div>
+            </div>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="info" onClick={e => this.toggle(e)}>Cancel</Button>
+          </ModalFooter>
         </Modal>
     );
 
