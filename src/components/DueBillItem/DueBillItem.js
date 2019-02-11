@@ -116,8 +116,8 @@ class DueBillItem extends React.Component {
                 <p className="delete-text text-center">Are you sure </p>
                 <p className="text-center">You want to Delete the whole series of {bill.category} bill?</p>
                 <div className="text-center">
-                  <Button className="nope-button mr-2" color="info" onClick={e => this.toggleNested(e)}><i class="fas fa-ban mr-2"></i>Nope</Button>{' '}
-                  <Button className="sure-button" color="danger" onClick={this.deleteEvent}><i class="fas fa-thumbs-up mr-2"></i>Sure</Button>
+                  <Button className="nope-button mr-2" color="info" onClick={e => this.toggleNested(e)}><i className="fas fa-ban mr-2"></i>Nope</Button>{' '}
+                  <Button className="sure-button" color="danger" onClick={this.deleteEvent}><i className="fas fa-thumbs-up mr-2"></i>Sure</Button>
                 </div>
               </div>
             </div>
@@ -156,8 +156,8 @@ class DueBillItem extends React.Component {
                       <p className="delete-text text-center">Are you sure</p>
                       <p className="text-center">You want to Delete {bill.category} bill?</p>
                       <div className="text-center">
-                        <Button className="nope-button mr-2" color="info" onClick={e => this.toggleNested(e)}><i class="fas fa-ban mr-2"></i>Nope</Button>{' '}
-                        <Button className="sure-button" color="danger" onClick={this.deleteSingleEvent}><i class="fas fa-thumbs-up mr-2"></i>Sure</Button>
+                        <Button className="nope-button mr-2" color="info" onClick={e => this.toggleNested(e)}><i className="fas fa-ban mr-2"></i>Nope</Button>{' '}
+                        <Button className="sure-button" color="danger" onClick={this.deleteSingleEvent}><i className="fas fa-thumbs-up mr-2"></i>Sure</Button>
                       </div>
                     </div>
                   </div>
@@ -176,7 +176,7 @@ class DueBillItem extends React.Component {
     );
 
     const dueBillElement = () => (
-      <div className="duebill-item">
+      <div className="duebill-item text-center">
         <div className="row single-bill mb-1" onClick={e => this.toggle(e)}> {this.props.buttonLabel}
             <div className="col-sm pt-1 date-element">{moment(bill.dueDate).format('L')}<p>{dueDays()}</p></div>
               <p className="col-sm pt-1">{bill.category}</p>

@@ -47,7 +47,7 @@ class DueBills extends React.Component {
 
     return (
       <div className="col dueBills">
-        <h4 className="mb-3">Due Bills</h4>
+        <h4 className="heading mb-3">Due Bills</h4>
         <div>{checkLength()}</div>
         {dueBillsItemComponents}
       </div>
