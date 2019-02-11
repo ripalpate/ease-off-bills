@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Slider from 'react-slick';
 import articleShape from '../../helpers/propz/articlesShape';
 import ArticleItem from '../ArticleItem/ArticleItem';
 import './Articles.scss';
@@ -18,22 +19,56 @@ class Articles extends React.Component {
       return (<span></span>);
     };
 
-    const articlesItemComponents = articles.map(article => (
+    const settings = {
+      dots: true,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      initialSlide: 0,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            dots: true,
+          },
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            initialSlide: 1,
+          },
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ],
+    };
+
+    const articlesItemComponents = articles.map((article, index) => (
       <ArticleItem
       article={article}
       key={article.id}
+      data-index={index}
       />
     ));
     return (
-      <div className=" col articles">
-        <h4 className="text-center">Resources</h4>
-        {checkLength()}
-        <div className="outerDiv">
-          <div className= "innerDiv">
-            <div className="articlesWrapper row">{articlesItemComponents}</div>
-          </div>
+        <div className="col articles">
+          <h4 className="text-center heading">Resources</h4>
+          {checkLength()}
+              <div className="articlesWrapper">
+              <Slider {...settings}>
+              {articlesItemComponents}</Slider>
+              </div>
         </div>
-      </div>
     );
   }
 }

@@ -1,3 +1,4 @@
+@import '../../styles/index';
 .no-article-message {
   border: 2px dotted black;
   border-radius: 10px;
@@ -6,23 +7,20 @@
   margin: 0 auto;
 }
 
-// .articlesWrapper, .outerDiv {
-//   height: 435px;
-//  }                         
+.articles {
+  max-width: 400px;
+  margin:0 auto;
+}
 
-//  .outerDiv {
-//   object-fit: contain;
-//   position: relative;
-//   overflow: hidden;
-//  }
+.slick-prev:before, .slick-next:before {
+  font-size: 40px;
+  color:black;
+}
 
-//  .innerDiv {
-//   position: absolute;
-//   left: 0;
-//   overflow-x: hidden;
-//   overflow-y: scroll;
-//  }
+.slick-prev {
+  left: -45px;
+}
 
-//  .innerDiv::-webkit-scrollbar {
-//   display: none;
-//  }
+.heading {
+  font-family: $heading;
+}

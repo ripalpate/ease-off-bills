@@ -1,5 +1,5 @@
 .single-article-card {
-  max-width: 20rem;
+  max-width: 18rem;
   margin: 10px auto !important;
 }
 
@@ -18,4 +18,18 @@
   bottom: 0;
   width: 100%;
   height: 100%;
+}
+
+.card-body {
+  position: relative;
+  height: 210px;
+}
+
+.content {
+  display:block;
+  position: absolute;
+  height: 100%;
+  width:100%;
+  right: 5px;
+  left: 5px;
 }
