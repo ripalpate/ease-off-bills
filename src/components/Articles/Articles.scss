@@ -6,23 +6,23 @@
   margin: 0 auto;
 }
 
-.articlesWrapper, .outerDiv {
-  height: 435px;
- }                         
+// .articlesWrapper, .outerDiv {
+//   height: 435px;
+//  }                         
 
- .outerDiv {
-  object-fit: contain;
-  position: relative;
-  overflow: hidden;
- }
+//  .outerDiv {
+//   object-fit: contain;
+//   position: relative;
+//   overflow: hidden;
+//  }
 
- .innerDiv {
-  position: absolute;
-  left: 0;
-  overflow-x: hidden;
-  overflow-y: scroll;
- }
+//  .innerDiv {
+//   position: absolute;
+//   left: 0;
+//   overflow-x: hidden;
+//   overflow-y: scroll;
+//  }
 
- .innerDiv::-webkit-scrollbar {
-  display: none;
- }
+//  .innerDiv::-webkit-scrollbar {
+//   display: none;
+//  }

@@ -1,7 +1,13 @@
+@import '../../styles/index';
+
 .no-bill-message {
   border: 2px dotted black;
   border-radius: 10px;
   padding: 35px;
   width: 30%; 
   margin: 0 auto;
+}
+
+.heading {
+  font-family: $heading;
 }

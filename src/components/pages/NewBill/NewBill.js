@@ -99,48 +99,66 @@ class NewBill extends React.Component {
   render() {
     const { newBill, billDueDate } = this.state;
     return (
-      <div>
-        <h5>Add New Bill</h5>
+      <div className="form-wrapper">
+        <h5 className="text-center pb-3 new-bill-heading">Add New Bill</h5>
         <form onSubmit={this.formSubmit}>
-          <div className="form-group">
-            <label htmlFor="payee">Payee:</label>
-            <input
-              type="text"
-              className="form-control"
-              id="payee"
-              aria-describedby="payeeHelp"
-              placeholder="West Wilson Utility"
-              value= {newBill.payee}
-              onChange= {this.payeeChange}
-              required
-            />
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <label className="form-label" htmlFor="payee">Payee:</label>
+              <input
+                type="text"
+                className="form-control"
+                id="payee"
+                aria-describedby="payeeHelp"
+                placeholder="West Wilson Utility"
+                value= {newBill.payee}
+                onChange= {this.payeeChange}
+                required
+              />
+            </div>
+            <div className="form-group col-md-6">
+              <label className="form-label" htmlFor="dueDate">Due Date:</label>
+              <input
+                type="date"
+                className="form-control"
+                id="dueDate"
+                value= {billDueDate}
+                onChange = {this.dueDateChange}
+                required
+              />
+            </div>
+          </div>
+        <div className="form-row">
+            <div className="form-group col-md-6">
+              <label className="form-label" htmlFor="amount">Amount :</label>
+              <input
+                type="text"
+                className="form-control"
+                id="amount"
+                aria-describedby="amountHelp"
+                placeholder="25.45"
+                value = {newBill.amount}
+                onChange = {this.amountChange}
+                required
+              />
+            </div>
+            <div className="form-group col-md-6">
+              <label className="form-label" htmlFor="url">Payment Url:</label>
+              <input
+                type="text"
+                className="form-control"
+                id="url"
+                aria-describedby="urlHelp"
+                placeholder="https://www.google.com/"
+                pattern= "^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
+                value={newBill.paymentUrl}
+                onChange = {this.urlChange}
+                required
+              />
+            </div>
           </div>
           <div className="form-group">
-            <label htmlFor="dueDate">Due Date:</label>
-            <input
-              type="date"
-              className="form-control"
-              id="dueDate"
-              value= {billDueDate}
-              onChange = {this.dueDateChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="amount">Amount :</label>
-            <input
-              type="text"
-              className="form-control"
-              id="amount"
-              aria-describedby="amountHelp"
-              placeholder="25.45"
-              value = {newBill.amount}
-              onChange = {this.amountChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Category:</label>
+            <label className="form-label" htmlFor="email">Category:</label>
             <select id="inputState" className="form-control" required value={newBill.category} onChange={this.categoryChange}>
               <option value=''>Select Category</option>
               <option>Utility</option>
@@ -153,41 +171,31 @@ class NewBill extends React.Component {
               <option>Other</option>
             </select>
           </div>
-          <div className="form-group">
-            <label htmlFor="cycle">Cycle: </label>
-            <select id="cycle" className="form-control" onChange={this.onChangeDisplayOccurances}>
-              <option>Select Cycle</option>
-              <option value="none">None</option>
-              <option value="monthly">Monthly</option>
-              <option value="yearly">Yearly</option>
-            </select>
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <label className="form-label" htmlFor="cycle">Cycle: </label>
+              <select id="cycle" className="form-control" onChange={this.onChangeDisplayOccurances}>
+                <option>Select Cycle</option>
+                <option value="none">None</option>
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+              </select>
+            </div>
+            <div className="form-group col-md-6" id="showMe">
+              <label className="form-label" htmlFor="noOfOccurances">No. of Occurrences: </label>
+              <select id="occurrences" className="form-control">
+                <option value="1">1</option>
+                <option value='2'>2</option>
+                <option value='3'>3</option>
+                <option value='4'>4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+            </div>
           </div>
-          <div className="form-group" id="showMe">
-            <label htmlFor="noOfOccurances">No. of Occurrences: </label>
-            <select id="occurrences" className="form-control">
-              <option value="1">1</option>
-              <option value='2'>2</option>
-              <option value='3'>3</option>
-              <option value='4'>4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-            </select>
+          <div className="text-center">
+            <button className="btn btn-success mt-3"> <i className="fas fa-save pr-2"></i> Save Bill</button>
           </div>
-          <div className="form-group">
-            <label htmlFor="url">Payment Url:</label>
-            <input
-              type="text"
-              className="form-control"
-              id="url"
-              aria-describedby="urlHelp"
-              placeholder="https://www.google.com/"
-              pattern= "^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
-              value={newBill.paymentUrl}
-              onChange = {this.urlChange}
-              required
-            />
-          </div>
-          <button className="btn btn-success">Save Bill</button>
         </form>
       </div>
     );

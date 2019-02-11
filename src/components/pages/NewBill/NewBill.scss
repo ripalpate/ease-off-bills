@@ -1,3 +1,34 @@
+@import '../../../styles/index';
+
 #showMe {
   display:none;
+}
+
+.form-wrapper {
+  // background-image: url('https://ak4.picdn.net/shutterstock/videos/4293464/thumb/1.jpg');
+  background-image: url('../../../images/form-background.jpg');
+  background-size: cover;
+  margin: 35px auto;
+  padding: 35px 70px;
+  width: 40%;
+  border: 2px solid black;
+  border-radius: 10px 100px / 120px;
+}
+.new-bill-heading {
+  border-bottom: 2px dotted rgb(11, 150, 92);
+  font-family: $heading;
+  font-size:1.75em;
+  text-shadow: 4px 4px 2px rgba(85, 190, 161, 1);
+}
+
+.btn-success {
+  border-radius: 25px;
+  padding: 6px 20px 0px;
+  font-family: $label;
+  font-size:1.15em;
+}
+
+.form-label{
+  font-family: $label;
+  font-size:1.25em;
 }

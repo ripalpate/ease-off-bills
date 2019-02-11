@@ -34,7 +34,7 @@ class MyNavbar extends React.Component {
     const buildNavbar = () => {
       if (isAuthed) {
         return (
-          <Nav className= "ml-auto" navbar>
+          <Nav className= "ml-auto navbar" navbar>
             <NavItem>
               <NavLink tag={RRNavLink} to="/bills/">Bills</NavLink>
             </NavItem>
@@ -57,7 +57,7 @@ class MyNavbar extends React.Component {
     return (
       <div className="my-navbar">
       <Navbar color="dark" dark expand="md">
-          <NavbarBrand href="/">EaseOff Bills</NavbarBrand>
+          <NavbarBrand href="/" className="logo-header">EaseOff Bills</NavbarBrand>
           <NavbarToggler onClick={e => this.toggle(e)} />
           <Collapse isOpen={this.state.isOpen} navbar>
             {buildNavbar()}
