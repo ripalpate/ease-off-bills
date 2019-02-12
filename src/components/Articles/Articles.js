@@ -21,11 +21,14 @@ class Articles extends React.Component {
 
     const settings = {
       dots: true,
-      infinite: false,
+      infinite: true,
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
       initialSlide: 0,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      pauseOnHover: true,
       responsive: [
         {
           breakpoint: 1024,

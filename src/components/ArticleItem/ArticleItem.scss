@@ -1,8 +1,24 @@
+@import '../../styles/index';
+
 .single-article-card {
   max-width: 18rem;
   margin: 10px auto !important;
+  font-family: $label;
 }
-
+.card-title {
+  font-weight: bolder;
+  font-size: 1.25em;
+  text-align: center;
+}
+.card-text {
+  font-size: 1.03em;
+  text-align: justify;
+}
+.card-footer {
+  background-color: none;
+  border-top: none;
+  font-size: 1.20em; 
+}
 .img-holder {
   position: relative;
   height: 200px;
@@ -29,7 +45,7 @@
   display:block;
   position: absolute;
   height: 100%;
-  width:100%;
-  right: 5px;
-  left: 5px;
+  width: 90%;
+  right: 10px;
+  left: 10px;
 }
