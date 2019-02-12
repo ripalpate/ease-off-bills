@@ -20,7 +20,7 @@ class Articles extends React.Component {
     };
 
     const settings = {
-      dots: true,
+      // dots: true,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
@@ -29,31 +29,31 @@ class Articles extends React.Component {
       autoplay: true,
       autoplaySpeed: 3000,
       pauseOnHover: true,
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            dots: true,
-          },
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            initialSlide: 1,
-          },
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-          },
-        },
-      ],
+      // responsive: [
+      //   {
+      //     breakpoint: 1024,
+      //     settings: {
+      //       slidesToShow: 1,
+      //       slidesToScroll: 1,
+      //       dots: true,
+      //     },
+      //   },
+      //   {
+      //     breakpoint: 600,
+      //     settings: {
+      //       slidesToShow: 1,
+      //       slidesToScroll: 1,
+      //       initialSlide: 1,
+      //     },
+      //   },
+      //   {
+      //     breakpoint: 480,
+      //     settings: {
+      //       slidesToShow: 1,
+      //       slidesToScroll: 1,
+      //     },
+      //   },
+      // ],
     };
 
     const articlesItemComponents = articles.map((article, index) => (
@@ -64,14 +64,16 @@ class Articles extends React.Component {
       />
     ));
     return (
+      <div className="articleWrapper">
         <div className="col articles">
-          <h4 className="text-center heading">Resources</h4>
+          <h4 className="text-center heading pt-3">Resources</h4>
           {checkLength()}
               <div className="articlesWrapper">
               <Slider {...settings}>
               {articlesItemComponents}</Slider>
               </div>
         </div>
+      </div>
     );
   }
 }

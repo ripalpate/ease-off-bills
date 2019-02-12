@@ -1,11 +1,11 @@
 @import '../styles/_variables';
 
 body {
-  background-color: rebeccapurple;
+  background-image: url('https://www.publicdomainpictures.net/pictures/250000/velka/abstract-background-colors.jpg');
+  background-size: cover;
   // background-image: url('https://i.pinimg.com/originals/82/2a/1d/822a1d73e308b4b8075a30ee5c03d415.jpg');
   // background-image: url('https://wallpapersite.com/images/pages/pic_w/6006.jpg');
   // background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/JETFf6K/simple-background-square-s-color-4k_4hlen8zvwg__F0000.png');
-  background-size: cover;
 }
 
 .row {

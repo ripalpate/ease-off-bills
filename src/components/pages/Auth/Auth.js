@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import authRequests from '../../../helpers/data/authRequests';
-import googleButton from './image/google-login.png';
+import googleButton from './image/google-login-blue.png';
 import facebookButton from './image/fb-sign-in-button.png';
 import './Auth.scss';
 
@@ -27,8 +27,8 @@ class Auth extends React.Component {
   render() {
     return (
       <div className="Auth">
-        <div className="text-center">
-          <h4 className="heading heading-EaseOffBills position-relative">
+        <div className="text-center mb-3">
+          <h4 className="heading-EaseOffBills position-relative">
           Welcome to
             <em>EaseOff</em>
             Bills</h4>
@@ -37,18 +37,20 @@ class Auth extends React.Component {
           <img src="https://www.myboost.com.my/wp-content/uploads/2018/08/paybills-banner2.png" width="250px" alt="important to pay bills"/>
           <img src="https://pngimage.net/wp-content/uploads/2018/06/png-gas-payment-6.png" width="250px" alt="important to pay bills"/>
         </div> */}
-        <div className="text-center mb-3">
+        {/* <div className="text-center mb-3">
           <img src="http://www.villageofjonescreektexas.com/yahoo_site_admin/assets/images/click-here-png-click-here-500.78134131_std.png" width="100px" alt="important to pay bills"/>
-        </div>
-        <div>
-          <button className="btn login-btn" onClick={this.authenticateUser}>
-            <img src= {googleButton} alt="google login Button" width="400px"/>
-          </button>
-        </div>
-        <div>
-        <button className="btn mt-5 login-btn" onClick={this.authenticateFacebookUser}>
-          <img src= {facebookButton} alt="facebook login Button" width="400px"/>
-        </button>
+        </div> */}
+        <div className="loginWrapper">
+          <div className="googleButton">
+            <button className="btn login-btn" onClick={this.authenticateUser}>
+              <img src= {googleButton} alt="google login Button" width="400px"/>
+            </button>
+          </div> <br/> <br/>
+          <div className="facebookButton">
+            <button className="btn login-btn" onClick={this.authenticateFacebookUser}>
+              <img src= {facebookButton} alt="facebook login Button" width="400px"/>
+            </button>
+          </div>
         </div>
       </div>
     );
