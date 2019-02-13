@@ -142,10 +142,6 @@ class Bills extends React.Component {
 
     return (
       <div className="bill-page">
-        {/* <h4 className="text-center heading heading-EaseOffBills position-relative">
-        Welcome to
-          <em>EaseOff</em>
-          Bills</h4> */}
         <div className="button-wrapper d-flex justify-content-around">
           <div className="mr-4">
             <Button className ="btn btn-success mt-5 mb-5" onClick={this.changeView}>
@@ -173,7 +169,7 @@ class Bills extends React.Component {
           </div>
         </div>
         <div className="row">
-          <div className= "bills-components col-6">
+          <div className= "bills-components col-8">
             <DueBills
               bills = {selectedBills}
               deleteCycleBill = {this.deleteCycleBill}
@@ -187,16 +183,8 @@ class Bills extends React.Component {
               updateIsPaid = {this.updateIsPaid}
             />
           </div>
-          {/* <div className= "col-6">
-          <PaidBills
-              paidBills = {paidBills}
-              deleteSingleBill = {this.deleteBill}
-              updateIsPaid = {this.updateIsPaid}
-            />
-          </div> */}
-          <Articles className="col-6" articles = {selectedArticles}/>
+          <Articles className="col-4" articles = {selectedArticles}/>
         </div>
-        {/* <Articles className="col-6" articles = {selectedArticles}/> */}
       </div>
     );
   }

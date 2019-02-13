@@ -36,6 +36,7 @@ class DueBillItem extends React.Component {
   }
 
   toggleNested1() {
+    this.uncheck();
     this.setState({
       nestedModal1: !this.state.nestedModal1,
     });
@@ -46,6 +47,13 @@ class DueBillItem extends React.Component {
     deleteCycleBill: PropTypes.func,
     passBillToEdit: PropTypes.func,
     updateIsPaid: PropTypes.func,
+  }
+
+  uncheck = () => {
+    const checkElem = document.getElementById('checkbox');
+    if (this.state.nestedModal1 === true) {
+      checkElem.checked = false;
+    }
   }
 
   deleteEvent = (e) => {
@@ -109,8 +117,8 @@ class DueBillItem extends React.Component {
       }
       return (
         <div>
-          <Label check onChange={e => this.toggleNested1(e)}>
-              <Input type="checkbox" />{' '}
+          <Label onChange={e => this.toggleNested1(e)}>
+              <Input id="checkbox" type="checkbox"/>{' '}
               Delete the Series of this bill
           </Label>
           <Modal isOpen={nestedModal1} toggle={e => this.toggleNested1(e)}>
