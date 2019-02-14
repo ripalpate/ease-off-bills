@@ -23,6 +23,8 @@ class Bills extends React.Component {
     selectedArticles: [],
     dropdownOpen: false,
     dropDownValue: 'Select Category',
+    dropdownOpenArticle: false,
+    dropDownValueArticle: 'Select Category',
   }
 
   getBills = () => {
@@ -90,8 +92,18 @@ class Bills extends React.Component {
     });
   }
 
+  articletoggle() {
+    this.setState({
+      dropdownOpenArticle: !this.state.dropdownOpenArticle,
+    });
+  }
+
   changeDropDownValue = (e) => {
     this.setState({ dropDownValue: e.currentTarget.textContent });
+  }
+
+  changeArticleDropDownValue = (e) => {
+    this.setState({ dropDownValueArticle: e.currentTarget.textContent });
   }
 
   filteringArticles = (selectedCategory) => {
@@ -128,6 +140,12 @@ class Bills extends React.Component {
     e.preventDefault();
     const selectedCategory = e.target.value;
     this.filteringBills(selectedCategory);
+    // this.filteringArticles(selectedCategory);
+  }
+
+  articleCategory = (e) => {
+    e.preventDefault();
+    const selectedCategory = e.target.value;
     this.filteringArticles(selectedCategory);
   }
 
@@ -142,13 +160,13 @@ class Bills extends React.Component {
 
     return (
       <div className="bill-page">
-        <div className="button-wrapper d-flex justify-content-around">
-          <div className="mr-4">
-            <Button className ="btn btn-success mt-5 mb-5" onClick={this.changeView}>
+        <div className="button-wrapper d-flex justify-content-center">
+          {/* <div className="mr-4"> */}
+            {/* <Button className ="btn btn-success mt-5 mb-5" onClick={this.changeView}>
               <i className="fas fa-plus-circle mr-3"></i>
               Add Bills
-            </Button>
-          </div>
+            </Button> */}
+          {/* </div> */}
           <div className="ml-3">
             <Dropdown className="mt-5 mb-5" isOpen={dropdownOpen} toggle={e => this.toggle(e)}>
             <DropdownToggle caret>
@@ -170,6 +188,13 @@ class Bills extends React.Component {
         </div>
         <div className="row">
           <div className= "bills-components col-8">
+            <div className="mr-auto">
+              <h4 className="d-inline"> Due Bills </h4>
+              <Button className ="btn btn-success" onClick={this.changeView}>
+                <i className="fas fa-plus-circle mr-3"></i>
+                Add Bills
+              </Button>
+            </div>
             <DueBills
               bills = {selectedBills}
               deleteCycleBill = {this.deleteCycleBill}
@@ -183,7 +208,26 @@ class Bills extends React.Component {
               updateIsPaid = {this.updateIsPaid}
             />
           </div>
-          <Articles className="col-4" articles = {selectedArticles}/>
+          <div className="articles-component col-4">
+          <div className="ml-3">
+            <Dropdown className="" isOpen={this.state.dropdownOpenArticle} toggle={e => this.articletoggle(e)}>
+            <DropdownToggle caret>
+            {this.state.dropDownValueArticle}
+            </DropdownToggle>
+            <DropdownMenu onClick={this.articleCategory}>
+              <DropdownItem value="" onClick={this.changeArticleDropDownValue}>All</DropdownItem>
+              <DropdownItem onClick={this.changeArticleDropDownValue} value="Utility">Utility</DropdownItem>
+              <DropdownItem onClick={this.changeArticleDropDownValue} value="Rent">Rent</DropdownItem>
+              <DropdownItem onClick={this.changeArticleDropDownValue} value="Mortgage">Mortgage</DropdownItem>
+              <DropdownItem onClick={this.changeArticleDropDownValue} value="Insurance">Insurance</DropdownItem>
+              <DropdownItem onClick={this.changeArticleDropDownValue} value="Credit Cards">Credit Cards</DropdownItem>
+              <DropdownItem onClick={this.changeArticleDropDownValue} value="TeleCommunication">TeleCommunication</DropdownItem>
+              <DropdownItem onClick={this.changeArticleDropDownValue} value="Tax">Tax</DropdownItem>
+              <DropdownItem onClick={this.changeArticleDropDownValue} value="Other">Other</DropdownItem>
+            </DropdownMenu>
+            </Dropdown>
+          </div>
+          <Articles className="" articles = {selectedArticles}/></div>
         </div>
       </div>
     );
