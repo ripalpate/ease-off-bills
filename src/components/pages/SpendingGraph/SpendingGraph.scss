@@ -1,29 +1,24 @@
 @import '../../../styles/index';
-.graph-wrapper {
-  width: 50%;
-  background-color: #004d4d;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 20px auto;
-}
 
 .spending-graph-container {
   background-color: #ffbb99;
   padding: 20px;
-  margin:15px;
+  margin:30px auto;
   border-radius: 10px;
+  border: 6px solid purple;
+
 }
 
 #select-months {
-  margin: 0 auto;
-  width: 30%;
+  width: 50%;
 }
 .recharts-wrapper {
-  margin: 0 auto;
-  padding-left: 55px;
+  padding-left: 95px;
 }
 
-.title {
+.label {
   font-family: $label;
   font-size: 1.25em;
+  font-weight: bolder;
+  padding-top:5px;
 }

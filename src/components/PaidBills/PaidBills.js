@@ -21,18 +21,9 @@ class PaidBills extends React.Component {
       isPaid,
     } = this.props;
 
-    // const paidBillStyle = {
-    //   marginTop: '15px',
-    //   backgroundColor: '#ffbb99',
-    //   borderRadius: '15px',
-    //   paddingBottom: '15px',
-    // };
-
     const checkLength = () => {
-      if (paidBills.length === 0) {
-        return (<div className="no-bill-message">
-        <h5 className="card-title text-center">Currently, There are no paid bills.</h5>
-      </div>);
+      if (paidBills.length) {
+        return (<h4 className="heading mb-3">Paid Bills</h4>);
       }
       return (<span></span>);
     };
@@ -49,7 +40,6 @@ class PaidBills extends React.Component {
 
     return (
       <div className="col paid-bill">
-        <h4 className="heading mb-3 pt-3 text-center">Paid Bills</h4>
         <div>{checkLength()} </div>
         {paidBillsItemComponents}
       </div>

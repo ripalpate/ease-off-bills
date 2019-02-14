@@ -23,8 +23,8 @@ class Bills extends React.Component {
     selectedArticles: [],
     dropdownOpen: false,
     dropDownValue: 'Select Category',
-    dropdownOpenArticle: false,
-    dropDownValueArticle: 'Select Category',
+    // dropdownOpenArticle: false,
+    // dropDownValueArticle: 'Select Category',
   }
 
   getBills = () => {
@@ -92,19 +92,19 @@ class Bills extends React.Component {
     });
   }
 
-  articletoggle() {
-    this.setState({
-      dropdownOpenArticle: !this.state.dropdownOpenArticle,
-    });
-  }
+  // articletoggle() {
+  //   this.setState({
+  //     dropdownOpenArticle: !this.state.dropdownOpenArticle,
+  //   });
+  // }
 
   changeDropDownValue = (e) => {
     this.setState({ dropDownValue: e.currentTarget.textContent });
   }
 
-  changeArticleDropDownValue = (e) => {
-    this.setState({ dropDownValueArticle: e.currentTarget.textContent });
-  }
+  // changeArticleDropDownValue = (e) => {
+  //   this.setState({ dropDownValueArticle: e.currentTarget.textContent });
+  // }
 
   filteringArticles = (selectedCategory) => {
     const { articles } = this.state;
@@ -140,14 +140,14 @@ class Bills extends React.Component {
     e.preventDefault();
     const selectedCategory = e.target.value;
     this.filteringBills(selectedCategory);
-    // this.filteringArticles(selectedCategory);
-  }
-
-  articleCategory = (e) => {
-    e.preventDefault();
-    const selectedCategory = e.target.value;
     this.filteringArticles(selectedCategory);
   }
+
+  // articleCategory = (e) => {
+  //   e.preventDefault();
+  //   const selectedCategory = e.target.value;
+  //   this.filteringArticles(selectedCategory);
+  // }
 
   render() {
     const {
@@ -158,76 +158,54 @@ class Bills extends React.Component {
       dropdownOpen,
     } = this.state;
 
+    const buttonAndHeading = () => (
+      <div className="d-flex justify-content-between">
+        <h4 className="d-inline heading pl-3"> Due Bills </h4>
+        <div className="ml-auto">
+          <Button className ="btn btn-success mr-3 add-button" onClick={this.changeView}>
+            <i className="fas fa-plus-circle"></i>
+          </Button>
+        </div>
+      </div>
+    );
+
     return (
       <div className="bill-page">
-        <div className="button-wrapper d-flex justify-content-center">
-          {/* <div className="mr-4"> */}
-            {/* <Button className ="btn btn-success mt-5 mb-5" onClick={this.changeView}>
-              <i className="fas fa-plus-circle mr-3"></i>
-              Add Bills
-            </Button> */}
-          {/* </div> */}
-          <div className="ml-3">
-            <Dropdown className="mt-5 mb-5" isOpen={dropdownOpen} toggle={e => this.toggle(e)}>
-            <DropdownToggle caret>
+      <div className="text-center mt-3 mb-3">
+        <Dropdown className="dropdown" isOpen={dropdownOpen} toggle={e => this.toggle(e)}>
+          <DropdownToggle caret>
             {dropDownValue}
-            </DropdownToggle>
-            <DropdownMenu onClick={this.categorySelectionEvent}>
-              <DropdownItem value="" onClick={this.changeDropDownValue}>All</DropdownItem>
-              <DropdownItem onClick={this.changeDropDownValue} value="Utility">Utility</DropdownItem>
-              <DropdownItem onClick={this.changeDropDownValue} value="Rent">Rent</DropdownItem>
-              <DropdownItem onClick={this.changeDropDownValue} value="Mortgage">Mortgage</DropdownItem>
-              <DropdownItem onClick={this.changeDropDownValue} value="Insurance">Insurance</DropdownItem>
-              <DropdownItem onClick={this.changeDropDownValue} value="Credit Cards">Credit Cards</DropdownItem>
-              <DropdownItem onClick={this.changeDropDownValue} value="TeleCommunication">TeleCommunication</DropdownItem>
-              <DropdownItem onClick={this.changeDropDownValue} value="Tax">Tax</DropdownItem>
-              <DropdownItem onClick={this.changeDropDownValue} value="Other">Other</DropdownItem>
-            </DropdownMenu>
-            </Dropdown>
-          </div>
+          </DropdownToggle>
+          <DropdownMenu onClick={this.categorySelectionEvent}>
+            <DropdownItem value="" onClick={this.changeDropDownValue}>All</DropdownItem>
+            <DropdownItem onClick={this.changeDropDownValue} value="Utility">Utility</DropdownItem>
+            <DropdownItem onClick={this.changeDropDownValue} value="Rent">Rent</DropdownItem>
+            <DropdownItem onClick={this.changeDropDownValue} value="Mortgage">Mortgage</DropdownItem>
+            <DropdownItem onClick={this.changeDropDownValue} value="Insurance">Insurance</DropdownItem>
+            <DropdownItem onClick={this.changeDropDownValue} value="Credit Cards">Credit Cards</DropdownItem>
+            <DropdownItem onClick={this.changeDropDownValue} value="TeleCommunication">TeleCommunication</DropdownItem>
+            <DropdownItem onClick={this.changeDropDownValue} value="Tax">Tax</DropdownItem>
+            <DropdownItem onClick={this.changeDropDownValue} value="Other">Other</DropdownItem>
+          </DropdownMenu>
+          </Dropdown>
         </div>
         <div className="row">
           <div className= "bills-components col-8">
-            <div className="mr-auto">
-              <h4 className="d-inline"> Due Bills </h4>
-              <Button className ="btn btn-success" onClick={this.changeView}>
-                <i className="fas fa-plus-circle mr-3"></i>
-                Add Bills
-              </Button>
-            </div>
-            <DueBills
-              bills = {selectedBills}
-              deleteCycleBill = {this.deleteCycleBill}
-              passBillToEdit = {this.passBillToEdit}
-              updateIsPaid = {this.updateIsPaid}
-              deleteSingleBill = {this.deleteBill}
-            />
-            <PaidBills
+          {buttonAndHeading()}
+          <DueBills
+            bills = {selectedBills}
+            deleteCycleBill = {this.deleteCycleBill}
+            passBillToEdit = {this.passBillToEdit}
+            updateIsPaid = {this.updateIsPaid}
+            deleteSingleBill = {this.deleteBill}
+          />
+          <PaidBills
               paidBills = {paidBills}
               deleteSingleBill = {this.deleteBill}
               updateIsPaid = {this.updateIsPaid}
-            />
+          />
           </div>
-          <div className="articles-component col-4">
-          <div className="ml-3">
-            <Dropdown className="" isOpen={this.state.dropdownOpenArticle} toggle={e => this.articletoggle(e)}>
-            <DropdownToggle caret>
-            {this.state.dropDownValueArticle}
-            </DropdownToggle>
-            <DropdownMenu onClick={this.articleCategory}>
-              <DropdownItem value="" onClick={this.changeArticleDropDownValue}>All</DropdownItem>
-              <DropdownItem onClick={this.changeArticleDropDownValue} value="Utility">Utility</DropdownItem>
-              <DropdownItem onClick={this.changeArticleDropDownValue} value="Rent">Rent</DropdownItem>
-              <DropdownItem onClick={this.changeArticleDropDownValue} value="Mortgage">Mortgage</DropdownItem>
-              <DropdownItem onClick={this.changeArticleDropDownValue} value="Insurance">Insurance</DropdownItem>
-              <DropdownItem onClick={this.changeArticleDropDownValue} value="Credit Cards">Credit Cards</DropdownItem>
-              <DropdownItem onClick={this.changeArticleDropDownValue} value="TeleCommunication">TeleCommunication</DropdownItem>
-              <DropdownItem onClick={this.changeArticleDropDownValue} value="Tax">Tax</DropdownItem>
-              <DropdownItem onClick={this.changeArticleDropDownValue} value="Other">Other</DropdownItem>
-            </DropdownMenu>
-            </Dropdown>
-          </div>
-          <Articles className="" articles = {selectedArticles}/></div>
+            <Articles className="col-4" articles = {selectedArticles}/>
         </div>
       </div>
     );

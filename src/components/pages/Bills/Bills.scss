@@ -3,7 +3,7 @@
 }
 
 .bills-components {
-  margin: 10px auto;
+  margin: 15px auto;
   background-color: #ffbb99;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -13,4 +13,15 @@
 
 .articles-component {
   padding-right: 0px;
+  
+}
+
+.add-button {
+  border-radius: 50px;
+}
+
+button.dropdown-toggle {
+  border-radius: 25px;
+  background-color: purple;
+  border: 1px solid purple;
 }

@@ -93,19 +93,17 @@ class Graph extends React.Component {
 
 
     return (
-      <div className= "graph-wrapper">
       <div className="spending-graph-container">
-        <h4 className=" text-center heading mt-3">Spending Chart</h4>
-        <div className="text-center">
-          <FormGroup>
-            <Label htmlFor="month-selection" className="title">Select Month: </Label>
+        <h4 className=" text-center heading mt-3 mb-3">Spending Chart</h4>
+        <div className="text-center mt-5">
+          <FormGroup className="justify-content-center" row>
+            <Label htmlFor="month-selection" className="label pl-5 pr-4">Select Month: </Label>
             <Input type="select" name="select" id="select-months" value={selectValue} onChange= {this.selectEvent}>
             {optionTemplate()}
             </Input>
           </FormGroup>
         </div>
         <Chart selectedMonthData={selectedMonthData}/>
-      </div>
       </div>
     );
   }
