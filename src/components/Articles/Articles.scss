@@ -1,3 +1,5 @@
+@import '../../styles/index';
+
 .no-article-message {
   border: 2px dotted black;
   border-radius: 10px;
@@ -6,23 +8,40 @@
   margin: 0 auto;
 }
 
-// .articlesWrapper, .outerDiv {
-//   height: 435px;
-//  }                         
+// .articleWrapper{
+//   background-color: #004d4d;
+//   border-radius: 10px;
+//   // max-width: 400px;
+//   margin: 0 auto 15px;
+//   padding:30px;
+// }
 
-//  .outerDiv {
-//   object-fit: contain;
-//   position: relative;
-//   overflow: hidden;
-//  }
+.articles {
+  background-color: #ffd4cc;
+  max-width: 400px;
+  padding: 0 50px 30px;
+  border-radius: 15px;
+  border: 8px solid #404040;
+  margin: 15px auto;
+}
 
-//  .innerDiv {
-//   position: absolute;
-//   left: 0;
-//   overflow-x: hidden;
-//   overflow-y: scroll;
-//  }
+.slick-prev:before, .slick-next:before {
+  font-size: 40px;
+  color:black;
+}
 
-//  .innerDiv::-webkit-scrollbar {
-//   display: none;
-//  }
+.slick-prev {
+  left: -45px;
+}
+
+.heading {
+  font-family: $heading;
+}
+
+@media (max-width: 768px) {
+.articles {
+      max-width: 95%;
+      height: 650px;
+      margin: 15px;
+    }
+}

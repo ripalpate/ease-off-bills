@@ -1,12 +1,23 @@
+@import '../../../styles/index';
+
 .spending-graph-container {
-  width: 100%;
+  background-color: #ffd4cc;
+  padding: 20px;
+  margin:30px auto;
+  border-radius: 10px;
+  border: 8px solid #404040;
 }
 
 #select-months {
-  margin: 0 auto;
-  width: 30%;
+  width: 50%;
 }
 .recharts-wrapper {
-  margin: 0 auto;
-  padding-left: 75px;
+  padding-left: 95px;
+}
+
+.label {
+  font-family: $label;
+  font-size: 1.25em;
+  font-weight: bolder;
+  padding-top:5px;
 }

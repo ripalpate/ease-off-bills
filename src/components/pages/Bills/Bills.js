@@ -140,23 +140,23 @@ class Bills extends React.Component {
       dropdownOpen,
     } = this.state;
 
+    const buttonAndHeading = () => (
+      <div className="d-flex justify-content-between">
+        <h4 className="heading pl-4"> Due Bills </h4>
+        <div className="ml-auto">
+          <Button className ="btn btn-success mr-3 add-button" onClick={this.changeView}>
+            <i className="fas fa-plus-circle"></i>
+          </Button>
+        </div>
+      </div>
+    );
+
     return (
       <div className="bill-page">
-        {/* <h4 className="text-center heading heading-EaseOffBills position-relative">
-        Welcome to
-          <em>EaseOff</em>
-          Bills</h4> */}
-        <div className="button-wrapper d-flex justify-content-around">
-          <div className="mr-4">
-            <Button className ="btn btn-success mt-5 mb-5" onClick={this.changeView}>
-              <i className="fas fa-plus-circle mr-3"></i>
-              Add Bills
-            </Button>
-          </div>
-          <div className="ml-3">
-            <Dropdown className="mt-5 mb-5" isOpen={dropdownOpen} toggle={e => this.toggle(e)}>
+        <div className="text-center mt-3 mb-3">
+          <Dropdown className="dropdown" isOpen={dropdownOpen} toggle={e => this.toggle(e)}>
             <DropdownToggle caret>
-            {dropDownValue}
+              {dropDownValue}
             </DropdownToggle>
             <DropdownMenu onClick={this.categorySelectionEvent}>
               <DropdownItem value="" onClick={this.changeDropDownValue}>All</DropdownItem>
@@ -171,9 +171,10 @@ class Bills extends React.Component {
             </DropdownMenu>
             </Dropdown>
           </div>
-        </div>
         <div className="row">
-          <div className= "bills-components col-6">
+          <div className="col-lg-8 col-md-12">
+            <div className= "bills-components">
+            {buttonAndHeading()}
             <DueBills
               bills = {selectedBills}
               deleteCycleBill = {this.deleteCycleBill}
@@ -182,21 +183,16 @@ class Bills extends React.Component {
               deleteSingleBill = {this.deleteBill}
             />
             <PaidBills
-              paidBills = {paidBills}
-              deleteSingleBill = {this.deleteBill}
-              updateIsPaid = {this.updateIsPaid}
+                paidBills = {paidBills}
+                deleteSingleBill = {this.deleteBill}
+                updateIsPaid = {this.updateIsPaid}
             />
+            </div>
           </div>
-          {/* <div className= "col-6">
-          <PaidBills
-              paidBills = {paidBills}
-              deleteSingleBill = {this.deleteBill}
-              updateIsPaid = {this.updateIsPaid}
-            />
-          </div> */}
-          <Articles className="col-6" articles = {selectedArticles}/>
+          <div className="col-lg-4 col-md-12">
+            <Articles articles = {selectedArticles}/>
+          </div>
         </div>
-        {/* <Articles className="col-6" articles = {selectedArticles}/> */}
       </div>
     );
   }

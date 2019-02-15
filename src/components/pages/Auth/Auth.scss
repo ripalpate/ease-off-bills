@@ -35,3 +35,18 @@ em {
     font-size: 0.5em;
   }
 }
+
+.loginWrapper {
+  background-color:#343a40;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.googleButton, .facebookButton {
+  margin: 5px;
+  border-radius:10px;
+}
+
+.google {
+  border-radius: 5px;
+}

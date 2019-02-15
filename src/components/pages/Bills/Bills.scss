@@ -2,35 +2,28 @@
   width: 100%;
 }
 
-// .heading-EaseOffBills {
-//   font-family: 'Cardo', serif;
-//   font-size: 1.5em;
-//   font-weight: normal;
-//   font-style: italic;
-//   letter-spacing: 0.1em;
-//   line-height: 2.2em;
-// }
+.bills-components {
+  margin: 15px auto;
+  // background-color: #ffbb99;
+  background-color: #ffd4cc;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 15px;
+  // border: 6px solid purple;
+  border: 8px solid #404040;
+}
 
-// em {
-//   font-family: 'EB Garamond', serif;
-//   font-size: 3em;
-//   text-transform: uppercase;
-//   letter-spacing: 0.1em;
-//   display: block;
-//   font-style:normal;
-//   padding-top: 0.1em;
-//   text-shadow: 0.07em 0.07em 0 rgba(0, 0, 0, 0.1);
+.articles-component {
+  padding-right: 0px;
   
-//   &::before, &::after {
-//     content: "§";
-//     display: inline-block;
-//     -webkit-transform: rotate(90deg);
-//     -moz-transform: rotate(90deg);
-//     -o-transform: rotate(90deg);
-//     -ms-transform: rotate(90deg);
-//     transform: rotate(90deg);
-//     opacity: 0.4;
-//     margin: 0 0.6em;
-//     font-size: 0.5em;
-//   }
-// }
+}
+
+.add-button {
+  border-radius: 50px;
+}
+
+button.dropdown-toggle {
+  border-radius: 25px;
+  background-color: purple;
+  border: 1px solid purple;
+}

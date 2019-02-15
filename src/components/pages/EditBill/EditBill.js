@@ -148,7 +148,7 @@ class EditBill extends React.Component {
             </select>
           </div>
           <div className="text-center">
-            <button className="btn btn-success mt-3"><i className="fas fa-save pr-3"></i>Save changes</button>
+            <button className="btn btn-success save-button mt-3"><i className="fas fa-save pr-3"></i>Save changes</button>
           </div>
         </form>
       </div>

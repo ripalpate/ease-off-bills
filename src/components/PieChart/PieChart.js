@@ -37,14 +37,9 @@ class Chart extends React.Component {
 
     const checkLength = () => {
       if (selectedMonthData.length === 0) {
-        return (<h6 className="text-center mt-5 no-chart-message">There are no bills for this month</h6>);
-      } return (<small></small>);
-    };
-
-    return (
-      <div className="pie-chart">
-      {checkLength()}
-      <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
+        return (<div className="no-msg-wrapper mt-5"><h6 className="text-center no-chart-message">There are no bills for this month</h6></div>);
+      } return (
+        <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
         <Pie
           data={selectedMonthData}
           dataKey='value'
@@ -61,6 +56,29 @@ class Chart extends React.Component {
           labelFormatter = {value => `${formatPrice(value)}`}
           />
       </PieChart>
+      );
+    };
+
+    return (
+      <div className="pie-chart">
+      {checkLength()}
+      {/* <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
+        <Pie
+          data={selectedMonthData}
+          dataKey='value'
+          cx={300}
+          cy={200}
+          labelLine={false}
+          label={renderCustomizedLabel}
+          outerRadius={150}
+          fill="#8884d8"
+        >{selectedMonthData.map((_entry, index) => <Cell key="1" fill={colors[index % colors.length]}/>)}
+        </Pie>
+        <Tooltip
+          formatter={value => `${formatPrice(value)}`}
+          labelFormatter = {value => `${formatPrice(value)}`}
+          />
+      </PieChart> */}
     </div>
     );
   }
