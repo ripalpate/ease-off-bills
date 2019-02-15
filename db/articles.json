@@ -2,50 +2,50 @@
   "article1": {
     "imgUrl": "https://firebasestorage.googleapis.com/v0/b/ease-off-bills-3e50f.appspot.com/o/spending.jpg?alt=media&token=b6dfca12-f3f5-4466-b82c-75726b1263de",
     "url": "https://www.energy.gov/articles/how-much-do-you-spend",
-    "title": "How much do you spend?",
+    "title": "How much do you spend? How Do I Lower My Energy Bill",
     "synopsis": "Ever Wonder how much you spend on energy a year? We are breaking down the numbers for you.",
     "category": "utility"
     },
   "article2": {
     "imgUrl": "https://firebasestorage.googleapis.com/v0/b/ease-off-bills-3e50f.appspot.com/o/thermostate.jpg?alt=media&token=a2334c8f-3eea-4947-978b-ac33c4a155a3",
     "url": "https://www.energy.gov/energysaver/thermostats",
-    "title": "Thermostats",
-    "synopsis": "Check out this article to know more about thermostate operation, choosing and programming programmable thermostate and other consideration",
+    "title": "Thermostat's Operations and Programmable Thermostate",
+    "synopsis": "Know more about thermostate operation and programming programmable thermostate",
     "category": "utility"
   },
    "article3": {
     "imgUrl": "https://firebasestorage.googleapis.com/v0/b/ease-off-bills-3e50f.appspot.com/o/warmhouse.jpg?alt=media&token=c3d6635f-18bd-40bc-9932-229a9b6a06ca",
     "url": "https://www.energy.gov/eere/articles/4-technological-advances-keeping-your-home-warm-while-reducing-your-energy-bill",
-    "title": "4 Technological Advances for Keeping Your Home Warm While Reducing Your Energy Bill",
-    "synopsis": "While winter weather can bring magnificent snowy views, it isn't always a pretty picture for your heating bill. ",
+    "title": "4 Technological Advances To Reducing Your Energy Bill",
+    "synopsis": "While winter weather can bring magnificent snowy views, heating bills hike up. ",
     "category": "utility"
     },
   "article4": {
     "imgUrl": "https://firebasestorage.googleapis.com/v0/b/ease-off-bills-3e50f.appspot.com/o/warm-mug.jpg?alt=media&token=e5280c34-56ad-4eff-b57f-a94146c4d4f7",
     "url": "https://www.energy.gov/eere/articles/5-tips-stay-warm-winter",
     "title": "5 Tips To Stay Warm This Winter",
-    "synopsis": "Preparing for winter now can save you money and keep you warmer during cold days.Here are some simple steps you can take now to stay warm this winter.",
+    "synopsis": "Here are some simple steps you can take now to stay warm this winter and in snowy storms.",
     "category": "utility"
     },
   "article5": {
     "imgUrl": "https://firebasestorage.googleapis.com/v0/b/ease-off-bills-3e50f.appspot.com/o/download.jpg?alt=media&token=8f6faa89-97dd-4257-a96f-acf3aa270a09",
     "url": "https://www.merrilledge.com/article/10-tips-to-help-you-boost-your-retirement-savings-whatever-your-age-ose",
-    "title": "10 tips to help you boost your retirement savings – Whatever your age",
-    "synopsis": "Whether you just started working or you're nearly done, you can still potentially grow your nest egg.",
+    "title": "10 tips to help you boost your savings",
+    "synopsis": "Whether you just started working or you're nearly done, grow your nest egg.",
     "category": "credit Cards"
     },
     "article6": {
       "imgUrl": "https://firebasestorage.googleapis.com/v0/b/ease-off-bills-3e50f.appspot.com/o/credit.jpg?alt=media&token=09bbbdaf-d3f1-4c48-acf8-cf392ac044b1",
       "url": "https://www.nationwide.com/car-insurance-credit-score.jsp",
       "title": "How credit affects your insurance",
-      "synopsis": "Insurance premiums are determined by many factors – including credit score. We explain how.",
+      "synopsis": "Insurance premiums are determined by many factors – including credit score.",
       "category": "insurance"
     },
     "article7": {
       "imgUrl": "https://firebasestorage.googleapis.com/v0/b/ease-off-bills-3e50f.appspot.com/o/rates.png?alt=media&token=4fb861e5-f218-4ac6-b119-9fbf4788ba54",
       "url": "http://www.cornerstonemortgage.com/Is-A-15-or-30-Year-Fixed-Mortgage-Right-For-Me/",
       "title": "Is A 15 or 30 Year Fixed Mortgage Right For Me?",
-      "synopsis": "You have applied for a mortgage and are now faced with a question: Should you get a 15 year mortgage or a 30 year one? How are they different and what benefits would they have for you?",
+      "synopsis": "Should you get a 15 year mortgage or a 30 year one? How are they different?",
       "category": "mortgage"
     }
     

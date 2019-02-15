@@ -28,7 +28,7 @@ class Auth extends React.Component {
     return (
       <div className="Auth">
         <div className="text-center mb-3">
-          <h4 className="heading-EaseOffBills position-relative">
+          <h4 className="heading-EaseOffBills position-relative animated infinite pulse">
           Welcome to
             <em>EaseOff</em>
             Bills</h4>

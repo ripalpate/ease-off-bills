@@ -31,17 +31,17 @@ class Articles extends React.Component {
       pauseOnHover: true,
       responsive: [
         {
-          breakpoint: 1024,
+          breakpoint: 992,
           settings: {
-            slidesToShow: 1,
+            slidesToShow: 2,
             slidesToScroll: 1,
             dots: true,
           },
         },
         {
-          breakpoint: 768,
+          breakpoint: 800,
           settings: {
-            slidesToShow: 2,
+            slidesToShow: 1,
             slidesToScroll: 1,
             initialSlide: 1,
           },
@@ -51,6 +51,7 @@ class Articles extends React.Component {
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1,
+            dots: false,
           },
         },
       ],

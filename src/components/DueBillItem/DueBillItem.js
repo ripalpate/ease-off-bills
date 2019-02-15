@@ -143,7 +143,7 @@ class DueBillItem extends React.Component {
     };
 
     const deleteNestedModal = () => (
-      <Modal isOpen={nestedModal} toggle={e => this.toggleNested(e)}>
+      <Modal className="animated rollIn" isOpen={nestedModal} toggle={e => this.toggleNested(e)}>
         <ModalBody className= "nestedModal">
           <div className="row">
             <div className="col-md-5 warning-image">
@@ -163,7 +163,7 @@ class DueBillItem extends React.Component {
     );
 
     const modalElement = () => (
-        <Modal isOpen={modal} toggle={e => this.toggle(e)} className={this.props.className}>
+        <Modal isOpen={modal} toggle={e => this.toggle(e)} className="animated rollIn">
           <ModalHeader className="parentModal" toggle={e => this.toggle(e)}>Bill Details</ModalHeader>
           <ModalBody className="parentModal">
             <div className="row">
