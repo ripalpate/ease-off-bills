@@ -160,7 +160,7 @@ class Bills extends React.Component {
 
     const buttonAndHeading = () => (
       <div className="d-flex justify-content-between">
-        <h4 className="d-inline heading pl-3"> Due Bills </h4>
+        <h4 className="heading pl-3"> Due Bills </h4>
         <div className="ml-auto">
           <Button className ="btn btn-success mr-3 add-button" onClick={this.changeView}>
             <i className="fas fa-plus-circle"></i>
@@ -171,26 +171,26 @@ class Bills extends React.Component {
 
     return (
       <div className="bill-page">
-      <div className="text-center mt-3 mb-3">
-        <Dropdown className="dropdown" isOpen={dropdownOpen} toggle={e => this.toggle(e)}>
-          <DropdownToggle caret>
-            {dropDownValue}
-          </DropdownToggle>
-          <DropdownMenu onClick={this.categorySelectionEvent}>
-            <DropdownItem value="" onClick={this.changeDropDownValue}>All</DropdownItem>
-            <DropdownItem onClick={this.changeDropDownValue} value="Utility">Utility</DropdownItem>
-            <DropdownItem onClick={this.changeDropDownValue} value="Rent">Rent</DropdownItem>
-            <DropdownItem onClick={this.changeDropDownValue} value="Mortgage">Mortgage</DropdownItem>
-            <DropdownItem onClick={this.changeDropDownValue} value="Insurance">Insurance</DropdownItem>
-            <DropdownItem onClick={this.changeDropDownValue} value="Credit Cards">Credit Cards</DropdownItem>
-            <DropdownItem onClick={this.changeDropDownValue} value="TeleCommunication">TeleCommunication</DropdownItem>
-            <DropdownItem onClick={this.changeDropDownValue} value="Tax">Tax</DropdownItem>
-            <DropdownItem onClick={this.changeDropDownValue} value="Other">Other</DropdownItem>
-          </DropdownMenu>
-          </Dropdown>
-        </div>
+        <div className="text-center mt-3 mb-3">
+          <Dropdown className="dropdown" isOpen={dropdownOpen} toggle={e => this.toggle(e)}>
+            <DropdownToggle caret>
+              {dropDownValue}
+            </DropdownToggle>
+            <DropdownMenu onClick={this.categorySelectionEvent}>
+              <DropdownItem value="" onClick={this.changeDropDownValue}>All</DropdownItem>
+              <DropdownItem onClick={this.changeDropDownValue} value="Utility">Utility</DropdownItem>
+              <DropdownItem onClick={this.changeDropDownValue} value="Rent">Rent</DropdownItem>
+              <DropdownItem onClick={this.changeDropDownValue} value="Mortgage">Mortgage</DropdownItem>
+              <DropdownItem onClick={this.changeDropDownValue} value="Insurance">Insurance</DropdownItem>
+              <DropdownItem onClick={this.changeDropDownValue} value="Credit Cards">Credit Cards</DropdownItem>
+              <DropdownItem onClick={this.changeDropDownValue} value="TeleCommunication">TeleCommunication</DropdownItem>
+              <DropdownItem onClick={this.changeDropDownValue} value="Tax">Tax</DropdownItem>
+              <DropdownItem onClick={this.changeDropDownValue} value="Other">Other</DropdownItem>
+            </DropdownMenu>
+            </Dropdown>
+          </div>
         <div className="row">
-          <div className= "bills-components col-8">
+          <div className= "bills-components col-lg-8 col-md-12">
           {buttonAndHeading()}
           <DueBills
             bills = {selectedBills}
@@ -205,7 +205,9 @@ class Bills extends React.Component {
               updateIsPaid = {this.updateIsPaid}
           />
           </div>
-            <Articles className="col-4" articles = {selectedArticles}/>
+          <div className="col-lg-4 col-md-12">
+            <Articles articles = {selectedArticles}/>
+          </div>
         </div>
       </div>
     );

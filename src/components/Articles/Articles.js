@@ -64,7 +64,7 @@ class Articles extends React.Component {
       />
     ));
     return (
-      <div className="col-md articles">
+      <div className="articles">
         <h4 className="text-center heading pt-3">Resources</h4>
         {checkLength()}
             <div className="articlesWrapper">

@@ -23,7 +23,7 @@ class PaidBills extends React.Component {
 
     const checkLength = () => {
       if (paidBills.length) {
-        return (<h4 className="heading mb-3">Paid Bills</h4>);
+        return (<h4 className="heading mb-3 pl-3">Paid Bills</h4>);
       }
       return (<span></span>);
     };
@@ -39,7 +39,7 @@ class PaidBills extends React.Component {
     ));
 
     return (
-      <div className="col paid-bill">
+      <div className="paid-bill">
         <div>{checkLength()} </div>
         {paidBillsItemComponents}
       </div>
