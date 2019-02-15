@@ -37,13 +37,16 @@ em {
 }
 
 .loginWrapper {
-  background-color: #004d4d;
-  border-radius: 10px;
+  background-color:#343a40;
+  border-radius: 15px;
   padding: 20px;
 }
 
 .googleButton, .facebookButton {
-  background-color: #ffbb99;
   margin: 5px;
   border-radius:10px;
+}
+
+.google {
+  border-radius: 5px;
 }

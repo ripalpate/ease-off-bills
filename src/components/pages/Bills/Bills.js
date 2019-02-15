@@ -23,8 +23,6 @@ class Bills extends React.Component {
     selectedArticles: [],
     dropdownOpen: false,
     dropDownValue: 'Select Category',
-    // dropdownOpenArticle: false,
-    // dropDownValueArticle: 'Select Category',
   }
 
   getBills = () => {
@@ -92,19 +90,9 @@ class Bills extends React.Component {
     });
   }
 
-  // articletoggle() {
-  //   this.setState({
-  //     dropdownOpenArticle: !this.state.dropdownOpenArticle,
-  //   });
-  // }
-
   changeDropDownValue = (e) => {
     this.setState({ dropDownValue: e.currentTarget.textContent });
   }
-
-  // changeArticleDropDownValue = (e) => {
-  //   this.setState({ dropDownValueArticle: e.currentTarget.textContent });
-  // }
 
   filteringArticles = (selectedCategory) => {
     const { articles } = this.state;
@@ -143,12 +131,6 @@ class Bills extends React.Component {
     this.filteringArticles(selectedCategory);
   }
 
-  // articleCategory = (e) => {
-  //   e.preventDefault();
-  //   const selectedCategory = e.target.value;
-  //   this.filteringArticles(selectedCategory);
-  // }
-
   render() {
     const {
       paidBills,
@@ -160,7 +142,7 @@ class Bills extends React.Component {
 
     const buttonAndHeading = () => (
       <div className="d-flex justify-content-between">
-        <h4 className="heading pl-3"> Due Bills </h4>
+        <h4 className="heading pl-4"> Due Bills </h4>
         <div className="ml-auto">
           <Button className ="btn btn-success mr-3 add-button" onClick={this.changeView}>
             <i className="fas fa-plus-circle"></i>
@@ -190,20 +172,22 @@ class Bills extends React.Component {
             </Dropdown>
           </div>
         <div className="row">
-          <div className= "bills-components col-lg-8 col-md-12">
-          {buttonAndHeading()}
-          <DueBills
-            bills = {selectedBills}
-            deleteCycleBill = {this.deleteCycleBill}
-            passBillToEdit = {this.passBillToEdit}
-            updateIsPaid = {this.updateIsPaid}
-            deleteSingleBill = {this.deleteBill}
-          />
-          <PaidBills
-              paidBills = {paidBills}
-              deleteSingleBill = {this.deleteBill}
+          <div className="col-lg-8 col-md-12">
+            <div className= "bills-components">
+            {buttonAndHeading()}
+            <DueBills
+              bills = {selectedBills}
+              deleteCycleBill = {this.deleteCycleBill}
+              passBillToEdit = {this.passBillToEdit}
               updateIsPaid = {this.updateIsPaid}
-          />
+              deleteSingleBill = {this.deleteBill}
+            />
+            <PaidBills
+                paidBills = {paidBills}
+                deleteSingleBill = {this.deleteBill}
+                updateIsPaid = {this.updateIsPaid}
+            />
+            </div>
           </div>
           <div className="col-lg-4 col-md-12">
             <Articles articles = {selectedArticles}/>

@@ -195,7 +195,7 @@ class DueBillItem extends React.Component {
     );
 
     const dueBillElement = () => (
-      <div className="duebill-item text-center">
+      <div className="duebill-item text-center mr-3 ml-3">
         <div className="row single-bill mb-1" onClick={e => this.toggle(e)}> {this.props.buttonLabel}
             <div className="col-sm pt-1 date-element">{moment(bill.dueDate).format('L')}<p>{dueDays()}</p></div>
               <p className="col-sm pt-1">{bill.category}</p>
