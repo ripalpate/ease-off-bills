@@ -172,7 +172,7 @@ class Bills extends React.Component {
             </Dropdown>
           </div>
         <div className="row">
-          <div className="col-lg-8 col-md-12">
+          <div className=" col-12 col-lg-8 col-md-12">
             <div className= "bills-components">
             {buttonAndHeading()}
             <DueBills
@@ -189,7 +189,7 @@ class Bills extends React.Component {
             />
             </div>
           </div>
-          <div className="col-lg-4 col-md-12">
+          <div className=" col-12 col-lg-4 col-md-12">
             <Articles articles = {selectedArticles}/>
           </div>
         </div>

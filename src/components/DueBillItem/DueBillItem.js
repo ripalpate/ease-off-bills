@@ -121,7 +121,7 @@ class DueBillItem extends React.Component {
               <Input id="checkbox" type="checkbox"/>{' '}
               Delete the Series of this bill
           </Label>
-          <Modal isOpen={nestedModal1} toggle={e => this.toggleNested1(e)}>
+          <Modal className="animated rollIn" isOpen={nestedModal1} toggle={e => this.toggleNested1(e)}>
           <ModalBody className= "nestedModal">
             <div className="row">
               <div className="col-md-5 warning-image">
@@ -197,11 +197,11 @@ class DueBillItem extends React.Component {
     const dueBillElement = () => (
       <div className="duebill-item text-center mr-3 ml-3">
         <div className="row single-bill mb-1" onClick={e => this.toggle(e)}> {this.props.buttonLabel}
-            <div className="col-sm pt-1 date-element">{moment(bill.dueDate).format('L')}<p>{dueDays()}</p></div>
-              <p className="col-sm pt-1">{bill.category}</p>
-              <p className="col-sm pt-1">{formatPrice(bill.amount)}</p>
-              <p className="col-sm pt-1"><a href={bill.paymentUrl} rel="noopener noreferrer" target="_blank">Pay</a></p>
-            <span className="col-sm pt-1">
+            <div className="col pt-1 date-element">{moment(bill.dueDate).format('L')}<p>{dueDays()}</p></div>
+              <p className="col pt-1">{bill.category}</p>
+              <p className="col pt-1">{formatPrice(bill.amount)}</p>
+              <p className="col pt-1"><a href={bill.paymentUrl} rel="noopener noreferrer" target="_blank">Pay</a></p>
+            <span className="col pt-1">
               <input className="paid-checkbox" type="checkbox" checked={bill.isPaid} onChange={this.updateIsPaidEvent}/>
               <label className="checkbox-label">Paid</label></span>
           </div>

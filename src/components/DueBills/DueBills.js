@@ -47,7 +47,6 @@ class DueBills extends React.Component {
 
     return (
       <div className="dueBills">
-        {/* <h4 className="heading text-center pt-3 mb-3">Due Bills</h4> */}
         <div>{checkLength()}</div>
         {dueBillsItemComponents}
       </div>
