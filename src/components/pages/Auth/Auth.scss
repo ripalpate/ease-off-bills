@@ -43,10 +43,38 @@ em {
 }
 
 .googleButton, .facebookButton {
-  margin: 5px;
+  margin: 20px;
   border-radius:10px;
 }
 
 .google {
   border-radius: 5px;
+}
+
+.google, .facebook {
+  max-width: 350px;
+}
+
+@media (max-width: 595px) {
+  .heading-EaseOffBills {
+    font-size: 1.05em;
+  }
+}
+
+@media (max-width: 545px) {
+  .google, .facebook {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 400px) {
+  .google, .facebook {
+    max-width: 200px;
+  }
+  .Auth {
+    max-width:350px;
+  }
+  .heading-EaseOffBills {
+    font-size: 12px;
+  }
 }

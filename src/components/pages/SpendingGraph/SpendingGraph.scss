@@ -6,13 +6,11 @@
   margin:30px auto;
   border-radius: 10px;
   border: 8px solid #404040;
+  width: 650px;
 }
 
 #select-months {
   width: 50%;
-}
-.recharts-wrapper {
-  padding-left: 95px;
 }
 
 .label {
@@ -22,15 +20,8 @@
   padding-top:5px;
 }
 
-@media (max-width: 992px) {
-  .recharts-wrapper {
-    padding-left: 50px;
-  }
-  .recharts-surface {
-    width: 550px;
-    height: 300px;
-  }
+@media (max-width: 768px) {
   .spending-graph-container {
-    width: 75%;
+    width: unset;
   }
 }

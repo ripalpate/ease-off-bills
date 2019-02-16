@@ -22,6 +22,7 @@
 .modal-content {
   transform: translateY(25%);
 }
+
 .modal-body {
   padding-bottom: 0px;
   font-family: $label;
@@ -61,4 +62,11 @@
 
 .nope-button, .sure-button, .delete-button, .edit-button, .back-button {
   border-radius: 25px;
+}
+
+@media (max-width: 767px) {
+  .modal-content {
+    transform: translateY(15%);
+    margin: 0 auto;
+  }
 }

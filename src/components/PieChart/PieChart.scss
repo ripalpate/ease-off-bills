@@ -11,6 +11,31 @@
 }
 
 .no-msg-wrapper {
-  width: 800px;
+  // width: 800px;
   height: 367px;
+}
+
+.no-bill-text {
+  margin-top: 120px;
+}
+
+@media (max-width: 992px) {
+  .no-msg-wrapper {
+    width: 450px;
+  }
+  .no-chart-message {
+    width: 300px;
+  }
+  .no-bill-text {
+    margin-top: 120px;
+  }
+}
+
+@media (max-width: 576px) {
+  .no-msg-wrapper {
+    width: 350px;
+  }
+  .no-chart-message {
+    width: 275px;
+  }
 }

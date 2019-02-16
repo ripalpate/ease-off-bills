@@ -168,10 +168,10 @@ class DueBillItem extends React.Component {
           <ModalBody className="parentModal">
             <div className="row">
               <div className="col-md-7">
-                <p className="col-sm pt-1 date-element">Due Date: {moment(bill.dueDate).format('L')}</p>
-                <p className="col-sm pt-1">Payee: {bill.payee}</p>
-                <p className="col-sm pt-1">Category: {bill.category}</p>
-                <p className="col-sm pt-1">Amount: {formatPrice(bill.amount)}</p>
+                <p className="col pt-1 date-element">Due Date: {moment(bill.dueDate).format('L')}</p>
+                <p className="col pt-1">Payee: {bill.payee}</p>
+                <p className="col pt-1">Category: {bill.category}</p>
+                <p className="col pt-1">Amount: {formatPrice(bill.amount)}</p>
               </div>
               <div className="col-md-5">
                 <img src={billReceipt} alt="detailBill" className="pt-2" width="150px"/>
