@@ -1,10 +1,12 @@
+@import '../../../styles/index';
+@import '../../../styles/_variables';
 .Auth {
   margin: 0 auto;
   padding: 30px;
 }
 
 .heading-EaseOffBills {
-  font-family: 'Cardo', serif;
+  font-family: $mainHeading;
   font-size: 1.5em;
   font-weight: normal;
   font-style: italic;
@@ -13,7 +15,7 @@
 }
 
 em {
-  font-family: 'EB Garamond', serif;
+  font-family: $easeOff;
   font-size: 3em;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -37,7 +39,7 @@ em {
 }
 
 .loginWrapper {
-  background-color:#343a40;
+  background-color: $darkGrey;
   border-radius: 15px;
   padding: 20px;
 }

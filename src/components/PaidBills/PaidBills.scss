@@ -1,4 +1,5 @@
 @import '../../styles/index';
+@import '../../styles/_variables';
 
 .heading {
   font-family: $heading;
@@ -6,7 +7,7 @@
 
 .paid-bill {
   margin-top: 15px;
-  background-color: #ffd4cc;
+  background-color: $lightPeach;
   border-radius: 15px;
   padding-bottom:15px;
 }

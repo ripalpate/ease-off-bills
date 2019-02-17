@@ -1,6 +1,7 @@
 @import '../../../styles/index';
+@import '../../../styles/_variables';
 .edit-bill-heading {
-  border-bottom: 2px dotted rgb(11, 150, 92);
+  border-bottom: 2px dotted $green;
   font-family: $heading;
   font-size:1.75em;
 }

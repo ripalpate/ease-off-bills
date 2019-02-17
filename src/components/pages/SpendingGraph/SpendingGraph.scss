@@ -1,11 +1,12 @@
 @import '../../../styles/index';
+@import '../../../styles/_variables';
 
 .spending-graph-container {
-  background-color: #ffd4cc;
+  background-color: $lightPeach;
   padding: 20px;
   margin:30px auto;
   border-radius: 10px;
-  border: 8px solid #404040;
+  border: 8px solid $slateGray;
   width: 650px;
 }
 
