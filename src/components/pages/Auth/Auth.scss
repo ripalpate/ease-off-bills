@@ -1,10 +1,12 @@
+@import '../../../styles/index';
+@import '../../../styles/_variables';
 .Auth {
   margin: 0 auto;
   padding: 30px;
 }
 
 .heading-EaseOffBills {
-  font-family: 'Cardo', serif;
+  font-family: $mainHeading;
   font-size: 1.5em;
   font-weight: normal;
   font-style: italic;
@@ -13,7 +15,7 @@
 }
 
 em {
-  font-family: 'EB Garamond', serif;
+  font-family: $easeOff;
   font-size: 3em;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -37,16 +39,44 @@ em {
 }
 
 .loginWrapper {
-  background-color:#343a40;
+  background-color: $darkGrey;
   border-radius: 15px;
   padding: 20px;
 }
 
 .googleButton, .facebookButton {
-  margin: 5px;
+  margin: 20px;
   border-radius:10px;
 }
 
 .google {
   border-radius: 5px;
+}
+
+.google, .facebook {
+  max-width: 350px;
+}
+
+@media (max-width: 595px) {
+  .heading-EaseOffBills {
+    font-size: 1.05em;
+  }
+}
+
+@media (max-width: 545px) {
+  .google, .facebook {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 400px) {
+  .google, .facebook {
+    max-width: 200px;
+  }
+  .Auth {
+    max-width:350px;
+  }
+  .heading-EaseOffBills {
+    font-size: 12px;
+  }
 }

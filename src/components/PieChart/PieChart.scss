@@ -1,5 +1,7 @@
+@import '../../styles/_variables';
+
 .no-chart-message {
-  border: 2px dotted black;
+  border: 2px dotted $black;
   width: 300px;
   height: 300px;
   line-height: 300px;
@@ -7,10 +9,34 @@
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   margin: 0 auto;
-  background-color: hotpink;
+  background-color: $hotPink;
 }
 
 .no-msg-wrapper {
-  width: 800px;
   height: 367px;
+}
+
+.no-bill-text {
+  margin-top: 120px;
+}
+
+@media (max-width: 992px) {
+  .no-msg-wrapper {
+    width: 450px;
+  }
+  .no-chart-message {
+    width: 300px;
+  }
+  .no-bill-text {
+    margin-top: 120px;
+  }
+}
+
+@media (max-width: 576px) {
+  .no-msg-wrapper {
+    width: 350px;
+  }
+  .no-chart-message {
+    width: 275px;
+  }
 }

@@ -153,7 +153,7 @@ class Bills extends React.Component {
 
     return (
       <div className="bill-page">
-        <div className="text-center mt-3 mb-3">
+        <div className="text-center mt-4 mb-4">
           <Dropdown className="dropdown" isOpen={dropdownOpen} toggle={e => this.toggle(e)}>
             <DropdownToggle caret>
               {dropDownValue}
@@ -169,10 +169,10 @@ class Bills extends React.Component {
               <DropdownItem onClick={this.changeDropDownValue} value="Tax">Tax</DropdownItem>
               <DropdownItem onClick={this.changeDropDownValue} value="Other">Other</DropdownItem>
             </DropdownMenu>
-            </Dropdown>
+          </Dropdown>
           </div>
         <div className="row">
-          <div className="col-lg-8 col-md-12">
+          <div className=" col-12 col-lg-8 col-md-12">
             <div className= "bills-components">
             {buttonAndHeading()}
             <DueBills
@@ -189,7 +189,7 @@ class Bills extends React.Component {
             />
             </div>
           </div>
-          <div className="col-lg-4 col-md-12">
+          <div className=" col-12 col-lg-4 col-md-12">
             <Articles articles = {selectedArticles}/>
           </div>
         </div>

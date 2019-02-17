@@ -27,7 +27,7 @@ class DueBills extends React.Component {
       if (bills.length === 0) {
         return (
         <div className="no-bill-message">
-          <h5 className="card-title text-center">Currently, There are no bills. Please add your Bills.</h5>
+          <h5 className="card-title text-center">Currently, there are no bills. <br/>Please add your Bills.</h5>
         </div>);
       }
       return (<span></span>);
@@ -47,7 +47,6 @@ class DueBills extends React.Component {
 
     return (
       <div className="dueBills">
-        {/* <h4 className="heading text-center pt-3 mb-3">Due Bills</h4> */}
         <div>{checkLength()}</div>
         {dueBillsItemComponents}
       </div>

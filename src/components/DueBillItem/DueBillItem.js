@@ -15,6 +15,7 @@ import formatPrice from '../../helpers/formatPrice';
 import './DueBillItem.scss';
 import billReceipt from '../../images/bill-receipt.png';
 import warning from '../../images/better-warning.png';
+import alertWarning from '../../images/alert-Warning.png';
 
 class DueBillItem extends React.Component {
   state = {
@@ -84,24 +85,29 @@ class DueBillItem extends React.Component {
   render() {
     const { modal, nestedModal, nestedModal1 } = this.state;
     const { bill } = this.props;
-    const divStyleDanger = {
-      backgroundColor: 'red',
-    };
-    const divStyleWarning = {
-      backgroundColor: 'yellow',
-    };
     const dueDays = () => {
       const billDueDate = bill.dueDate;
       const currentDate = moment();
       const days = moment(billDueDate).diff(currentDate, 'days', true);
       const actualNum = Math.ceil(days);
       if (actualNum === 0) {
-        return (<small style={divStyleDanger}>Due Today</small>);
+        return (
+          <small>
+            <img src={alertWarning} alt="alert icon" width="20px" className="mr-1"/>
+            <small className="due-content">Due Today</small>
+          </small>);
       } if (actualNum <= -1) {
-        return (<small style={divStyleDanger}>Was due {actualNum} days ago</small>);
+        return (
+        <small>
+          <img src={alertWarning} alt="alert icon" width="20px" className="mr-1"/>
+          <small className="due-content">Was due {actualNum} days ago</small>
+        </small>);
       } if (actualNum === 1) {
         return (
-        <small style={divStyleWarning}>Due in {actualNum} day</small>
+        <small>
+          <img src={warning} alt="alert icon" width="20px" className="mr-1"/>
+          <small className="due-content">Due in {actualNum} day</small>
+        </small>
         );
       } if (actualNum > 0) {
         return (
@@ -121,7 +127,7 @@ class DueBillItem extends React.Component {
               <Input id="checkbox" type="checkbox"/>{' '}
               Delete the Series of this bill
           </Label>
-          <Modal isOpen={nestedModal1} toggle={e => this.toggleNested1(e)}>
+          <Modal className="animated rollIn" isOpen={nestedModal1} toggle={e => this.toggleNested1(e)}>
           <ModalBody className= "nestedModal">
             <div className="row">
               <div className="col-md-5 warning-image">
@@ -143,7 +149,7 @@ class DueBillItem extends React.Component {
     };
 
     const deleteNestedModal = () => (
-      <Modal isOpen={nestedModal} toggle={e => this.toggleNested(e)}>
+      <Modal className="animated rollIn" isOpen={nestedModal} toggle={e => this.toggleNested(e)}>
         <ModalBody className= "nestedModal">
           <div className="row">
             <div className="col-md-5 warning-image">
@@ -163,15 +169,15 @@ class DueBillItem extends React.Component {
     );
 
     const modalElement = () => (
-        <Modal isOpen={modal} toggle={e => this.toggle(e)} className={this.props.className}>
+        <Modal isOpen={modal} toggle={e => this.toggle(e)} className="animated rollIn">
           <ModalHeader className="parentModal" toggle={e => this.toggle(e)}>Bill Details</ModalHeader>
           <ModalBody className="parentModal">
             <div className="row">
               <div className="col-md-7">
-                <p className="col-sm pt-1 date-element">Due Date: {moment(bill.dueDate).format('L')}</p>
-                <p className="col-sm pt-1">Payee: {bill.payee}</p>
-                <p className="col-sm pt-1">Category: {bill.category}</p>
-                <p className="col-sm pt-1">Amount: {formatPrice(bill.amount)}</p>
+                <p className="col pt-1 date-element">Due Date: {moment(bill.dueDate).format('L')}</p>
+                <p className="col pt-1">Payee: {bill.payee}</p>
+                <p className="col pt-1">Category: {bill.category}</p>
+                <p className="col pt-1">Amount: {formatPrice(bill.amount)}</p>
               </div>
               <div className="col-md-5">
                 <img src={billReceipt} alt="detailBill" className="pt-2" width="150px"/>
@@ -197,11 +203,11 @@ class DueBillItem extends React.Component {
     const dueBillElement = () => (
       <div className="duebill-item text-center mr-3 ml-3">
         <div className="row single-bill mb-1" onClick={e => this.toggle(e)}> {this.props.buttonLabel}
-            <div className="col-sm pt-1 date-element">{moment(bill.dueDate).format('L')}<p>{dueDays()}</p></div>
-              <p className="col-sm pt-1">{bill.category}</p>
-              <p className="col-sm pt-1">{formatPrice(bill.amount)}</p>
-              <p className="col-sm pt-1"><a href={bill.paymentUrl} rel="noopener noreferrer" target="_blank">Pay</a></p>
-            <span className="col-sm pt-1">
+            <div className="col pt-1 date-element">{moment(bill.dueDate).format('L')}<p>{dueDays()}</p></div>
+              <p className="col pt-1">{bill.category}</p>
+              <p className="col pt-1">{formatPrice(bill.amount)}</p>
+              <p className="col pt-1"><a href={bill.paymentUrl} rel="noopener noreferrer" target="_blank">Pay</a></p>
+            <span className="col pt-1">
               <input className="paid-checkbox" type="checkbox" checked={bill.isPaid} onChange={this.updateIsPaidEvent}/>
               <label className="checkbox-label">Paid</label></span>
           </div>

@@ -28,20 +28,20 @@ class Auth extends React.Component {
     return (
       <div className="Auth">
         <div className="text-center mb-3">
-          <h4 className="heading-EaseOffBills position-relative">
+          <h4 className="heading-EaseOffBills position-relative animated infinite pulse">
           Welcome to
             <em>EaseOff</em>
             Bills</h4>
         </div>
         <div className="loginWrapper mt-5">
-          <div className="googleButton">
+          <div className="googleButton text-center">
             <button className="btn login-btn" onClick={this.authenticateUser}>
-              <img src= {googleButton} alt="google login Button" className="google" width="400px"/>
+              <img src= {googleButton} alt="google login Button" className="google"/>
             </button>
-          </div> <br/> <br/>
-          <div className="facebookButton">
+          </div>
+          <div className="facebookButton text-center">
             <button className="btn login-btn" onClick={this.authenticateFacebookUser}>
-              <img src= {facebookButton} alt="facebook login Button" width="400px"/>
+              <img src= {facebookButton} alt="facebook login Button" className="facebook"/>
             </button>
           </div>
         </div>

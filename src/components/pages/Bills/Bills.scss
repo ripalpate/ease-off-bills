@@ -1,16 +1,15 @@
+@import '../../../styles/_variables';
 .bill-page {
   width: 100%;
 }
 
 .bills-components {
   margin: 15px auto;
-  // background-color: #ffbb99;
-  background-color: #ffd4cc;
+  background-color: $lightPeach;
   padding-top: 15px;
   padding-bottom: 15px;
   border-radius: 15px;
-  // border: 6px solid purple;
-  border: 8px solid #404040;
+  border: 8px solid $slateGray;
 }
 
 .articles-component {
@@ -24,6 +23,11 @@
 
 button.dropdown-toggle {
   border-radius: 25px;
-  background-color: purple;
-  border: 1px solid purple;
+  background-color: $purple;
+  border: 1px solid $purple;
+  font-size: 1.2em;
+}
+
+.dropdown-item {
+  font-size: 1.2em;
 }

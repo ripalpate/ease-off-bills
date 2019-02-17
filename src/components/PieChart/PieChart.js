@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  ResponsiveContainer,
   PieChart,
   Pie,
   Cell,
@@ -37,14 +38,20 @@ class Chart extends React.Component {
 
     const checkLength = () => {
       if (selectedMonthData.length === 0) {
-        return (<div className="no-msg-wrapper mt-5"><h6 className="text-center no-chart-message">There are no bills for this month</h6></div>);
+        return (
+          <div className="no-msg-wrapper mt-5 animated rollIn">
+            <div className="no-chart-message">
+              <h6 className="text-center no-bill-text">There are no bills for this month</h6>
+            </div>
+          </div>
+        );
       } return (
-        <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
+        <div style={{ width: '100%', height: 400 }}>
+        <ResponsiveContainer>
+        <PieChart onMouseEnter={this.onPieEnter} className="animated rollIn">
         <Pie
           data={selectedMonthData}
           dataKey='value'
-          cx={300}
-          cy={200}
           labelLine={false}
           label={renderCustomizedLabel}
           outerRadius={150}
@@ -56,29 +63,14 @@ class Chart extends React.Component {
           labelFormatter = {value => `${formatPrice(value)}`}
           />
       </PieChart>
+      </ResponsiveContainer>
+      </div>
       );
     };
 
     return (
       <div className="pie-chart">
       {checkLength()}
-      {/* <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
-        <Pie
-          data={selectedMonthData}
-          dataKey='value'
-          cx={300}
-          cy={200}
-          labelLine={false}
-          label={renderCustomizedLabel}
-          outerRadius={150}
-          fill="#8884d8"
-        >{selectedMonthData.map((_entry, index) => <Cell key="1" fill={colors[index % colors.length]}/>)}
-        </Pie>
-        <Tooltip
-          formatter={value => `${formatPrice(value)}`}
-          labelFormatter = {value => `${formatPrice(value)}`}
-          />
-      </PieChart> */}
     </div>
     );
   }

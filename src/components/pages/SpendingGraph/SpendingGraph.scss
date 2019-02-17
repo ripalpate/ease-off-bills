@@ -1,18 +1,17 @@
 @import '../../../styles/index';
+@import '../../../styles/_variables';
 
 .spending-graph-container {
-  background-color: #ffd4cc;
+  background-color: $lightPeach;
   padding: 20px;
   margin:30px auto;
   border-radius: 10px;
-  border: 8px solid #404040;
+  border: 8px solid $slateGray;
+  width: 650px;
 }
 
 #select-months {
   width: 50%;
-}
-.recharts-wrapper {
-  padding-left: 95px;
 }
 
 .label {
@@ -20,4 +19,10 @@
   font-size: 1.25em;
   font-weight: bolder;
   padding-top:5px;
+}
+
+@media (max-width: 768px) {
+  .spending-graph-container {
+    width: unset;
+  }
 }

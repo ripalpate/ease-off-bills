@@ -22,6 +22,7 @@
 .modal-content {
   transform: translateY(25%);
 }
+
 .modal-body {
   padding-bottom: 0px;
   font-family: $label;
@@ -42,10 +43,10 @@
   margin-left: 0px !important;
 }
 .parentModal {
-  background-color: #85e085;
+  background-color: $lightGreen;
 }
 .nestedModal {
-  background-color: #ffff1a;
+  background-color: $yellow;
   border-radius: 10px;
 }
 
@@ -61,4 +62,16 @@
 
 .nope-button, .sure-button, .delete-button, .edit-button, .back-button {
   border-radius: 25px;
+}
+
+.due-content {
+  position: relative;
+  top: 2px;
+  font-size: 15px;
+}
+@media (max-width: 767px) {
+  .modal-content {
+    transform: translateY(15%);
+    margin: 0 auto;
+  }
 }
