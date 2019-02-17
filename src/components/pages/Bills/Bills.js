@@ -153,7 +153,7 @@ class Bills extends React.Component {
 
     return (
       <div className="bill-page">
-        <div className="text-center mt-3 mb-3">
+        <div className="text-center mt-4 mb-4">
           <Dropdown className="dropdown" isOpen={dropdownOpen} toggle={e => this.toggle(e)}>
             <DropdownToggle caret>
               {dropDownValue}
