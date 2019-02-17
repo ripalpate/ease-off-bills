@@ -169,7 +169,7 @@ class Bills extends React.Component {
               <DropdownItem onClick={this.changeDropDownValue} value="Tax">Tax</DropdownItem>
               <DropdownItem onClick={this.changeDropDownValue} value="Other">Other</DropdownItem>
             </DropdownMenu>
-            </Dropdown>
+          </Dropdown>
           </div>
         <div className="row">
           <div className=" col-12 col-lg-8 col-md-12">

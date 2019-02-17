@@ -64,6 +64,11 @@
   border-radius: 25px;
 }
 
+.due-content {
+  position: relative;
+  top: 2px;
+  font-size: 15px;
+}
 @media (max-width: 767px) {
   .modal-content {
     transform: translateY(15%);

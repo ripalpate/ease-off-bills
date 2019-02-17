@@ -15,6 +15,7 @@ import formatPrice from '../../helpers/formatPrice';
 import './DueBillItem.scss';
 import billReceipt from '../../images/bill-receipt.png';
 import warning from '../../images/better-warning.png';
+import alertWarning from '../../images/alert-Warning.png';
 
 class DueBillItem extends React.Component {
   state = {
@@ -84,24 +85,29 @@ class DueBillItem extends React.Component {
   render() {
     const { modal, nestedModal, nestedModal1 } = this.state;
     const { bill } = this.props;
-    const divStyleDanger = {
-      backgroundColor: 'red',
-    };
-    const divStyleWarning = {
-      backgroundColor: 'yellow',
-    };
     const dueDays = () => {
       const billDueDate = bill.dueDate;
       const currentDate = moment();
       const days = moment(billDueDate).diff(currentDate, 'days', true);
       const actualNum = Math.ceil(days);
       if (actualNum === 0) {
-        return (<small style={divStyleDanger}>Due Today</small>);
+        return (
+          <small>
+            <img src={alertWarning} alt="alert icon" width="20px" className="mr-1"/>
+            <small className="due-content">Due Today</small>
+          </small>);
       } if (actualNum <= -1) {
-        return (<small style={divStyleDanger}>Was due {actualNum} days ago</small>);
+        return (
+        <small>
+          <img src={alertWarning} alt="alert icon" width="20px" className="mr-1"/>
+          <small className="due-content">Was due {actualNum} days ago</small>
+        </small>);
       } if (actualNum === 1) {
         return (
-        <small style={divStyleWarning}>Due in {actualNum} day</small>
+        <small>
+          <img src={warning} alt="alert icon" width="20px" className="mr-1"/>
+          <small className="due-content">Due in {actualNum} day</small>
+        </small>
         );
       } if (actualNum > 0) {
         return (
