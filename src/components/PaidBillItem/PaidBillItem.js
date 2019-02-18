@@ -29,7 +29,7 @@ render() {
   const { paidBill } = this.props;
 
   return (
-    <div className="paidbill-item mr-3 ml-3">
+    <div className="paidbill-item mr-3 ml-3 text-center">
       <div className="row">
         <p className="col pt-1">{moment(paidBill.dueDate).format('L')}</p>
         <p className="col pt-1">{paidBill.category}</p>
