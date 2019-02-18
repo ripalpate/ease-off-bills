@@ -201,7 +201,7 @@ class DueBillItem extends React.Component {
     );
 
     const dueBillElement = () => (
-      <div className="duebill-item text-center mr-3 ml-3">
+      <div className="text-center">
         <div className="row single-bill mb-1">
             <div className="col pt-1 date-element" onClick={e => this.toggle(e)}>{moment(bill.dueDate).format('L')}<p>{dueDays()}</p></div>
             <p className="col pt-1" onClick={e => this.toggle(e)}>{bill.category}</p>
@@ -217,10 +217,8 @@ class DueBillItem extends React.Component {
     );
 
     return (
-      <div>
-        <div>
-          {dueBillElement()}
-        </div>
+      <div className="duebill-item mr-3 ml-3">
+        {dueBillElement()}
       </div>
     );
   }
