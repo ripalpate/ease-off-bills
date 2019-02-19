@@ -1,5 +1,5 @@
 ## EaseOff Bills
-Got lots of bills and can't remember which one to pay? Just add your bills to EaseOff Bills and it will remember those bills for you. You will know what's due, when it's due and the money you have to put towards it. On top, it will allow you to see amount you are spending towards each category. Users will have access to delete and edit those bills. User will have choice to delete single as well as serires of bills. User can click on "Pay" link and it will redirect them to the link to pay that bill. Once the bill is paid, user can check "Paid" box and it will move that bill into "Paid bills" section. Additionally, different types of resources are available to users such as reducing energy bill, tips to stay warm and more. User will have option to categorize due bills and articles.
+Got lots of bills and can't remember which one to pay? Just add your bills to EaseOff Bills and it will remember those bills for you. You will know what's due, when it's due and the money you have to put towards it. On top, it will allow you to see amount you are spending towards each category. Users will have access to delete and edit those bills. User will have choice to delete single as well as series of bills. User can click on "Pay" link and it will redirect them to the link to pay that bill. Once the bill is paid, user can check "Paid" box and it will move that bill into "Paid bills" section. Additionally, different types of resources are available to users such as reducing energy bill, tips to stay warm and more. User will have option to categorize due bills and articles.
 
 ## Technologies Used
 * HTML
@@ -16,7 +16,7 @@ Got lots of bills and can't remember which one to pay? Just add your bills to Ea
 * [React Slick](https://react-slick.neostack.com/docs/example/pause-on-hover/)
 
 ## Screen shots
-coming soon....
+
 1. Login Page
 ![mainview](./screenshots/main-page.png)
 
@@ -52,9 +52,9 @@ coming soon....
   - Create a Firebase Realtime Database. import !base.json and you will see data for articles and bills
   - Click on Articles, and the import the articles.json file. Complete same step for bills.
   - Go to Database tab and click on Rules tab, and add the following rule:
-     ``` "bills": {
+     ` "bills": {
         ".indexOn":"uid"
-      },```
+      },`
 
 - Clone the repository
 - Change it to repository directory in your terminal

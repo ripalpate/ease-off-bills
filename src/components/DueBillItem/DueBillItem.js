@@ -201,25 +201,24 @@ class DueBillItem extends React.Component {
     );
 
     const dueBillElement = () => (
-      <div className="duebill-item text-center mr-3 ml-3">
-        <div className="row single-bill mb-1" onClick={e => this.toggle(e)}> {this.props.buttonLabel}
-            <div className="col pt-1 date-element">{moment(bill.dueDate).format('L')}<p>{dueDays()}</p></div>
-              <p className="col pt-1">{bill.category}</p>
-              <p className="col pt-1">{formatPrice(bill.amount)}</p>
-              <p className="col pt-1"><a href={bill.paymentUrl} rel="noopener noreferrer" target="_blank">Pay</a></p>
-            <span className="col pt-1">
+      <div className="text-center">
+        <div className="row single-bill mb-1">
+            <div className="col pt-1 date-element" onClick={e => this.toggle(e)}>{moment(bill.dueDate).format('L')}<p>{dueDays()}</p></div>
+            <p className="col pt-1" onClick={e => this.toggle(e)}>{bill.category}</p>
+            <p className="col pt-1" onClick={e => this.toggle(e)}>{formatPrice(bill.amount)}</p>
+            <span className="col pt-1" onClick={e => this.toggle(e)}>
               <input className="paid-checkbox" type="checkbox" checked={bill.isPaid} onChange={this.updateIsPaidEvent}/>
-              <label className="checkbox-label">Paid</label></span>
+              <label className="checkbox-label">Paid</label>
+            </span>
+            <p className="col pt-1"><a href={bill.paymentUrl} rel="noopener noreferrer" target="_blank">Pay</a></p>
           </div>
           {modalElement()}
     </div>
     );
 
     return (
-      <div>
-        <div>
-          {dueBillElement()}
-        </div>
+      <div className="duebill-item mr-3 ml-3">
+        {dueBillElement()}
       </div>
     );
   }
